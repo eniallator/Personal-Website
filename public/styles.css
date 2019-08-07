@@ -1,0 +1,26 @@
+#dark-trees {
+  background-image: url(./images/dark_trees.jpg);
+  width: 100%;
+  height: 100vh;
+  background-position: 50% 0;
+  background-size: cover;
+  position: relative;
+}
+
+#nav-avatar {
+  padding: 0;
+  width: 2.1em;
+  padding: 0;
+}
+
+.eni-color {
+  background-color: #e26d5c;
+}
+
+.nav-color {
+  color: white;
+}
+
+.nav-color:hover {
+  color: gray;
+}

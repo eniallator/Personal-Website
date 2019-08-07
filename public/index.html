@@ -6,11 +6,64 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>eniallator</title>
-    <link href="styles.css" />
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 
 <body>
-    <h1>Hello world!</h1>
+    <nav class="eni-color navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img id="nav-avatar" src="images/avatar.jpg" alt="eniallator's avatar">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item mb-0 h3">
+                        <a class="nav-link nav-color" href="#about">About</a>
+                    </li>
+                    <li class="nav-item mb-0 h3">
+                        <a class="nav-link nav-color" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div id="dark-trees" class="align-items-center">
+        <div class="text-white flex-column">
+            <h1 class="text-center">Hi I'm Niall</h1>
+            <p class="text-center">I'm a developer</p>
+        </div>
+    </div>
+    <div id="about" class="bg-white">
+        <div class="container">
+            <div class="col-lg-8 offset-lg-2">
+                <h1>About</h1>
+                <p>
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquid iure numquam esse commodi vitae
+                    dolor, at quos voluptatem quam sint consequuntur corporis deleniti a pariatur similique labore
+                    aperiam! Saepe, incidunt.
+                </p>
+            </div>
+        </div>
+    </div>
+    <div id="contact" class="bg-light">
+        <div class="container">
+            <div class="col-lg-8 offset-lg-2">
+                <h1>Contact</h1>
+                <p>
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquid iure numquam esse commodi vitae
+                    dolor, at quos voluptatem quam sint consequuntur corporis deleniti a pariatur similique labore
+                    aperiam! Saepe, incidunt.
+                </p>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
