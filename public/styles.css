@@ -33,3 +33,7 @@
 textarea {
   resize: none !important;
 }
+
+.fill {
+  height: 100%;
+}
