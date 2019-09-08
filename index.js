@@ -20,7 +20,7 @@ async function sendMail(data) {
     })
 
     let info = await transporter.sendMail({
-        from: `"${data.name}" <${process.env.EMAIL_AUTH_USER}>`,
+        from: `"Personal Site" <${process.env.EMAIL_AUTH_USER}>`,
         to: 'MY_EMAIL',
         subject: `[Personal Site] From ${data.name}`,
         text: `Name: ${data.name}\n\nEmail: ${data.email}\n\nMessage: ${data.message}`
