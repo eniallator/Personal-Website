@@ -11,7 +11,7 @@
     "dotenv": "^8.1.0",
     "express": "~4.16.1",
     "multer": "^1.4.2",
-    "nodemailer": "^6.3.0",
+    "nodemailer": "^6.4.16",
     "nodemon": "^1.19.1"
   },
   "description": "My personal website's source code",
