@@ -37,3 +37,80 @@ textarea {
 .fill {
   height: 100%;
 }
+
+.project {
+  width: 18rem;
+  color: #586470;
+  text-align: inherit;
+}
+
+.project:hover {
+  color: #495057;
+  text-decoration: none;
+  background-color: #f8f9fa;
+}
+
+.hide-children a {
+  display: none;
+}
+
+.hide-children a.show-child {
+  display: flex;
+}
+
+.children-showing {
+  display: none;
+}
+.hide-children .children-showing {
+  display: inline;
+}
+
+.children-hidden {
+  display: inline;
+}
+.hide-children .children-hidden {
+  display: none;
+}
+
+.hidden {
+  display: none;
+}
+
+.toggle-more-projects-outer {
+  max-width: min(26rem, 70%);
+  margin: 0 auto;
+}
+
+.toggle-more-projects-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.toggle-more-projects-link::before,
+.toggle-more-projects-link::after {
+  content: "";
+  flex: 1;
+  border-bottom: thin solid #6c757d;
+}
+.toggle-more-projects-link::before {
+  margin-right: 0.25em;
+}
+.toggle-more-projects-link::after {
+  margin-left: 0.25em;
+}
+
+.toggle-more-projects-text {
+  background-color: #6c757d;
+  align-items: center;
+  text-align: center;
+  padding: 3px 7px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1;
+  vertical-align: middle;
+  white-space: nowrap;
+  text-align: center;
+  border-radius: 10px;
+}
