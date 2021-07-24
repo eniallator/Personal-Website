@@ -80,8 +80,18 @@
   );
 })(window.document, window.history, window.location);
 
+var PROJECT_SRC_BASE = "https://github.com/eniallator/";
+var PROJECT_RUN_BASE = "https://eniallator.github.io/";
+
 function toggleChildren() {
   $(".js-toggle-hide-projects").toggleClass("hide-children");
+}
+
+function updateModalDimensions() {
+  var modalWidth = $("[data-modal-width]").width();
+  $("#project-preview-modal iframe")
+    .width(modalWidth)
+    .height((modalWidth * 9) / 16);
 }
 
 window.onresize = function () {
@@ -91,10 +101,57 @@ window.onresize = function () {
   projects
     .slice(0, Math.floor(container.width() / projects.width()))
     .addClass("show-child");
+  updateModalDimensions();
 };
 
+function makeProjectHtml(project) {
+  return $(
+    '<a class="project card m-2" data-github="' +
+      project.github +
+      '"><img class="card-img-top" width="288" height="162" src="images/thumbnails/' +
+      project.thumbnail +
+      '" alt="' +
+      project.title +
+      ' Thumbnail"/><div class="card-body"><h5 class="card-title">' +
+      project.title +
+      '</h5><p class="card-text">' +
+      project.description +
+      "</p></div></a>"
+  );
+}
+
+function launchProjectPreview(evt) {
+  var modal = $("#project-preview-modal");
+  var project = $(evt.currentTarget);
+  modal.find("iframe").attr("src", PROJECT_RUN_BASE + project.data("github"));
+  modal.find("[data-project-title]").text(project.find(".card-title").text());
+  modal
+    .find("[data-project-repo]")
+    .attr("href", PROJECT_SRC_BASE + project.data("github"));
+  modal.modal("show");
+}
+
+$("#project-preview-modal")
+  .on("shown.bs.modal", updateModalDimensions)
+  .on("hide.bs.modal", function (evt) {
+    $(evt.currentTarget).find("iframe").removeAttr("src");
+  });
+
 window.onload = function () {
-  toggleChildren();
-  $(".js-toggle-hide-projects").removeClass("hidden");
-  window.onresize();
+  fetch("./projects.json")
+    .then(function (resp) {
+      return resp.json();
+    })
+    .then(function (data) {
+      for (var i = 0; i < data.length; i++) {
+        var project = data[i];
+        var projectHtml = makeProjectHtml(project);
+        $("#project-container").append(projectHtml);
+        projectHtml.click(launchProjectPreview);
+      }
+
+      toggleChildren();
+      $(".js-toggle-hide-projects").removeClass("hidden");
+      window.onresize();
+    });
 };

@@ -42,6 +42,7 @@ textarea {
   width: 18rem;
   color: #586470;
   text-align: inherit;
+  cursor: pointer;
 }
 
 .project:hover {
@@ -86,6 +87,7 @@ textarea {
   justify-content: center;
   align-items: center;
   text-align: center;
+  cursor: pointer;
 }
 .toggle-more-projects-link::before,
 .toggle-more-projects-link::after {

@@ -28,16 +28,13 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item mb-0 h3">
-            <a class="nav-link text-light nav-color" href="#about" data-toggle="collapse"
-              data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent">About</a>
+            <a class="nav-link text-light nav-color" href="#about">About</a>
           </li>
           <li class="nav-item mb-0 h3">
-            <a class="nav-link text-light nav-color" href="#projects" data-toggle="collapse"
-              data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent">Projects</a>
+            <a class="nav-link text-light nav-color" href="#projects">Projects</a>
           </li>
           <li class="nav-item mb-0 h3">
-            <a class="nav-link text-light nav-color" href="#contact" data-toggle="collapse"
-              data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent">Contact</a>
+            <a class="nav-link text-light nav-color" href="#contact">Contact</a>
           </li>
         </ul>
       </div>
@@ -70,77 +67,6 @@
     <div class="col-lg-8 offset-lg-2">
       <h1 class="text-center">Projects</h1>
       <div id="project-container" class="d-flex flex-row flex-wrap justify-content-center js-toggle-hide-projects">
-        <a class="project card m-2" href="https://github.com/eniallator/Ray-Marching">
-          <img class="card-img-top" width="18rem" src="images/thumbnails/ray-marching.png" alt="Ray Marching Thumbnail">
-          <div class="card-body">
-            <h5 class="card-title">Ray Marching</h5>
-            <p class="card-text">A ray marching simulation created using the HTML canvas and Javascript</p>
-          </div>
-        </a>
-        <a class="project card m-2" href="https://github.com/eniallator/GPU-Accelerated-Cellular-Automata">
-          <img class="card-img-top" width="18rem" src="images/thumbnails/particle-cellular-automata.png"
-            alt="Particle Cellular Automata Thumbnail">
-          <div class="card-body">
-            <h5 class="card-title">Particle Cellular Automata</h5>
-            <p class="card-text">Particle based cellular automata using convolution with tensorflowjs</p>
-          </div>
-        </a>
-        <a class="project card m-2" href="https://github.com/eniallator/Reactive-Hexagon-Points">
-          <img class="card-img-top" width="18rem" src="images/thumbnails/reactive-hexagons.png"
-            alt="Reactive Hexagon Points Thumbnail">
-          <div class="card-body">
-            <h5 class="card-title">Reactive Hexagon Points</h5>
-            <p class="card-text">Connected points that form hexagons and when clicked, move around</p>
-          </div>
-        </a>
-        <a class="project card m-2" href="https://github.com/eniallator/Symmetry-Line-Animation">
-          <img class="card-img-top" width="18rem" src="images/thumbnails/symmetry-line.png"
-            alt="Symmetry Line Thumbnail">
-          <div class="card-body">
-            <h5 class="card-title">Symmetry Line Animation</h5>
-            <p class="card-text">A symmetrical line animation written for the canvas</p>
-          </div>
-        </a>
-        <a class="project card m-2" href="https://github.com/eniallator/Circle-Segments-Animation">
-          <img class="card-img-top" width="18rem" src="images/thumbnails/circle-segments.png"
-            alt="Circle Segments Thumbnail">
-          <div class="card-body">
-            <h5 class="card-title">Circle Segments Animation</h5>
-            <p class="card-text">An animation of circle segments growing from the center of the screen, towards the
-              outside</p>
-          </div>
-        </a>
-        <a class="project card m-2" href="https://github.com/eniallator/Contour-Lines">
-          <img class="card-img-top" width="18rem" src="images/thumbnails/contour-lines.png"
-            alt="Contour Lines Thumbnail">
-          <div class="card-body">
-            <h5 class="card-title">Contour Lines</h5>
-            <p class="card-text">A simulation of contour lines using the marching squares algorithm</p>
-          </div>
-        </a>
-        <a class="project card m-2" href="https://github.com/eniallator/Sand-Piles-JS">
-          <img class="card-img-top" width="18rem" src="images/thumbnails/sand-piles.png" alt="Sand Piles Thumbnail">
-          <div class="card-body">
-            <h5 class="card-title">Sand Piles Animation</h5>
-            <p class="card-text">A sand piles simulation in javascript</p>
-          </div>
-        </a>
-        <a class="project card m-2" href="https://github.com/eniallator/Physics-Ball-Toss">
-          <img class="card-img-top" width="18rem" src="images/thumbnails/physics-ball-toss.png"
-            alt="Physics Ball Toss Thumbnail">
-          <div class="card-body">
-            <h5 class="card-title">Physics Ball Toss</h5>
-            <p class="card-text">A physics ball toss simulation using SUVAT equations</p>
-          </div>
-        </a>
-        <a class="project card m-2" href="https://github.com/eniallator/pride-rainbow-animation">
-          <img class="card-img-top" width="18rem" src="images/thumbnails/pride-rainbow.png"
-            alt="Pride Rainbow Thumbnail">
-          <div class="card-body">
-            <h5 class="card-title">Pride Rainbow Animation</h5>
-            <p class="card-text">A html canvas animation of a rainbow being formed</p>
-          </div>
-        </a>
       </div>
       <div class="toggle-more-projects-outer">
         <a class="js-toggle-hide-projects hide-children hidden toggle-more-projects-link" onclick="toggleChildren();">
@@ -150,6 +76,26 @@
             <span class="children-showing">Less</span>
           </span>
         </a>
+      </div>
+      <div class="modal fade" id="project-preview-modal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+          <div class="modal-content">
+            <div class="modal-body py-0">
+              <div class="d-flex justify-content-between">
+                <h5 class="mt-2">
+                  <span data-project-title></span> Preview
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div data-modal-width>
+                <iframe title="Project preview"></iframe>
+              </div>
+              <a class="btn btn-primary mb-3" data-project-repo>View Repository</a>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>

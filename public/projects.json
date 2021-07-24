@@ -1,0 +1,56 @@
+[
+    {
+        "title": "Ray Marching",
+        "description": "A ray marching simulation created using the HTML canvas and Javascript",
+        "thumbnail": "ray-marching.png",
+        "github": "Ray-Marching"
+    },
+    {
+        "title": "Particle Cellular Automata",
+        "description": "Particle based cellular automata using convolution with tensorflowjs",
+        "thumbnail": "particle-cellular-automata.png",
+        "github": "GPU-Accelerated-Cellular-Automata"
+    },
+    {
+        "title": "Reactive Hexagon Points",
+        "description": "Connected points that form hexagons and when clicked, move around",
+        "thumbnail": "reactive-hexagons.png",
+        "github": "Reactive-Hexagon-Points"
+    },
+    {
+        "title": "Symmetry Line Animation",
+        "description": "A symmetrical line animation written for the canvas",
+        "thumbnail": "symmetry-line.png",
+        "github": "Symmetry-Line-Animation"
+    },
+    {
+        "title": "Circle Segments Animation",
+        "description": "An animation of circle segments growing from the center of the screen, towards the outside",
+        "thumbnail": "circle-segments.png",
+        "github": "Circle-Segments-Animation"
+    },
+    {
+        "title": "Contour Lines",
+        "description": "A simulation of contour lines using the marching squares algorithm",
+        "thumbnail": "contour-lines.png",
+        "github": "Contour-Lines"
+    },
+    {
+        "title": "Sand Piles Animation",
+        "description": "A sand piles simulation in javascript",
+        "thumbnail": "sand-piles.png",
+        "github": "Sand-Piles-JS"
+    },
+    {
+        "title": "Physics Ball Toss",
+        "description": "A physics ball toss simulation using SUVAT equations",
+        "thumbnail": "physics-ball-toss.png",
+        "github": "Physics-Ball-Toss"
+    },
+    {
+        "title": "Pride Rainbow Animation",
+        "description": "A html canvas animation of a rainbow being formed",
+        "thumbnail": "pride-rainbow.png",
+        "github": "pride-rainbow-animation"
+    }
+]
