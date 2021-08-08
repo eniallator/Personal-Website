@@ -17,12 +17,8 @@ async function sendMail(data) {
       subject: `[Personal Site] From ${data.name}`,
       text: `Name: ${data.name}\n\nEmail: ${data.email}\n\nMessage: ${data.message}`,
     })
-    .then(() => {
-      console.log(`New email from ${data.name}`);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+    .then(() => console.log(`New email from ${data.name}`))
+    .catch((error) => console.log(error));
 }
 
 app.use(bodyParser.json());
