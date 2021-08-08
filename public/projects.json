@@ -43,7 +43,7 @@
     },
     {
         "title": "Physics Ball Toss",
-        "description": "A physics ball toss simulation using SUVAT equations",
+        "description": "A physics ball toss simulation using the kinematic equations",
         "thumbnail": "physics-ball-toss.png",
         "github": "Physics-Ball-Toss"
     },
