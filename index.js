@@ -1,44 +1,40 @@
-const express = require('express')
-const bodyParser = require('body-parser')
-const nodemailer = require('nodemailer')
-const multer = require('multer')
-require('dotenv').config()
+const express = require("express");
+const bodyParser = require("body-parser");
+const multer = require("multer");
+const sgMail = require("@sendgrid/mail");
+require("dotenv").config();
 
-const upload = multer()
-const app = express()
-const port = 3000
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+const upload = multer();
+const app = express();
+const port = 3000;
 
 async function sendMail(data) {
-    let transporter = nodemailer.createTransport({
-        host: 'smtp.gmail.com',
-        port: 587,
-        secure: false,
-        auth: {
-            user: process.env.EMAIL_AUTH_USER,
-            pass: process.env.EMAIL_AUTH_PASS
-        }
+  sgMail
+    .send({
+      to: process.env.EMAIL_RECIPIENT,
+      from: process.env.EMAIL_SENDER,
+      subject: `[Personal Site] From ${data.name}`,
+      text: `Name: ${data.name}\n\nEmail: ${data.email}\n\nMessage: ${data.message}`,
     })
-
-    let info = await transporter.sendMail({
-        from: `"Personal Site" <${process.env.EMAIL_AUTH_USER}>`,
-        to: process.env.EMAIL_RECIPIENT,
-        subject: `[Personal Site] From ${data.name}`,
-        text: `Name: ${data.name}\n\nEmail: ${data.email}\n\nMessage: ${data.message}`
+    .then(() => {
+      console.log(`New email from ${data.name}`);
     })
-
-    console.log('Message sent: ' + info.messageId)
+    .catch((error) => {
+      console.log(error);
+    });
 }
 
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use(upload.array())
-app.use(express.static('public'))
+app.use(upload.array());
+app.use(express.static("public"));
 
-app.post('/', (req, res) => {
-    console.log(req.body)
-    sendMail(req.body)
-    res.redirect('/')
-})
+app.post("/", (req, res) => {
+  console.log(req.body);
+  sendMail(req.body);
+  res.redirect("/");
+});
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+app.listen(port, () => console.log(`Example app listening on port ${port}!`));
