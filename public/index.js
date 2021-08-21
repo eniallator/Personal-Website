@@ -123,13 +123,21 @@ function makeProjectHtml(project) {
 function launchProjectPreview(evt) {
   var modal = $("#project-preview-modal");
   var project = $(evt.currentTarget);
-  modal.find("iframe").attr("src", PROJECT_RUN_BASE + project.data("github"));
+  var previewUrl = PROJECT_RUN_BASE + project.data("github");
+  modal.find("iframe").attr("src", previewUrl);
+  modal.find("[data-project-preview]").attr("href", previewUrl);
   modal.find("[data-project-title]").text(project.find(".card-title").text());
   modal
     .find("[data-project-repo]")
     .attr("href", PROJECT_SRC_BASE + project.data("github"));
   modal.modal("show");
 }
+
+$("[data-project-preview]").click(function (evt) {
+  evt.preventDefault();
+  evt.stopPropagation();
+  open($(evt.currentTarget).attr("href"));
+});
 
 $("#project-preview-modal")
   .on("shown.bs.modal", updateModalDimensions)
