@@ -52,5 +52,11 @@
         "description": "A canvas animation of a rainbow that I made one year for pride",
         "thumbnail": "pride-rainbow.png",
         "github": "pride-rainbow-animation"
+    },
+    {
+        "title": "Firework Simulation",
+        "description": "Firework simulation in the browser using javascript and the HTML canvas",
+        "thumbnail": "firework-simulation.png",
+        "github": "Firework-Simulation"
     }
 ]

@@ -133,7 +133,7 @@ function launchProjectPreview(evt) {
   modal.modal("show");
 }
 
-$("[data-project-preview]").click(function (evt) {
+$("#project-preview-modal a").click(function (evt) {
   evt.preventDefault();
   evt.stopPropagation();
   open($(evt.currentTarget).attr("href"));
