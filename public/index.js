@@ -112,9 +112,9 @@ function makeProjectHtml(project) {
       project.thumbnail +
       '" alt="' +
       project.title +
-      ' Thumbnail"/><div class="card-body"><h5 class="card-title">' +
+      ' Thumbnail"/><div class="card-body"><h2 class="h5 card-title">' +
       project.title +
-      '</h5><p class="card-text">' +
+      '</h2><p class="card-text">' +
       project.description +
       "</p></div></a>"
   );
