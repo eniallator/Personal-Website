@@ -9,7 +9,20 @@ const upload = multer();
 const app = express();
 const port = process.env.PORT || 3000;
 
+// https://stackoverflow.com/a/46181/11824244
+function validateEmail(email) {
+  const re =
+    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(String(email).toLowerCase());
+}
+
 async function sendMail(data) {
+  if (
+    data.name.length === 0 ||
+    !validateEmail(data.email) ||
+    data.message.length === 0
+  )
+    return;
   sgMail
     .send({
       to: process.env.EMAIL_RECIPIENT,
