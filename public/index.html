@@ -8,17 +8,20 @@
   <meta name="theme-color" content="#808080" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <title>Niall's Personal Site</title>
-  <link rel="stylesheet" href="styles.css" />
-  <script src="vendor/font-awesome.js"></script>
+  <link rel="preload" as="image" href="static/images/dark_trees.jpg" />
+  <link rel="preload" as="style" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+  <link rel="stylesheet" href="static/css/styles.css" />
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+  <script src="static/js/vendor/font-awesome.js"></script>
 </head>
 
 <body>
   <nav id="navbar" class="bg-dark sticky-top nav-padding navbar navbar-expand-lg">
     <div class="container">
       <a class="navbar-brand" href="/">
-        <img id="nav-avatar" src="images/avatar.jpg" alt="niall's avatar" width="42" height="42" />
+        <img id="nav-avatar" src="static/images/avatar.jpg" alt="niall's avatar" width="42" height="42" />
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -114,12 +117,15 @@
         <h1>Contact</h1>
         <div class="contact-links flex-row mb-4">
           <div class="border-top mb-2"></div>
-          <a href="https://github.com/eniallator"><img alt="Github Icon" src="images/github-icon.png" width="40"
-              height="40" /></a>
-          <a href="https://twitter.com/mceniallator"><img alt="Twitter Icon" src="images/twitter-icon.png" width="40"
-              height="40" /></a>
-          <a href="https://www.linkedin.com/in/niall-coleman-clarke/"><img alt="Linkedin Icon"
-              src="images/linkedin-icon.png" width="40" height="40" /></a>
+          <a href="https://github.com/eniallator">
+            <img alt="Github Icon" src="static/images/github-icon.png" width="40" height="40" />
+          </a>
+          <a href="https://twitter.com/mceniallator">
+            <img alt="Twitter Icon" src="static/images/twitter-icon.png" width="40" height="40" />
+          </a>
+          <a href="https://www.linkedin.com/in/niall-coleman-clarke/">
+            <img alt="Linkedin Icon" src="static/images/linkedin-icon.png" width="40" height="40" />
+          </a>
         </div>
         <form accept-charset="utf-8" action="" method="POST">
           <input name="name" type="text" class="mb-3 form-control" placeholder="Name" required />
@@ -141,7 +147,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"
     integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF"
     crossorigin="anonymous"></script>
-  <script src="index.js"></script>
+  <script src="static/js/index.js"></script>
 </body>
 
 </html>

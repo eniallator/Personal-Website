@@ -108,7 +108,7 @@ function makeProjectHtml(project) {
   return $(
     '<a class="project card m-2" data-github="' +
       project.github +
-      '"><img class="card-img-top" width="288" height="162" src="images/thumbnails/' +
+      '"><img class="card-img-top" width="288" height="162" src="static/images/thumbnails/' +
       project.thumbnail +
       '" alt="' +
       project.title +

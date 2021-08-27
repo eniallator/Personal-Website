@@ -1,5 +1,5 @@
 #dark-trees {
-  background-image: url(./images/dark_trees.jpg);
+  background-image: url(/static/images/dark_trees.jpg);
   width: 100%;
   height: calc(100vh - 52px);
   background-position: 50% 0;
