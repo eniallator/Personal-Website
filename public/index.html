@@ -129,7 +129,8 @@
         </div>
         <form accept-charset="utf-8" action="" method="POST">
           <input name="name" type="text" class="mb-3 form-control" placeholder="Name" required />
-          <input name="email" type="email" class="mb-3 form-control" placeholder="Email" required />
+          <input name="email" type="email" class="mb-3 form-control" placeholder="Email" required
+            pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$" />
           <textarea name="message" class="form-control mb-3" placeholder="Message" rows="4" required></textarea>
           <div class="d-flex">
             <input type="submit" class="btn btn-secondary form-control" value="Submit" style="width: unset" />
