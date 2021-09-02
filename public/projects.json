@@ -58,5 +58,11 @@
         "description": "Firework simulation in the browser using javascript and the HTML canvas",
         "thumbnail": "firework-simulation.png",
         "github": "Firework-Simulation"
+    },
+    {
+        "title": "Boids",
+        "description": "Boids algorithm implemented using Javascript and the HTML canvas",
+        "thumbnail": "boids.png",
+        "github": "boids"
     }
 ]
