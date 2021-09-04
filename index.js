@@ -4,7 +4,6 @@ const multer = require("multer");
 const sgMail = require("@sendgrid/mail");
 const fs = require("fs");
 const { Octokit } = require("@octokit/core");
-const { response } = require("express");
 require("dotenv").config();
 
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
@@ -25,20 +24,19 @@ async function trySortProjects() {
   let repos = [];
   let page = 1;
   const per_page = 100;
+  let resp;
   do {
-    const response = await octokit.request("GET /users/eniallator/repos", {
+    resp = await octokit.request("GET /users/eniallator/repos", {
       username: "eniallator",
       per_page: per_page,
       page: page++,
       sort: "updated",
       direction: "desc",
     });
-    if (response.data) {
-      repos = repos.concat(
-        response.data.map((repo) => repo.name.toLowerCase())
-      );
+    if (resp.data) {
+      repos = repos.concat(resp.data.map((repo) => repo.name.toLowerCase()));
     }
-  } while (response.data && response.data.length === per_page);
+  } while (resp.data && resp.data.length === per_page);
 
   projects.sort(
     (p1, p2) =>
