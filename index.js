@@ -2,12 +2,50 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const multer = require("multer");
 const sgMail = require("@sendgrid/mail");
+const fs = require("fs");
+const { Octokit } = require("@octokit/core");
+const { response } = require("express");
 require("dotenv").config();
 
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 const upload = multer();
 const app = express();
 const port = process.env.PORT || 3000;
+const octokit = new Octokit();
+
+const projects = JSON.parse(fs.readFileSync("public/projects.json"));
+const sortProjectsInterval = 3600000; // 1hr
+let lastSortTime = Date.now() - sortProjectsInterval - 1;
+
+async function trySortProjects() {
+  const currTime = Date.now();
+  if (lastSortTime + sortProjectsInterval >= currTime) return;
+  lastSortTime = currTime;
+
+  let repos = [];
+  let page = 1;
+  const per_page = 100;
+  do {
+    const response = await octokit.request("GET /users/eniallator/repos", {
+      username: "eniallator",
+      per_page: per_page,
+      page: page++,
+      sort: "updated",
+      direction: "desc",
+    });
+    if (response.data) {
+      repos = repos.concat(
+        response.data.map((repo) => repo.name.toLowerCase())
+      );
+    }
+  } while (response.data && response.data.length === per_page);
+
+  projects.sort(
+    (p1, p2) =>
+      repos.indexOf(p1.github.toLowerCase()) -
+      repos.indexOf(p2.github.toLowerCase())
+  );
+}
 
 // https://stackoverflow.com/a/9204568/11824244
 function validateEmail(email) {
@@ -43,6 +81,10 @@ app.post("/", (req, res) => {
   console.log(req.body);
   sendMail(req.body);
   res.redirect("/");
+});
+
+app.get("/projects/", (req, res) => {
+  return trySortProjects().then(() => res.json(projects));
 });
 
 app.listen(port, () =>

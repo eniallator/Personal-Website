@@ -146,7 +146,7 @@ $("#project-preview-modal")
   });
 
 window.onload = function () {
-  fetch("./projects.json")
+  fetch("projects/")
     .then(function (resp) {
       return resp.json();
     })
