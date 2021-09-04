@@ -86,7 +86,7 @@ app.post("/", (req, res) => {
 
 app.get("/projects/", (req, res) => {
   trySortProjects();
-  return projects;
+  return res.json(projects);
 });
 
 app.listen(port, () =>
