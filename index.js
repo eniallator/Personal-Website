@@ -46,6 +46,7 @@ async function trySortProjects() {
       repos.indexOf(p2.github.toLowerCase())
   );
 }
+trySortProjects();
 
 // https://stackoverflow.com/a/9204568/11824244
 function validateEmail(email) {
@@ -84,7 +85,8 @@ app.post("/", (req, res) => {
 });
 
 app.get("/projects/", (req, res) => {
-  return trySortProjects().then(() => res.json(projects));
+  trySortProjects();
+  return projects;
 });
 
 app.listen(port, () =>
