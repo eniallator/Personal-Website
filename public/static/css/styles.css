@@ -25,6 +25,13 @@
   color: gray;
 }
 
+@media (min-width: 992px) {
+  .pad-if-not-toggled {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+}
+
 .contact-links img {
   width: 2.5em;
   margin: 0 0.5em;
