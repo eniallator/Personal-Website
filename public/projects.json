@@ -64,5 +64,11 @@
         "description": "Boids algorithm implemented using Javascript and the HTML canvas",
         "thumbnail": "boids.png",
         "github": "boids"
+    },
+    {
+        "title": "Bezier Curve Generator",
+        "description": "My implementation of the bezier curve algorithm which allows you to edit them in real-time",
+        "thumbnail": "bezier-curve-generator.png",
+        "github": "Bezier-Curve-Generator"
     }
 ]
