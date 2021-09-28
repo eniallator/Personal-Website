@@ -87,6 +87,10 @@ app.get("/projects/", (req, res) => {
   return res.json(projects);
 });
 
+app.get("/resume/pdf-download/", (req, res) =>
+  res.download("public/resume/nialls_resume.pdf")
+);
+
 app.listen(port, () =>
   console.log(`Personal website listening on port ${port}!`)
 );
