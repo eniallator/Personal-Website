@@ -1,0 +1,79 @@
+.theme-font {
+  font-family: "Mystery Quest", cursive;
+}
+
+#theme-overlay.fadein {
+  -webkit-animation: 5s ease 0s normal forwards 1 darkenin;
+  animation: 5s ease 0s normal forwards 1 darkenin;
+}
+
+@keyframes darkenin {
+  0% {
+    background-color: rgba(0, 0, 0, 0);
+  }
+  100% {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+}
+
+@-webkit-keyframes darkenin {
+  0% {
+    background-color: rgba(0, 0, 0, 0);
+  }
+  100% {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+}
+
+#theme-container {
+  width: calc(100% - 159px);
+  height: calc(100% - 31px);
+  position: relative;
+}
+
+#theme-overlay > #theme-container > img {
+  position: absolute;
+  -webkit-animation: 3s ease 0s normal forwards 1 fadein;
+  animation: 3s ease 0s normal forwards 1 fadein;
+}
+
+@keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0.7;
+  }
+}
+
+@-webkit-keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0.7;
+  }
+}
+
+#theme-overlay > #theme-container > img.fadeout {
+  -webkit-animation: 3s ease 0s normal forwards 1 fadeout;
+  animation: 3s ease 0s normal forwards 1 fadeout;
+}
+
+@keyframes fadeout {
+  0% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes fadeout {
+  0% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 0;
+  }
+}

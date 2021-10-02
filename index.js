@@ -15,8 +15,53 @@ const octokit = new Octokit();
 const projects = JSON.parse(fs.readFileSync("public/projects.json"));
 const sortProjectsInterval = 3600000; // 1hr
 let lastSortTime = Date.now() - sortProjectsInterval - 1;
+let currentTheme = "no-theme";
+const daysThemeIsShowing = 7;
+const halfMsThemeIsShowing = (daysThemeIsShowing / 2) * 86400000;
+
+const themes = {
+  halloween: {
+    month: 9,
+    day: 31,
+  },
+};
+
+function updateCurrentTheme() {
+  const currDate = new Date();
+  currentTheme = "no-theme";
+  for (let theme of Object.keys(themes)) {
+    let themeYear = currDate.getFullYear();
+    if (
+      new Date(
+        themeYear,
+        themes[theme].month,
+        themes[theme].day,
+        12
+      ).getTime() +
+        halfMsThemeIsShowing <
+      currDate.getTime()
+    ) {
+      themeYear++;
+    }
+    const themeDate = new Date(
+      themeYear,
+      themes[theme].month,
+      themes[theme].day,
+      12
+    );
+
+    if (
+      Math.abs(themeDate.getTime() - currDate.getTime()) < halfMsThemeIsShowing
+    ) {
+      currentTheme = theme;
+      break;
+    }
+  }
+}
 
 async function trySortProjects() {
+  updateCurrentTheme();
+
   const currTime = Date.now();
   if (lastSortTime + sortProjectsInterval >= currTime) return;
   lastSortTime = currTime;
@@ -90,6 +135,13 @@ app.get("/projects/", (req, res) => {
 app.get("/resume/pdf-download/", (req, res) =>
   res.download("public/resume/nialls_resume.pdf")
 );
+
+app.get("/static/js/theme.js", (req, res) => {
+  res.sendFile(`${__dirname}/public/static/js/themes/${currentTheme}.js`);
+});
+app.get("/static/css/theme.css", (req, res) => {
+  res.sendFile(`${__dirname}/public/static/css/themes/${currentTheme}.css`);
+});
 
 app.listen(port, () =>
   console.log(`Personal website listening on port ${port}!`)

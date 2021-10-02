@@ -1,5 +1,5 @@
 #landing {
-  background-image: url(/static/images/dark_trees.jpg);
+  background-image: url(/static/images/dark-trees.jpg);
   width: 100%;
   height: calc(100vh - 52px);
   background-position: 50% 0;
@@ -122,4 +122,15 @@ textarea {
   white-space: nowrap;
   text-align: center;
   border-radius: 10px;
+}
+
+#theme-overlay {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+}
+#theme-container {
+  position: relative;
 }
