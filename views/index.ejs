@@ -14,7 +14,9 @@
   <link rel="preload" as="style" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
   <link rel="stylesheet" href="static/css/styles.css" />
-  <link rel="stylesheet" href="static/css/theme.css" />
+  <% if (theme !== "no-theme") {%>
+    <link rel="stylesheet" href="static/css/themes/<%= theme %>.css" />
+  <% } %>
   <link href="https://fonts.googleapis.com/css2?family=Mystery+Quest&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
@@ -48,20 +50,22 @@
     </div>
   </nav>
   <section id="landing">
+    <% if (theme !=="no-theme" ) {%>
+      <div id="theme-overlay">
+        <div id="theme-container"></div>
+      </div>
+    <% } %>
     <div class="row fill" style="margin: unset">
-      <div class="col text-white align-self-center text-center">
+      <div class="col text-white align-self-center text-center theme-font">
         <h1>Hi I'm Niall</h1>
         <p>I'm a developer</p>
       </div>
-    </div>
-    <div id="theme-overlay">
-      <div id="theme-container"></div>
     </div>
   </section>
   <section id="about" class="bg-white py-4">
     <div class="container">
       <div class="col-lg-8 offset-lg-2">
-        <h1 class="text-center">About</h1>
+        <h1 class="text-center theme-font">About</h1>
         <p>
           Program as a hobby and love to explore a variety of concepts in
           computer science by trying to implement them myself. Highly
@@ -75,7 +79,7 @@
   </section>
   <section id="projects" class="bg-light pt-4 pb-3">
     <div class="col-lg-8 offset-lg-2">
-      <h1 class="text-center">Projects</h1>
+      <h1 class="text-center theme-font">Projects</h1>
       <div id="project-container" class="d-flex flex-row flex-wrap justify-content-center js-toggle-hide-projects">
       </div>
       <div class="js-toggle-hide-projects hide-children text-center mt-1 mb-2">
@@ -121,7 +125,7 @@
   <section id="contact" class="bg-white py-4">
     <div class="container">
       <div class="col-lg-8 offset-lg-2 text-center">
-        <h1>Contact</h1>
+        <h1 class="theme-font">Contact</h1>
         <div class="contact-links flex-row mb-4">
           <div class="border-top mb-2"></div>
           <a class="text-decoration-none" href="https://github.com/eniallator">
@@ -156,7 +160,9 @@
     integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF"
     crossorigin="anonymous"></script>
   <script src="static/js/index.js"></script>
-  <script src="static/js/theme.js"></script>
+  <% if (theme !=="no-theme" ) {%>
+    <script src="static/js/themes/<%= theme %>.js"></script>
+  <% } %>
 </body>
 
 </html>

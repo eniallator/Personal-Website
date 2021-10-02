@@ -9,6 +9,8 @@ require("dotenv").config();
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 const upload = multer();
 const app = express();
+app.set("view engine", "ejs");
+
 const port = process.env.PORT || 3000;
 const octokit = new Octokit();
 
@@ -61,11 +63,11 @@ function updateCurrentTheme() {
 }
 
 async function trySortProjects() {
-  updateCurrentTheme();
-
   const currTime = Date.now();
   if (lastSortTime + sortProjectsInterval >= currTime) return;
   lastSortTime = currTime;
+
+  updateCurrentTheme();
 
   let repos = [];
   let page = 1;
@@ -122,10 +124,16 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(upload.array());
 app.use(express.static("public"));
 
+app.get("/", (req, res) => {
+  res.render("index.ejs", {
+    theme: themes[req.query.theme] ? req.query.theme : currentTheme,
+  });
+});
+
 app.post("/", (req, res) => {
   console.log(req.body);
   sendMail(req.body);
-  res.redirect("/");
+  res.redirect(req.url);
 });
 
 app.get("/projects/", (req, res) => {
@@ -136,13 +144,6 @@ app.get("/projects/", (req, res) => {
 app.get("/resume/pdf-download/", (req, res) =>
   res.download("public/resume/nialls_resume.pdf")
 );
-
-app.get("/static/js/theme.js", (req, res) => {
-  res.sendFile(`${__dirname}/public/static/js/themes/${currentTheme}.js`);
-});
-app.get("/static/css/theme.css", (req, res) => {
-  res.sendFile(`${__dirname}/public/static/css/themes/${currentTheme}.css`);
-});
 
 app.listen(port, () =>
   console.log(`Personal website listening on port ${port}!`)
