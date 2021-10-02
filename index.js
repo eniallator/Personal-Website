@@ -57,6 +57,7 @@ function updateCurrentTheme() {
       break;
     }
   }
+  console.log(`Current theme: ${currentTheme}`);
 }
 
 async function trySortProjects() {
