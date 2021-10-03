@@ -9,8 +9,9 @@ require("dotenv").config();
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 const upload = multer();
 const app = express();
-app.set("view engine", "ejs");
 
+app.set("view engine", "ejs");
+app.set("views", "./public");
 const port = process.env.PORT || 3000;
 const octokit = new Octokit();
 
