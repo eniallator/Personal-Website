@@ -27,6 +27,10 @@ const themes = {
     month: 9,
     day: 31,
   },
+  christmas: {
+    month: 11,
+    day: 25,
+  },
 };
 
 function updateCurrentTheme() {

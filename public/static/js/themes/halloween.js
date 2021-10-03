@@ -28,7 +28,7 @@ function spawnEyes() {
         Math.round(scale * 61) +
         "px' id='eyes-" +
         eyesId +
-        "' src='static/images/spooky-eyes.png' style='top: " +
+        "' src='static/images/themes/spooky-eyes.png' style='top: " +
         Math.round(Math.random() * 100) +
         "%; left: " +
         Math.round(Math.random() * 100) +

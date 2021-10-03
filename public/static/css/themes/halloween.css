@@ -28,7 +28,6 @@
 #theme-container {
   width: calc(100% - 159px);
   height: calc(100% - 31px);
-  position: relative;
 }
 
 #theme-overlay > #theme-container > img {
