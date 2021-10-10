@@ -20,7 +20,7 @@ const sortProjectsInterval = 3600000; // 1hr
 let lastSortTime = Date.now() - sortProjectsInterval - 1;
 let currentTheme = "no-theme";
 const daysThemeIsShowing = 7;
-const halfMsThemeIsShowing = (daysThemeIsShowing / 2) * 86400000;
+const halfMsThemeIsShowing = daysThemeIsShowing * 43200000; // 12hrs
 
 const themes = {
   halloween: {
@@ -37,29 +37,21 @@ function updateCurrentTheme() {
   const currDate = new Date();
   currentTheme = "no-theme";
   for (let theme of Object.keys(themes)) {
-    let themeYear = currDate.getFullYear();
-    if (
-      new Date(
-        themeYear,
+    let msToTheme;
+    for (let yearOffset = -1; yearOffset <= 1; yearOffset++) {
+      const themeDate = new Date(
+        currDate.getFullYear() + yearOffset,
         themes[theme].month,
         themes[theme].day,
         12
-      ).getTime() +
-        halfMsThemeIsShowing <
-      currDate.getTime()
-    ) {
-      themeYear++;
+      );
+      const currMsToTheme = Math.abs(themeDate.getTime() - currDate.getTime());
+      if (msToTheme === undefined || currMsToTheme < msToTheme) {
+        msToTheme = currMsToTheme;
+      }
     }
-    const themeDate = new Date(
-      themeYear,
-      themes[theme].month,
-      themes[theme].day,
-      12
-    );
 
-    if (
-      Math.abs(themeDate.getTime() - currDate.getTime()) < halfMsThemeIsShowing
-    ) {
+    if (msToTheme < halfMsThemeIsShowing) {
       currentTheme = theme;
       break;
     }
