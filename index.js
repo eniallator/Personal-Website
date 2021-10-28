@@ -123,7 +123,10 @@ app.use(express.static("public"));
 
 app.get("/", (req, res) => {
   res.render("index.ejs", {
-    theme: themes[req.query.theme] ? req.query.theme : currentTheme,
+    theme:
+      themes[req.query.theme] || req.query.theme === "no-theme"
+        ? req.query.theme
+        : currentTheme,
   });
 });
 
