@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const multer = require("multer");
 const sgMail = require("@sendgrid/mail");
 const fs = require("fs");
+const axios = require("axios");
 const { Octokit } = require("@octokit/core");
 require("dotenv").config();
 
@@ -97,8 +98,16 @@ function validateEmail(email) {
   return re.test(String(email).toLowerCase());
 }
 
+async function validateRecaptcha(token) {
+  const response = await axios.post(
+    `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_SECRET}&response=${token}`
+  );
+  return response.data.success && response.data.score >= 0.5;
+}
+
 async function sendMail(data) {
   if (
+    !(await validateRecaptcha(data.recaptcha)) ||
     data.name.length === 0 ||
     !validateEmail(data.email) ||
     data.message.length === 0

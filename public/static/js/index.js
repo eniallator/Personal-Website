@@ -162,4 +162,20 @@ window.onload = function () {
       $(".js-toggle-hide-projects").removeClass("hidden");
       window.onresize();
     });
+
+  $("section#contact form").submit(function (evt) {
+    evt.preventDefault();
+    var form = this;
+    grecaptcha.ready(function () {
+      grecaptcha
+        .execute("6LeINQMdAAAAAHgXsB7RrMoKehfacEyBVa1trZo3", {
+          action: "submit",
+        })
+        .then(function (token) {
+          console.log(token);
+          $(form).find("input[name=recaptcha]").val(token);
+          form.submit();
+        });
+    });
+  });
 };

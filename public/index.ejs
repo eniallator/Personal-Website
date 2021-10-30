@@ -12,11 +12,14 @@
   <meta property="og:image" content="https://eniallator.com/static/images/avatar.jpg" />
   <meta property="og:description" content="Niall's personal website: About | Projects | Contact" />
   <meta name="twitter:card" content="summary_large_image">
-
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
   <title>Niall's Personal Site</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://www.google.com">
+  <link rel="preconnect" href="https://www.gstatic.com" crossorigin>
   <link rel="preload" as="image" href="static/images/dark-trees.jpg" />
   <link rel="preload" as="style" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
@@ -147,11 +150,12 @@
           </a>
         </div>
         <form accept-charset="utf-8" action="" method="POST">
+          <input name="recaptcha" type="hidden"/>
           <input name="name" type="text" class="mb-3 form-control" placeholder="Name" required />
           <input name="email" type="email" class="mb-3 form-control" placeholder="Email" required
             pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$" />
           <textarea name="message" class="form-control mb-3" placeholder="Message" rows="4" required></textarea>
-          <div class="d-flex">
+          <div class="text-left">
             <input type="submit" class="btn btn-secondary form-control" value="Submit" style="width: unset" />
           </div>
         </form>
@@ -168,6 +172,7 @@
     integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF"
     crossorigin="anonymous"></script>
   <script src="static/js/index.js"></script>
+  <script async src="https://www.google.com/recaptcha/api.js?render=6LeINQMdAAAAAHgXsB7RrMoKehfacEyBVa1trZo3"></script>
   <% if (theme !== "no-theme") { %>
     <script src="static/js/themes/<%= theme %>.js"></script>
   <% } %>
