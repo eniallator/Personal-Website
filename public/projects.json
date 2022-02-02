@@ -70,5 +70,11 @@
         "description": "My implementation of the bezier curve algorithm which allows you to edit them in real-time",
         "thumbnail": "bezier-curve-generator.png",
         "github": "Bezier-Curve-Generator"
+    },
+    {
+        "title": "Koi Fish Pond",
+        "description": "Animated fish using javascript that swim around using the boids algorithm",
+        "thumbnail": "koi-fish-pond.png",
+        "github": "Koi-Fish-Pond"
     }
 ]
