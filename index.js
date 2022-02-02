@@ -154,6 +154,11 @@ app.get("/resume/pdf-download/", (req, res) =>
   res.download("public/resume/nialls_resume.pdf")
 );
 
+app.get("/cv/", (req, res) => res.redirect("/resume/"));
+app.get("/cv/pdf-download/", (req, res) =>
+  res.redirect("/resume/pdf-download/")
+);
+
 app.listen(port, () =>
   console.log(`Personal website listening on port ${port}!`)
 );
