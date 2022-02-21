@@ -146,6 +146,8 @@ $("#project-preview-modal")
   });
 
 window.onload = function () {
+  $('[data-toggle="tooltip"]').tooltip();
+
   fetch("projects/")
     .then(function (resp) {
       return resp.json();
@@ -172,7 +174,6 @@ window.onload = function () {
           action: "submit",
         })
         .then(function (token) {
-          console.log(token);
           $(form).find("input[name=recaptcha]").val(token);
           form.submit();
         });

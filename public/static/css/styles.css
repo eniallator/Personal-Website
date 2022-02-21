@@ -1,7 +1,7 @@
 #landing {
   background-image: url(/static/images/dark-trees.jpg);
   width: 100%;
-  height: calc(100vh - 52px);
+  height: 30vh;
   background-position: 50% 0;
   background-size: cover;
   position: relative;
@@ -43,6 +43,22 @@ textarea {
 
 .fill {
   height: 100%;
+}
+
+#companies {
+  padding: 0.75rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.25rem;
+  border-radius: 0.25rem;
+}
+
+.company {
+  background-color: white;
+  padding: 0.5rem;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
 }
 
 .project {
