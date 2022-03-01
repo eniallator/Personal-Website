@@ -61,6 +61,13 @@ textarea {
   border-radius: 0.25rem;
 }
 
+.btn.btn-primary {
+  background-color: #0069d9;
+}
+.btn.btn-primary:hover {
+  background-color: #0057b4;
+}
+
 .project {
   width: 18rem;
   color: #586470;
