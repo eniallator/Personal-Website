@@ -99,7 +99,7 @@ window.onresize = function () {
   var projects = container.children();
   projects.removeClass("show-child");
   projects
-    .slice(0, Math.floor(container.width() / projects.width()))
+    .slice(0, Math.max(1, Math.floor(container.width() / projects.width())))
     .addClass("show-child");
   updateModalDimensions();
 };
