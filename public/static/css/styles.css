@@ -45,13 +45,46 @@ textarea {
   height: 100%;
 }
 
+#about p {
+  text-align: justify;
+}
+
+@media (min-width: 768px) {
+  #about-panels {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row-reverse;
+  }
+
+  #about-panels > div {
+    max-width: 50%;
+    display: inline-block;
+  }
+
+  #about-panel-companies {
+    padding-left: 0.5rem;
+    border-left: rgba(0, 0, 0, 0.125) solid 2px;
+  }
+
+  #about-panel-text {
+    position: relative;
+    width: 100%;
+  }
+  #about-panel-text > p {
+    padding-right: 0.5rem;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
 #companies {
   padding: 0.75rem;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 0.25rem;
-  border-radius: 0.25rem;
+  border-radius: 0.5rem;
 }
 
 .company {
