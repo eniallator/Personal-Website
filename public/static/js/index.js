@@ -104,22 +104,6 @@ window.onresize = function () {
   updateModalDimensions();
 };
 
-function makeProjectHtml(project) {
-  return $(
-    '<a class="project card m-2" data-github="' +
-      project.github +
-      '"><img class="card-img-top" width="288" height="162" src="static/images/thumbnails/' +
-      project.thumbnail +
-      '" alt="' +
-      project.title +
-      ' Thumbnail"/><div class="card-body"><h2 class="h5 card-title">' +
-      project.title +
-      '</h2><p class="card-text">' +
-      project.description +
-      "</p></div></a>"
-  );
-}
-
 function launchProjectPreview(evt) {
   var modal = $("#project-preview-modal");
   var project = $(evt.currentTarget);
@@ -132,6 +116,7 @@ function launchProjectPreview(evt) {
     .attr("href", PROJECT_SRC_BASE + project.data("github"));
   modal.modal("show");
 }
+$(".project").click(launchProjectPreview);
 
 $("#project-preview-modal a").click(function (evt) {
   evt.preventDefault();
@@ -148,23 +133,6 @@ $("#project-preview-modal")
 window.onload = function () {
   $('[data-toggle="tooltip"]').tooltip();
 
-  fetch("projects/")
-    .then(function (resp) {
-      return resp.json();
-    })
-    .then(function (data) {
-      for (var i = 0; i < data.length; i++) {
-        var project = data[i];
-        var projectHtml = makeProjectHtml(project);
-        $("#project-container").append(projectHtml);
-        projectHtml.click(launchProjectPreview);
-      }
-
-      toggleChildren();
-      $(".js-toggle-hide-projects").removeClass("hidden");
-      window.onresize();
-    });
-
   $("section#contact form").submit(function (evt) {
     evt.preventDefault();
     var form = this;
@@ -180,3 +148,5 @@ window.onload = function () {
     });
   });
 };
+
+window.onresize();

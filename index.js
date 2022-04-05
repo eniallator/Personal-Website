@@ -136,6 +136,7 @@ app.get("/", (req, res) => {
       themes[req.query.theme] || req.query.theme === "no-theme"
         ? req.query.theme
         : currentTheme,
+    projects: projects,
   });
 });
 

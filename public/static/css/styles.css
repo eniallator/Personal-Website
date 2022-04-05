@@ -114,11 +114,11 @@ textarea {
   background-color: #f8f9fa;
 }
 
-.hide-children a {
+.hide-children .project {
   display: none;
 }
 
-.hide-children a.show-child {
+.hide-children .project.show-child {
   display: flex;
 }
 
