@@ -133,7 +133,7 @@
     <div class="col-lg-8 offset-lg-2">
       <h1 class="text-center theme-font">Projects</h1>
       <div id="project-container" class="d-flex flex-row flex-wrap justify-content-center js-toggle-hide-projects hide-children">
-        <% for (project of projects) { %>
+        <% for (let project of projects) { %>
           <div class="project card m-2" data-github="<%= project.github %>">
             <img class="card-img-top" width="288" height="162" src="static/images/thumbnails/<%= project.thumbnail %>"
               alt="<%= project.title %> Thumbnail"/>
