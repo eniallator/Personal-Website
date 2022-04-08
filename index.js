@@ -23,6 +23,9 @@ let currentTheme = "no-theme";
 const daysThemeIsShowing = 7;
 const halfMsThemeIsShowing = daysThemeIsShowing * 43200000; // 12hrs
 
+var PROJECT_SRC_BASE = "https://github.com/eniallator/";
+var PROJECT_RUN_BASE = "https://eniallator.github.io/";
+
 const themes = {
   halloween: {
     month: 9,
@@ -137,6 +140,8 @@ app.get("/", (req, res) => {
         ? req.query.theme
         : currentTheme,
     projects: projects,
+    project_src_base: PROJECT_SRC_BASE,
+    project_run_base: PROJECT_RUN_BASE,
   });
 });
 

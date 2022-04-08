@@ -12,9 +12,6 @@ $('a[href^="#"').click(function (evt) {
   updateScroll($(evt.currentTarget).attr("href"));
 });
 
-var PROJECT_SRC_BASE = "https://github.com/eniallator/";
-var PROJECT_RUN_BASE = "https://eniallator.github.io/";
-
 function toggleChildren() {
   $(".js-toggle-hide-projects").toggleClass("hide-children");
 }
@@ -39,13 +36,19 @@ window.onresize = function () {
 function launchProjectPreview(evt) {
   var modal = $("#project-preview-modal");
   var project = $(evt.currentTarget);
-  var previewUrl = PROJECT_RUN_BASE + project.data("github");
+  var previewUrl =
+    modal.find("[data-project-preview]").data("base-url") +
+    project.data("github");
   modal.find("iframe").attr("src", previewUrl);
   modal.find("[data-project-preview]").attr("href", previewUrl);
   modal.find("[data-project-title]").text(project.find(".card-title").text());
   modal
     .find("[data-project-repo]")
-    .attr("href", PROJECT_SRC_BASE + project.data("github"));
+    .attr(
+      "href",
+      modal.find("[data-project-repo]").data("base-url") +
+        project.data("github")
+    );
   modal.modal("show");
 }
 $(".project").click(launchProjectPreview);
