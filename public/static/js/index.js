@@ -1,7 +1,7 @@
 function updateScroll(href) {
   var offset = $("#navbar").height();
   var el = $(href);
-  if (!el) return;
+  if (el.length === 0) return;
   window.scrollTo(0, el.position().top - offset);
   history.pushState({}, document.title, location.pathname + href);
 }
@@ -33,9 +33,9 @@ window.onresize = function () {
   updateModalDimensions();
 };
 
-function launchProjectPreview(evt) {
+function launchProjectPreview(github) {
   var modal = $("#project-preview-modal");
-  var project = $(evt.currentTarget);
+  var project = $(`[data-github=${github}]`);
   var previewUrl =
     modal.find("[data-project-preview]").data("base-url") +
     project.data("github");
@@ -51,7 +51,6 @@ function launchProjectPreview(evt) {
     );
   modal.modal("show");
 }
-$(".project").click(launchProjectPreview);
 
 $("#project-preview-modal a").click(function (evt) {
   evt.preventDefault();
