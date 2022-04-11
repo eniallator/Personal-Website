@@ -28,14 +28,20 @@ window.onresize = function () {
   var projects = container.children();
   projects.removeClass("show-child");
   projects
-    .slice(0, Math.max(1, Math.floor(container.width() / projects.width())))
+    .slice(
+      0,
+      Math.max(
+        1,
+        Math.floor(container.innerWidth() / projects.outerWidth(true))
+      )
+    )
     .addClass("show-child");
   updateModalDimensions();
 };
 
 function launchProjectPreview(github) {
   var modal = $("#project-preview-modal");
-  var project = $(`[data-github=${github}]`);
+  var project = $("[data-github=" + github + "]");
   var previewUrl =
     modal.find("[data-project-preview]").data("base-url") +
     project.data("github");
