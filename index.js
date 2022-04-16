@@ -5,6 +5,8 @@ const sgMail = require("@sendgrid/mail");
 const fs = require("fs");
 const axios = require("axios");
 const { Octokit } = require("@octokit/core");
+const acceptWebp = require("accept-webp");
+const compression = require("compression");
 require("dotenv").config();
 
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
@@ -127,10 +129,12 @@ async function sendMail(data) {
     .catch((error) => console.log(error));
 }
 
+app.use(compression());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(upload.array());
+app.use(acceptWebp("public", ["jpg", "jpeg", "png"]));
 app.use(express.static("public"));
 
 app.get("/", (req, res) => {
