@@ -152,13 +152,13 @@
         </p>
       </div>
       <div class="toggle-more-projects-outer">
-        <a class="js-toggle-hide-projects toggle-more-projects-link" onclick="toggleChildren();">
+        <button class="js-toggle-hide-projects toggle-more-projects-link" onclick="toggleChildren();">
           <span class="toggle-more-projects-text">
             Show
             <span class="children-hidden">More</span>
             <span class="children-showing">Less</span>
           </span>
-        </a>
+        </button>
       </div>
       <div class="modal fade" id="project-preview-modal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-xl">
@@ -176,8 +176,10 @@
                 <iframe title="Project preview"></iframe>
               </div>
               <div class="d-flex justify-content-between mb-3">
-                <a class="btn btn-link" data-base-url="<%= project_run_base %>" data-project-preview>Open Preview</a>
-                <a class="btn btn-link" data-base-url="<%= project_src_base %>" data-project-repo>View Repository</a>
+                <a class="btn btn-link" href="#" data-base-url="<%= project_run_base %>"
+                  data-project-preview>Open Preview</a>
+                <a class="btn btn-link" href="#" data-base-url="<%= project_src_base %>"
+                  data-project-repo>View Repository</a>
               </div>
             </div>
           </div>
