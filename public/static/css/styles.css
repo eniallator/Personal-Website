@@ -1,3 +1,54 @@
+/* GOOGLE FONTS STYLES */
+
+@font-face {
+  font-family: "Mystery Quest";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(/static/google-fonts/mysteryquest/-nF6OG414u0E6k0wynSGlujRLwgvDs9Q.woff2)
+    format("woff2");
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB,
+    U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: "Mystery Quest";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(/static/google-fonts/mysteryquest/-nF6OG414u0E6k0wynSGlujRLwYvDg.woff2)
+    format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
+    U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Mountains of Christmas";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(/static/google-fonts/mountainsofchristmas/3y9w6a4zcCnn5X0FDyrKi2ZRUBIy8uxoUo7eDNGsMQ.woff2)
+    format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
+    U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Mountains of Christmas";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(/static/google-fonts/mountainsofchristmas/3y9z6a4zcCnn5X0FDyrKi2ZRUBIy8uxoUo7eBGqJJPxIOw.woff2)
+    format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
+    U+FEFF, U+FFFD;
+}
+
+/* SITE STYLES */
+
 #landing {
   background-image: url(/static/images/dark-trees.jpg);
   width: 100%;
@@ -70,6 +121,7 @@ textarea {
     position: relative;
     width: 100%;
   }
+
   #about-panel-text > p {
     padding-right: 0.5rem;
     position: absolute;
@@ -97,6 +149,7 @@ textarea {
 .btn.btn-primary {
   background-color: #0069d9;
 }
+
 .btn.btn-primary:hover {
   background-color: #0057b4;
 }
@@ -124,6 +177,7 @@ textarea {
 .children-showing {
   display: none;
 }
+
 .hide-children .children-showing {
   display: inline;
 }
@@ -131,6 +185,7 @@ textarea {
 .children-hidden {
   display: inline;
 }
+
 .hide-children .children-hidden {
   display: none;
 }
@@ -145,15 +200,18 @@ textarea {
   display: flex;
   align-items: center;
 }
+
 .toggle-more-projects-outer::before,
 .toggle-more-projects-outer::after {
   content: "";
   flex: 1;
   border-bottom: thin solid #6c757d;
 }
+
 .toggle-more-projects-outer::before {
   margin-right: 0.25em;
 }
+
 .toggle-more-projects-outer::after {
   margin-left: 0.25em;
 }
@@ -161,23 +219,8 @@ textarea {
 .toggle-more-projects-link {
   margin-top: -3px;
   justify-content: center;
-  align-items: center;
-  text-align: center;
-  cursor: pointer;
-  background-color: unset;
-  padding: 0;
-}
-.toggle-more-projects-link,
-.toggle-more-projects-link:active,
-.toggle-more-projects-link:focus {
-  border: none;
-  outline: 0;
-}
-
-.toggle-more-projects-text {
   background-color: #6c757d;
   align-items: center;
-  text-align: center;
   padding: 1px 7px;
   font-size: 12px;
   font-weight: 700;
@@ -188,6 +231,13 @@ textarea {
   border-radius: 10px;
 }
 
+.toggle-more-projects-link,
+.toggle-more-projects-link:active,
+.toggle-more-projects-link:focus {
+  border: none;
+  outline: 0;
+}
+
 #theme-overlay {
   top: 0;
   left: 0;
@@ -195,6 +245,7 @@ textarea {
   bottom: 0;
   position: absolute;
 }
+
 #theme-container {
   position: relative;
 }

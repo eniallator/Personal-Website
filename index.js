@@ -81,7 +81,7 @@ async function trySortProjects() {
       username: "eniallator",
       per_page: per_page,
       page: page++,
-      sort: "updated",
+      sort: "pushed",
       direction: "desc",
     });
     if (resp.data) {
