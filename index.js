@@ -160,8 +160,8 @@ app.get("/projects/", (req, res) => {
   return res.json(projects);
 });
 
-app.get("/resume|cv/pdf-download/", (req, res) =>
-  res.download("public/cv/nialls_resume.pdf")
+app.get("/resume|cv/pdf-download", (req, res) =>
+  res.download("public/cv/nialls_cv.pdf")
 );
 
 app.use("/resume/", express.static("public/cv"));
