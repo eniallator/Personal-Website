@@ -161,10 +161,10 @@ app.get("/projects/", (req, res) => {
 });
 
 app.get("/resume|cv/pdf-download/", (req, res) =>
-  res.download("public/resume/nialls_resume.pdf")
+  res.download("public/cv/nialls_resume.pdf")
 );
 
-app.use("/cv/", express.static("public/resume"));
+app.use("/resume/", express.static("public/cv"));
 
 app.listen(port, () =>
   console.log(`Personal website listening on port ${port}!`)

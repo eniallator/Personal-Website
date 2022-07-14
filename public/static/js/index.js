@@ -6,7 +6,7 @@ function updateScroll(href) {
   history.pushState({}, document.title, location.pathname + href);
 }
 
-$('a[href^="#"').click(function (evt) {
+$('a[href^="#"]').click(function (evt) {
   evt.preventDefault();
   evt.stopPropagation();
   updateScroll($(evt.currentTarget).attr("href"));
