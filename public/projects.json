@@ -76,5 +76,11 @@
         "description": "Animated fish using javascript that swim around using the boids algorithm",
         "thumbnail": "koi-fish-pond.png",
         "github": "Koi-Fish-Pond"
+    },
+    {
+        "title": "Mandela Generator",
+        "description": "Generates mandelas using tensorflowjs, with all sorts of interesting config options",
+        "thumbnail": "mandela-generator.png",
+        "github": "Mandela-Generator"
     }
 ]
