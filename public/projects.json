@@ -1,5 +1,23 @@
 [
     {
+        "title": "Maze Animations",
+        "description": "Maze animations generated using Javascript and displayed with the HTML canvas",
+        "thumbnail": "maze-animations.png",
+        "github": "Maze-Animations"
+    },
+    {
+        "title": "Falling Coloured Rectangles",
+        "description": "Falling coloured rectangles inspired by an artwork made by my grandad",
+        "thumbnail": "falling-coloured-rectangles.png",
+        "github": "Falling-Coloured-Rectangles"
+    },
+    {
+        "title": "Mandela Generator",
+        "description": "Generates mandelas using tensorflowjs, with all sorts of interesting config options",
+        "thumbnail": "mandela-generator.png",
+        "github": "Mandela-Generator"
+    },
+    {
         "title": "Ray Marching",
         "description": "A ray marching simulation created using the HTML canvas and Javascript",
         "thumbnail": "ray-marching.png",
@@ -76,11 +94,5 @@
         "description": "Animated fish using javascript that swim around using the boids algorithm",
         "thumbnail": "koi-fish-pond.png",
         "github": "Koi-Fish-Pond"
-    },
-    {
-        "title": "Mandela Generator",
-        "description": "Generates mandelas using tensorflowjs, with all sorts of interesting config options",
-        "thumbnail": "mandela-generator.png",
-        "github": "Mandela-Generator"
     }
 ]
