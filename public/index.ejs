@@ -37,7 +37,7 @@
 </head>
 
 <body>
-  <nav id="navbar" class="bg-dark sticky-top nav-padding navbar navbar-expand-lg">
+  <nav id="navbar" class="bg-dark sticky-top nav-padding navbar navbar-expand-lg" role="navigation">
     <div class="container">
       <a class="navbar-brand" href="/">
         <img id="nav-avatar" src="/static/images/avatar.jpg" alt="niall's avatar" width="42" height="42" />
@@ -62,7 +62,7 @@
       </div>
     </div>
   </nav>
-  <section id="landing">
+  <section id="landing" role="banner">
     <% if (theme !== "no-theme") { %>
       <div id="theme-overlay">
         <div id="theme-container"></div>
@@ -75,7 +75,7 @@
       </div>
     </div>
   </section>
-  <section id="about" class="bg-white py-4">
+  <section id="about" class="bg-white py-4" role="main">
     <div class="container">
       <div class="col-lg-8 offset-lg-2">
         <h1 class="text-center theme-font">About</h1>
@@ -135,12 +135,12 @@
       </div>
     </div>
   </section>
-  <section id="projects" class="bg-light pt-4 pb-3">
+  <section id="projects" class="bg-light pt-4 pb-3" role="feed">
     <div class="col-lg-8 offset-lg-2">
       <h1 class="text-center theme-font">Projects</h1>
       <div id="project-container" class="d-flex flex-row flex-wrap justify-content-center js-toggle-hide-projects hide-children">
         <% for (let project of projects) { %>
-          <div class="project card m-2" data-github="<%= project.github %>"
+          <div role="article" class="project card m-2" data-github="<%= project.github %>"
             onclick="launchProjectPreview('<%= project.github %>')">
             <img class="card-img-top" width="288" height="162" src="/static/images/thumbnails/<%= project.thumbnail %>"
               alt="<%= project.title %> Thumbnail"/>
@@ -191,7 +191,7 @@
       </div>
     </div>
   </section>
-  <section id="contact" class="bg-white py-4">
+  <section id="contact" class="bg-white py-4" role="form">
     <div class="container">
       <div class="col-lg-8 offset-lg-2 text-center">
         <h1 class="theme-font">Contact</h1>
@@ -199,9 +199,6 @@
           <div class="border-top mb-2"></div>
           <a class="text-decoration-none" href="https://github.com/eniallator">
             <img alt="Github Icon" src="/static/images/github-icon.png" width="40" height="40" />
-          </a>
-          <a class="text-decoration-none" href="https://twitter.com/mceniallator">
-            <img alt="Twitter Icon" src="/static/images/twitter-icon.png" width="40" height="40" />
           </a>
           <a class="text-decoration-none" href="https://www.linkedin.com/in/niall-coleman-clarke/">
             <img alt="Linkedin Icon" src="/static/images/linkedin-icon.png" width="40" height="40" />
