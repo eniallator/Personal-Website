@@ -6,6 +6,12 @@
         "github": "GPU-Accelerated-Cellular-Automata"
     },
     {
+        "title": "Aurora Borealis Simulation",
+        "description": "An art project where I've recreated a mountain scene with the aurora borealis",
+        "thumbnail": "aurora-borealis-art.png",
+        "github": "Aurora-Borealis-Art"
+    },
+    {
         "title": "Maze Animations",
         "description": "Maze animations generated using Javascript and displayed with the HTML canvas",
         "thumbnail": "maze-animations.png",
