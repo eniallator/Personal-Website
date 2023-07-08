@@ -1,5 +1,11 @@
 [
     {
+        "title": "Particle Cellular Automata",
+        "description": "Particle based cellular automata using convolution with tensorflowjs",
+        "thumbnail": "particle-cellular-automata.png",
+        "github": "GPU-Accelerated-Cellular-Automata"
+    },
+    {
         "title": "Maze Animations",
         "description": "Maze animations generated using Javascript and displayed with the HTML canvas",
         "thumbnail": "maze-animations.png",
@@ -18,28 +24,46 @@
         "github": "Mandela-Generator"
     },
     {
+        "title": "Koi Fish Pond",
+        "description": "Animated fish using javascript that swim around using the boids algorithm",
+        "thumbnail": "koi-fish-pond.png",
+        "github": "Koi-Fish-Pond"
+    },
+    {
+        "title": "Bezier Curve Generator",
+        "description": "My implementation of the bezier curve algorithm which allows you to edit them in real-time",
+        "thumbnail": "bezier-curve-generator.png",
+        "github": "Bezier-Curve-Generator"
+    },
+    {
+        "title": "Boids",
+        "description": "Boids algorithm implemented using Javascript and the HTML canvas",
+        "thumbnail": "boids.png",
+        "github": "boids"
+    },
+    {
+        "title": "Firework Simulation",
+        "description": "Firework simulation in the browser using javascript and the HTML canvas",
+        "thumbnail": "firework-simulation.png",
+        "github": "Firework-Simulation"
+    },
+    {
         "title": "Ray Marching",
         "description": "A ray marching simulation created using the HTML canvas and Javascript",
         "thumbnail": "ray-marching.png",
         "github": "Ray-Marching"
     },
     {
-        "title": "Particle Cellular Automata",
-        "description": "Particle based cellular automata using convolution with tensorflowjs",
-        "thumbnail": "particle-cellular-automata.png",
-        "github": "GPU-Accelerated-Cellular-Automata"
+        "title": "Symmetry Line Animation",
+        "description": "A symmetrical line animation written for the canvas",
+        "thumbnail": "symmetry-line.png",
+        "github": "Symmetry-Line-Animation"
     },
     {
         "title": "Reactive Hexagon Points",
         "description": "Connected points that form hexagons and when clicked, move around",
         "thumbnail": "reactive-hexagons.png",
         "github": "Reactive-Hexagon-Points"
-    },
-    {
-        "title": "Symmetry Line Animation",
-        "description": "A symmetrical line animation written for the canvas",
-        "thumbnail": "symmetry-line.png",
-        "github": "Symmetry-Line-Animation"
     },
     {
         "title": "Circle Segments Animation",
@@ -70,29 +94,5 @@
         "description": "A canvas animation of a rainbow that I made one year for pride",
         "thumbnail": "pride-rainbow.png",
         "github": "pride-rainbow-animation"
-    },
-    {
-        "title": "Firework Simulation",
-        "description": "Firework simulation in the browser using javascript and the HTML canvas",
-        "thumbnail": "firework-simulation.png",
-        "github": "Firework-Simulation"
-    },
-    {
-        "title": "Boids",
-        "description": "Boids algorithm implemented using Javascript and the HTML canvas",
-        "thumbnail": "boids.png",
-        "github": "boids"
-    },
-    {
-        "title": "Bezier Curve Generator",
-        "description": "My implementation of the bezier curve algorithm which allows you to edit them in real-time",
-        "thumbnail": "bezier-curve-generator.png",
-        "github": "Bezier-Curve-Generator"
-    },
-    {
-        "title": "Koi Fish Pond",
-        "description": "Animated fish using javascript that swim around using the boids algorithm",
-        "thumbnail": "koi-fish-pond.png",
-        "github": "Koi-Fish-Pond"
     }
 ]
