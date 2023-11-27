@@ -107,6 +107,7 @@ async function validateRecaptcha(token) {
   const response = await axios.post(
     `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_SECRET}&response=${token}`
   );
+  console.log("Google response:", response.data);
   return response.data.success && response.data.score >= 0.5;
 }
 
