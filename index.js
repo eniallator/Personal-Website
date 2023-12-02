@@ -107,27 +107,47 @@ async function validateRecaptcha(token) {
   const response = await axios.post(
     `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_SECRET}&response=${token}`
   );
-  console.log("Google response:", response.data);
   return response.data.success && response.data.score >= 0.5;
 }
 
+const dataFields = new Set(["recaptcha", "name", "email", "message"]);
+
+function validateFields(data) {
+  for (const key in data) {
+    if (!dataFields.has(key)) {
+      return false;
+    }
+  }
+  for (const field of dataFields.values()) {
+    if (data[field] == null || data[field].length === 0) {
+      return false;
+    }
+  }
+  return true;
+}
+
 async function sendMail(data) {
-  if (
-    !(await validateRecaptcha(data.recaptcha)) ||
-    data.name.length === 0 ||
-    !validateEmail(data.email) ||
-    data.message.length === 0
-  )
-    return;
-  sgMail
-    .send({
+  if (!validateFields(data) || !validateEmail(data.email)) {
+    console.log("Received spam:", data);
+  } else if (!(await validateRecaptcha(data.recaptcha))) {
+    console.log("Invalid recaptcha for:", data);
+  } else {
+    console.log("Sending:", {
       to: process.env.EMAIL_RECIPIENT,
       from: process.env.EMAIL_SENDER,
       subject: `[Personal Site] From ${data.name}`,
       text: `Name: ${data.name}\n\nEmail: ${data.email}\n\nMessage: ${data.message}`,
-    })
-    .then(() => console.log(`New email from ${data.name}`))
-    .catch((error) => console.log(error));
+    });
+    sgMail
+      .send({
+        to: process.env.EMAIL_RECIPIENT,
+        from: process.env.EMAIL_SENDER,
+        subject: `[Personal Site] From ${data.name}`,
+        text: `Name: ${data.name}\n\nEmail: ${data.email}\n\nMessage: ${data.message}`,
+      })
+      .then(() => console.log(`New email from ${data.name}`))
+      .catch((error) => console.log(error));
+  }
 }
 
 app.use(compression());
@@ -151,7 +171,6 @@ app.get("/", (req, res) => {
 });
 
 app.post("/", (req, res) => {
-  console.log(req.body);
   sendMail(req.body);
   res.redirect(req.url);
 });
