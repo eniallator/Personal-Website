@@ -2,6 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const multer = require("multer");
 const sgMail = require("@sendgrid/mail");
+const sgClient = require("@sendgrid/client");
 const fs = require("fs");
 const axios = require("axios");
 const { Octokit } = require("@octokit/core");
@@ -10,6 +11,7 @@ const compression = require("compression");
 require("dotenv").config();
 
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+sgClient.setApiKey(process.env.SENDGRID_API_KEY);
 const upload = multer();
 const app = express();
 
@@ -17,6 +19,22 @@ app.set("view engine", "ejs");
 app.set("views", "./public");
 const port = process.env.PORT || 3000;
 const octokit = new Octokit();
+
+sgClient
+  .request({ url: "/v3/scopes", method: "GET" })
+  .then(([_response, body]) => {
+    console.log("Scopes result", body.scopes);
+    if (
+      "scopes" in body &&
+      Array.isArray(body.scopes) &&
+      body.scopes.includes("mail.send")
+    ) {
+      console.log("Happiness! Includes mail.send");
+    } else {
+      throw new Error("Invalid scopes");
+    }
+  })
+  .catch(console.error);
 
 const projects = JSON.parse(fs.readFileSync("public/projects.json"));
 const sortProjectsInterval = 3600000; // 1hr
