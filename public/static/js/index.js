@@ -1,10 +1,8 @@
-document
-  .querySelectorAll("[tabindex]")
-  .forEach(
-    (el) =>
-      (el.onkeyup = (evt) =>
-        evt.key === "Enter" && evt.target === el ? el.click() : null)
-  );
+document.querySelectorAll("[tabindex]").forEach((el) => {
+  el.onkeyup = (evt) => {
+    if (evt.key === "Enter" && evt.target === el) el.click();
+  };
+});
 
 const projectsToggle = document.getElementById("projects-toggle");
 projectsToggle.oninput = () => {
@@ -28,13 +26,11 @@ projectsToggle.oninput = () => {
   projectsToggle.oninput();
 })();
 
-document
-  .querySelectorAll("nav ul > li a")
-  .forEach(
-    (el) =>
-      (el.onclick = (evt) =>
-        (document.getElementById("nav-menu-toggle").checked = false))
-  );
+document.querySelectorAll("nav ul > li a").forEach((el) => {
+  el.onclick = (evt) => {
+    document.getElementById("nav-menu-toggle").checked = false;
+  };
+});
 
 const projectRunBase = "https://eniallator.github.io/";
 const projectSrcBase = "https://github.com/eniallator/";
@@ -56,6 +52,7 @@ document.querySelectorAll(".project").forEach((project) => {
     iframe.style.backgroundImage = `url(${
       this.querySelector("img.project-thumbnail").src
     })`;
+    iframe.onload = () => (iframe.style.backgroundImage = "none");
 
     document.querySelector(
       "#project-preview a.js-preview"
