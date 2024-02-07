@@ -43,9 +43,6 @@ let currentTheme = "no-theme";
 const daysThemeIsShowing = 7;
 const halfMsThemeIsShowing = daysThemeIsShowing * 43200000; // 12hrs
 
-const PROJECT_SRC_BASE = "https://github.com/eniallator/";
-const PROJECT_RUN_BASE = "https://eniallator.github.io/";
-
 const themes = {
   halloween: {
     month: 9,
@@ -92,26 +89,28 @@ async function trySortProjects() {
 
   let repos = [];
   let page = 1;
-  const per_page = 100;
+  const perPage = 100;
   let resp;
-  do {
-    resp = await octokit.request("GET /users/eniallator/repos", {
-      username: "eniallator",
-      per_page: per_page,
-      page: page++,
-      sort: "pushed",
-      direction: "desc",
-    });
-    if (resp.data) {
-      repos = repos.concat(resp.data.map((repo) => repo.name.toLowerCase()));
-    }
-  } while (resp.data && resp.data.length === per_page);
+  try {
+    do {
+      resp = await octokit.request("GET /users/eniallator/repos", {
+        username: "eniallator",
+        per_page: perPage,
+        page: page++,
+        sort: "pushed",
+        direction: "desc",
+      });
+      if (resp.data) {
+        repos = repos.concat(resp.data.map((repo) => repo.name.toLowerCase()));
+      }
+    } while (resp.data && resp.data.length === perPage);
 
-  projects.sort(
-    (p1, p2) =>
-      repos.indexOf(p1.github.toLowerCase()) -
-      repos.indexOf(p2.github.toLowerCase())
-  );
+    projects.sort(
+      (p1, p2) =>
+        repos.indexOf(p1.github.toLowerCase()) -
+        repos.indexOf(p2.github.toLowerCase())
+    );
+  } catch {}
 }
 trySortProjects();
 
@@ -164,7 +163,7 @@ async function sendMail(data) {
         text: `Name: ${data.name}\n\nEmail: ${data.email}\n\nMessage: ${data.message}`,
       })
       .then(() => console.log(`New email from ${data.name}`))
-      .catch((error) => console.log(error));
+      .catch(console.error);
   }
 }
 
@@ -182,9 +181,7 @@ app.get("/", (req, res) => {
       themes[req.query.theme] || req.query.theme === "no-theme"
         ? req.query.theme
         : currentTheme,
-    projects: projects,
-    project_src_base: PROJECT_SRC_BASE,
-    project_run_base: PROJECT_RUN_BASE,
+    projects,
   });
 });
 

@@ -1,5 +1,6 @@
 .theme-font {
   font-family: "Mystery Quest", cursive;
+  font-weight: 400;
 }
 
 #theme-overlay.fadein {
@@ -30,7 +31,13 @@
   height: calc(100% - 31px);
 }
 
-#theme-overlay > #theme-container > img {
+#theme-overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#theme-overlay img {
   position: absolute;
   -webkit-animation: 3s ease 0s normal forwards 1 fadein;
   animation: 3s ease 0s normal forwards 1 fadein;
@@ -54,7 +61,7 @@
   }
 }
 
-#theme-overlay > #theme-container > img.fadeout {
+#theme-overlay img.fadeout {
   -webkit-animation: 3s ease 0s normal forwards 1 fadeout;
   animation: 3s ease 0s normal forwards 1 fadeout;
 }

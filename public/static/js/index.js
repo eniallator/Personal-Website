@@ -1,94 +1,68 @@
-function updateScroll(href) {
-  var offset = $("#navbar").height();
-  var el = $(href);
-  if (el.length === 0) return;
-  window.scrollTo(0, el.position().top - offset);
-  history.pushState({}, document.title, location.pathname + href);
-}
+document
+  .querySelectorAll("[tabindex]")
+  .forEach(
+    (el) =>
+      (el.onkeyup = (evt) =>
+        evt.key === "Enter" && evt.target === el ? el.click() : null)
+  );
 
-$('a[href^="#"]').click(function (evt) {
-  evt.preventDefault();
-  evt.stopPropagation();
-  updateScroll($(evt.currentTarget).attr("href"));
-});
+const projectsToggle = document.getElementById("projects-toggle");
+projectsToggle.oninput = () => {
+  const allProjects = document.querySelectorAll("#project-container .project");
+  const firstY = allProjects[0].getBoundingClientRect().y;
 
-function toggleChildren() {
-  $(".js-toggle-hide-projects").toggleClass("hide-children");
-}
-
-function updateModalDimensions() {
-  var modalWidth = $("[data-modal-width]").width();
-  $("#project-preview-modal iframe")
-    .width(modalWidth)
-    .height((modalWidth * 9) / 16);
-}
-
-window.onresize = function () {
-  var container = $("#project-container");
-  var projects = container.children();
-  projects.removeClass("show-child");
-  projects
-    .slice(
-      0,
-      Math.max(
-        1,
-        Math.floor(container.innerWidth() / projects.outerWidth(true))
-      )
-    )
-    .addClass("show-child");
-  updateModalDimensions();
+  allProjects.forEach((el) =>
+    !projectsToggle.checked && firstY !== el.getBoundingClientRect().y
+      ? el.removeAttribute("tabindex")
+      : el.setAttribute("tabindex", "0")
+  );
 };
 
-function launchProjectPreview(github) {
-  var modal = $("#project-preview-modal");
-  var project = $("[data-github=" + github + "]");
-  var previewUrl =
-    modal.find("[data-project-preview]").data("base-url") +
-    project.data("github");
-  modal.find("iframe").attr("src", previewUrl);
-  modal.find("[data-project-preview]").attr("href", previewUrl);
-  modal.find("[data-project-title]").text(project.find(".card-title").text());
-  modal
-    .find("[data-project-repo]")
-    .attr(
-      "href",
-      modal.find("[data-project-repo]").data("base-url") +
-        project.data("github")
-    );
-  modal.modal("show");
-}
+(window.onresize = function () {
+  document.querySelector("#project-container").style.height =
+    3 +
+    (document
+      .querySelector("#project-container .project")
+      ?.getBoundingClientRect().height ?? 300) +
+    "px";
+  projectsToggle.oninput();
+})();
 
-$("#project-preview-modal a").click(function (evt) {
-  evt.preventDefault();
-  evt.stopPropagation();
-  open($(evt.currentTarget).attr("href"));
+document.querySelectorAll("nav ul > li a").forEach(
+  (el) =>
+    (el.onclick = (evt) => {
+      document.getElementById("nav-menu-toggle").checked = false;
+    })
+);
+
+const projectRunBase = "https://eniallator.github.io/";
+const projectSrcBase = "https://github.com/eniallator/";
+
+const previewDialog = document.getElementById("project-preview");
+
+previewDialog.onclick = (evt) =>
+  evt.target === previewDialog ? previewDialog.close() : null;
+previewDialog.onclose = () =>
+  document.querySelector("#project-preview iframe").removeAttribute("src");
+
+document.querySelectorAll(".project").forEach((project) => {
+  project.onclick = function () {
+    document.querySelector("#project-preview h3").innerText =
+      this.getElementsByTagName("h2")[0]?.innerText;
+
+    const iframe = document.querySelector("#project-preview iframe");
+    iframe.src = `${projectRunBase}${this.getAttribute("data-github")}`;
+    iframe.style.backgroundImage = `url(${
+      this.querySelector("img.project-thumbnail").src
+    })`;
+
+    document.querySelector(
+      "#project-preview a.js-preview"
+    ).href = `${projectRunBase}${this.getAttribute("data-github")}`;
+
+    document.querySelector(
+      "#project-preview a.js-repository"
+    ).href = `${projectSrcBase}${this.getAttribute("data-github")}`;
+    previewDialog.showModal();
+  };
 });
-
-$("#project-preview-modal")
-  .on("shown.bs.modal", updateModalDimensions)
-  .on("hide.bs.modal", function (evt) {
-    $(evt.currentTarget).find("iframe").removeAttr("src");
-  });
-
-window.onload = function () {
-  $('[data-toggle="tooltip"]').tooltip();
-
-  $("section#contact form").submit(function (evt) {
-    evt.preventDefault();
-    var form = this;
-    grecaptcha.ready(function () {
-      grecaptcha
-        .execute("6LeINQMdAAAAAHgXsB7RrMoKehfacEyBVa1trZo3", {
-          action: "submit",
-        })
-        .then(function (token) {
-          $(form).find("input[name=recaptcha]").val(token);
-          form.submit();
-        });
-    });
-  });
-
-  updateScroll(location.hash);
-};
-
-window.onresize();

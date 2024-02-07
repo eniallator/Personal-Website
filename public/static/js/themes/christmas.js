@@ -1,11 +1,13 @@
-var lastScrolledAt = Date.now() - 1;
-var lastUpdatedAt;
-var overlayDelay = 5000;
-var santaData;
+let lastScrolledAt = Date.now() - 1;
+let lastUpdatedAt;
+const overlayDelay = 5000;
+let santaData;
 
 window.onscroll = function () {
-  $("#theme-container > img").remove();
-  $("#theme-overlay").removeClass("fadein");
+  document
+    .querySelectorAll("#theme-container > img")
+    .forEach((img) => img.remove());
+  document.getElementById("theme-overlay").classList.remove("fadein");
   lastScrolledAt = Date.now();
   lastUpdatedAt = undefined;
 };
@@ -20,28 +22,21 @@ function spawnSanta() {
     y: curve(0),
     yProgress: 0,
   };
-  $("#theme-container").append(
+  document.getElementById("theme-container").innerHTML +=
     "<img id='santa' width='224px' height='125' src='static/images/themes/santa-sleigh.png' style='top: " +
-      santaData.x +
-      "%; left: " +
-      santaData.y +
-      "%'/>"
-  );
+    santaData.x +
+    "%; left: " +
+    santaData.y +
+    "%'/>";
 }
 
 function update() {
   if (lastScrolledAt + overlayDelay < Date.now()) {
-    var dt = 0;
-    var now = Date.now();
-    if (lastUpdatedAt !== undefined) {
-      dt = (now - lastUpdatedAt) / 1000;
-    }
+    const now = Date.now();
+    const dt = lastUpdatedAt != null ? (now - lastUpdatedAt) / 1000 : 0;
     lastUpdatedAt = now;
-    if (!$("#theme-overlay").hasClass("fadein")) {
-      $("#theme-overlay").addClass("fadein");
-    }
-
-    if ($("#santa").length === 0) {
+    document.getElementById("theme-overlay").classList.add("fadein");
+    if (document.getElementById("santa") == null) {
       spawnSanta();
     }
 
@@ -49,9 +44,9 @@ function update() {
 
     santaData.x = (santaData.x + dt * 10) % 100;
     santaData.y = curve(santaData.yProgress) * 100;
-    $("#santa")
-      .css("left", santaData.x + "%")
-      .css("top", santaData.y + "%");
+    const santa = document.getElementById("santa");
+    santa.style.left = santaData.x + "%";
+    santa.style.top = santaData.y + "%";
   }
 
   requestAnimationFrame(update);

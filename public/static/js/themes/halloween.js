@@ -1,15 +1,17 @@
-var lastScrolledAt = Date.now();
-var eyesDelay = 5000;
+let lastScrolledAt = Date.now();
+const eyesDelay = 5000;
 
 window.onscroll = function () {
-  $("#theme-container > img").remove();
-  $("#theme-overlay").removeClass("fadein");
+  document
+    .querySelectorAll("#theme-container > img")
+    .forEach((img) => img.remove());
+  document.getElementById("theme-overlay").classList.remove("fadein");
   lastScrolledAt = Date.now();
 };
 
-var activeEyes = [];
-var eyesId = 0;
-var eyesFadeOutTime = 3000;
+const activeEyes = [];
+let eyesId = 0;
+const eyesFadeOutTime = 3000;
 
 function spawnEyes() {
   if (lastScrolledAt + eyesDelay < Date.now()) {
@@ -19,21 +21,21 @@ function spawnEyes() {
       lifeTime: 10000 + Math.random() * 2000,
     });
 
-    var scale = 0.2 + Math.random() * 0.3;
+    const scale = 0.2 + Math.random() * 0.3;
 
-    $("#theme-container").append(
+    document.getElementById("theme-container").innerHTML +=
       "<img width='" +
-        Math.round(scale * 318) +
-        "px' height='" +
-        Math.round(scale * 61) +
-        "px' id='eyes-" +
-        eyesId +
-        "' src='static/images/themes/spooky-eyes.png' style='top: " +
-        Math.round(Math.random() * 100) +
-        "%; left: " +
-        Math.round(Math.random() * 100) +
-        "%'/>"
-    );
+      Math.round(scale * 318) +
+      "px' height='" +
+      Math.round(scale * 61) +
+      "px' id='eyes-" +
+      eyesId +
+      "' src='static/images/themes/spooky-eyes.png' style='top: " +
+      Math.round(Math.random() * 100) +
+      "%; left: " +
+      Math.round(Math.random() * 100) +
+      "%'/>";
+
     eyesId = (eyesId + 1) % 10;
   }
 
@@ -42,22 +44,22 @@ function spawnEyes() {
 
 function eyesCleanUp() {
   if (lastScrolledAt + eyesDelay < Date.now()) {
-    if (!$("#theme-overlay").hasClass("fadein")) {
-      $("#theme-overlay").addClass("fadein");
-    }
-    var currTime = Date.now();
-    for (var i = activeEyes.length - 1; i >= 0; i--) {
-      var eyes = activeEyes[i];
-      var eyesEl = $("#theme-container > #eyes-" + eyes.id);
+    document.getElementById("theme-overlay").classList.add("fadein");
+    const currTime = Date.now();
+    for (let i = activeEyes.length - 1; i >= 0; i--) {
+      const eyes = activeEyes[i];
+      const eyesEl = document.querySelector(
+        "#theme-container > #eyes-" + eyes.id
+      );
       if (eyes.createdAt + eyes.lifeTime < currTime) {
         eyesEl.remove();
         activeEyes.splice(i, 1);
       }
       if (
-        !eyesEl.hasClass("fadeout") &&
+        !eyesEl.classList.contains("fadeout") &&
         eyes.createdAt + eyes.lifeTime - eyesFadeOutTime <= currTime
       ) {
-        eyesEl.addClass("fadeout");
+        eyesEl.classList.add("fadeout");
       }
     }
   }

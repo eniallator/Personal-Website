@@ -17,217 +17,176 @@
   <title>Niall's Personal Site</title>
 
   <link rel="preload" as="image" href="/static/images/dark-trees.jpg" />
-  <link rel="preload" as="style" href="/static/css/vendor/bootstrap.min.css" />
   <link rel="stylesheet" href="/static/css/styles.css" />
-  <% if (theme !== "no-theme") { %>
+  <% if (theme !=="no-theme" ) { %>
     <link rel="stylesheet" href="/static/css/themes/<%= theme %>.css" />
-  <% } %>
-  <link rel="stylesheet" href="/static/css/vendor/bootstrap.min.css" />
-  <script src="/static/js/vendor/font-awesome.js"></script>
+    <% } %>
+      <script src="/static/js/vendor/font-awesome.js"></script>
 
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WN0CTS2W8R"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
+      <!-- Global site tag (gtag.js) - Google Analytics -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-WN0CTS2W8R"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
 
-    gtag('config', 'G-WN0CTS2W8R');
-  </script>
+        gtag('config', 'G-WN0CTS2W8R');
+      </script>
 </head>
 
 <body>
-  <nav id="navbar" class="bg-dark sticky-top nav-padding navbar navbar-expand-lg" role="navigation">
-    <div class="container">
-      <a class="navbar-brand" href="/">
-        <img id="nav-avatar" src="/static/images/avatar.jpg" alt="niall's avatar" width="42" height="42" />
+  <nav role="navigation">
+    <input id="nav-menu-toggle" class="hidden" type="checkbox" />
+    <div class="container-lg nav-container">
+      <a class="nav-home" href="/">
+        <img src="/static/images/avatar.jpg" alt="Niall's avatar" width="42" height="42" />
       </a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon text-light fas fa-bars" style="height: unset"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item mb-0 h3">
-            <a class="nav-link text-light nav-color pad-if-not-toggled theme-font" href="#about">About</a>
-          </li>
-          <li class="nav-item mb-0 h3">
-            <a class="nav-link text-light nav-color pad-if-not-toggled theme-font" href="#projects">Projects</a>
-          </li>
-          <li class="nav-item mb-0 h3">
-            <a class="nav-link text-light nav-color pad-if-not-toggled theme-font" href="#contact">Contact</a>
-          </li>
-        </ul>
-      </div>
+      <label tabindex="0" id="nav-burger-menu" for="nav-menu-toggle">
+        <span class="fas fa-bars"></span>
+      </label>
+      <ul>
+        <li> <a class="theme-font" href="#about">About</a> </li>
+        <li> <a class="theme-font" href="#projects">Projects</a> </li>
+        <li> <a class="theme-font" href="#contact">Contact</a> </li>
+      </ul>
     </div>
+    <label id="close-menu-overlay" for="nav-menu-toggle"></label>
   </nav>
   <section id="landing" role="banner">
-    <% if (theme !== "no-theme") { %>
+    <% if (theme !=="no-theme" ) { %>
       <div id="theme-overlay">
         <div id="theme-container"></div>
       </div>
-    <% } %>
-    <div class="row fill" style="margin: unset">
-      <div class="col text-white align-self-center text-center theme-font">
-        <h1>Hi I'm Niall</h1>
-        <p>I'm a full-stack developer</p>
-      </div>
-    </div>
+      <% } %>
+        <div class="landing-text col-center">
+          <h1 class="theme-font section-heading">Hi I'm Niall</h1>
+          <p class="theme-font">I'm a full-stack developer</p>
+        </div>
   </section>
   <main>
-    <section id="about" class="bg-white py-4" title="About me">
-      <div class="container">
-        <div class="col-lg-8 offset-lg-2">
-          <h1 class="text-center theme-font">About</h1>
+    <section id="about" class="container">
+      <h1 class="theme-font section-heading" title="About me">About</h1>
+      <p>
+        I am a full-stack developer by trade, however I have worked on many different tech stacks for different
+        purposes in the past, including an embedded Lua scripting project.
+      </p>
+      <div id="about-panels">
+        <div id="about-panel-companies">
           <p>
-            I am a full-stack developer by trade, however I have worked on many different tech stacks for different
-            purposes in the past, including an embedded Lua scripting project.
+            I delivered projects for these companies
           </p>
-          <div id="about-panels">
-            <div id="about-panel-companies" class="mb-3">
-              <p class="m-0">
-                I delivered projects for these companies
-              </p>
-              <div id="companies" class="bg-light">
-                <a class="company" target="_blank" href="https://cartographer.io/" data-placement="top"
-                  data-toggle="tooltip" title="Cartographer">
-                  <img src="/static/images/logos/cartographer.png" height="40px" width="40px" alt="Photobot Logo" />
-                </a>
-                <a class="company" target="_blank" href="https://photobot.co/" data-placement="top" data-toggle="tooltip"
-                  title="Photobot">
-                  <img src="/static/images/logos/photobot.svg" height="40px" width="137.31px" alt="Photobot Logo" />
-                </a>
-                <a class="company" target="_blank" href="https://fonts.google.com/" data-placement="top"
-                  data-toggle="tooltip" title="Google Fonts">
-                  <img src="/static/images/logos/google-fonts.png" height="40px" width="53.55px" alt="Font Bakery Logo" />
-                </a>
-                <a class="company" target="_blank" href="https://buzzshot.co/" data-placement="top" data-toggle="tooltip"
-                  title="Buzzshot">
-                  <img src="/static/images/logos/buzzshot.png" height="40px" width="174.2px" alt="Buzzshot Logo" />
-                </a>
-                <a class="company" target="_blank" href="https://uxbri.org/" data-placement="top" data-toggle="tooltip"
-                  title="UX Brighton">
-                  <img src="/static/images/logos/uxbri.svg" height="40px" width="40px" alt="UX Brighton Logo" />
-                </a>
-                <a class="company" target="_blank" href="https://livevideoescaperooms.com/" data-placement="top"
-                  data-toggle="tooltip" title="Live Video Escape Rooms">
-                  <img src="/static/images/logos/lver.png" height="40px" width="162.84px"
-                    alt="Live Video Escape Rooms Logo" />
-                </a>
-              </div>
-            </div>
-            <div id="about-panel-text">
+          <div id="companies">
+            <a class="company" target="_blank" href="https://cartographer.io/" title="Cartographer">
+              <img src="/static/images/logos/cartographer.png" height="40px" width="40px" alt="Cartographer Logo" />
+            </a>
+            <a class="company" target="_blank" href="https://photobot.co/" title="Photobot">
+              <img src="/static/images/logos/photobot.svg" height="40px" width="137.31px" alt="Photobot Logo" />
+            </a>
+            <a class="company" target="_blank" href="https://fonts.google.com/" title="Google Fonts">
+              <img src="/static/images/logos/google-fonts.png" height="40px" width="53.55px" alt="Font Bakery Logo" />
+            </a>
+            <a class="company" target="_blank" href="https://buzzshot.co/" title="Buzzshot">
+              <img src="/static/images/logos/buzzshot.png" height="40px" width="174.2px" alt="Buzzshot Logo" />
+            </a>
+            <a class="company" target="_blank" href="https://uxbri.org/" title="UX Brighton">
+              <img src="/static/images/logos/uxbri.svg" height="40px" width="40px" alt="UX Brighton Logo" />
+            </a>
+            <a class="company" target="_blank" href="https://livevideoescaperooms.com/" title="Live Video Escape Rooms">
+              <img src="/static/images/logos/lver.png" height="40px" width="162.84px"
+                alt="Live Video Escape Rooms Logo" />
+            </a>
+          </div>
+        </div>
+        <div id="about-panel-text">
+          <p>
+            I program as a hobby and love to explore a variety of concepts in computer science by trying to
+            implement them myself. Highly motivated and creative thinker in terms of theory application and software
+            engineering. More of a "make it work" rather than "make it look good" type of person.
+          </p>
+          <div class="button-group">
+            <a href="/cv" class="button primary">
+              Online CV <em class="fas fa-external-link-alt"></em>
+            </a>
+            <a href="/cv/pdf-download" class="button secondary">
+              PDF CV <em class="fas fa-file-download"></em>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="projects">
+      <h1 class="theme-font section-heading" title="Projects">Projects</h1>
+      <input id="projects-toggle" class="hidden" type="checkbox" />
+      <div id="project-container" role="feed">
+        <% for (let project of projects) { %>
+          <article tabindex="0" title="<%= project.title %>" class="project" data-github="<%= project.github %>">
+            <img class="project-thumbnail" src="/static/images/thumbnails/<%= project.thumbnail %>"
+              alt="<%= project.title %> Thumbnail" />
+            <div class="project-text">
+              <h2>
+                <%= project.title %>
+              </h2>
               <p>
-                I program as a hobby and love to explore a variety of concepts in computer science by trying to implement
-                them myself. Highly motivated and creative thinker in terms of theory application and software
-                engineering. More of a "make it work" rather than "make it look good" type of person.
+                <%= project.description %>
               </p>
             </div>
-          </div>
-          <div class="btn-group btn-group-sm">
-            <a href="/cv" class="btn btn-primary">
-              <strong>Online CV <em class="fas fa-external-link-alt"></em></strong>
-            </a>
-            <a href="/cv/pdf-download" class="btn btn-secondary">
-              <strong>PDF CV <em class="fas fa-file-download"></em></strong>
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section id="projects" class="bg-light pt-4 pb-3" title="Projects">
-      <div class="col-lg-8 offset-lg-2">
-        <h1 class="text-center theme-font">Projects</h1>
-        <div id="project-container"
-          class="d-flex flex-row flex-wrap justify-content-center js-toggle-hide-projects hide-children" role="feed">
-          <% for (let project of projects) { %>
-            <article title="<%= project.title %>" class="project card m-2" data-github="<%= project.github %>"
-              onclick="launchProjectPreview('<%= project.github %>')">
-              <img class="card-img-top" width="288" height="162" src="/static/images/thumbnails/<%= project.thumbnail %>"
-                alt="<%= project.title %> Thumbnail"/>
-              <div class="card-body">
-                <h2 class="h5 card-title"><%= project.title %></h2>
-                <p class="card-text"><%= project.description %></p>
-              </div>
-            </article>
+          </article>
           <% } %>
-        </div>
-        <div class="js-toggle-hide-projects text-center mt-1 mb-2">
-          <p class="children-showing" style="font-weight: 500;">
-            I have many more projects (including non-web ones) on
-            <a class="show-child d-inline-block" href="https://github.com/eniallator/">my github</a>.
-          </p>
-        </div>
-        <div class="toggle-more-projects-outer">
-          <button class="js-toggle-hide-projects toggle-more-projects-link" onclick="toggleChildren();">
-            Show
-            <span class="children-hidden">More</span>
-            <span class="children-showing">Less</span>
-          </button>
-        </div>
-        <div class="modal fade" id="project-preview-modal" tabindex="-1" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered modal-xl">
-            <div class="modal-content">
-              <div class="modal-body py-0">
-                <div class="d-flex justify-content-between">
-                  <h5 class="mt-2">
-                    <span data-project-title></span> Preview
-                  </h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div data-modal-width>
-                  <iframe title="Project preview"></iframe>
-                </div>
-                <div class="d-flex justify-content-between mb-3">
-                  <a class="btn btn-link" href="#" data-base-url="<%= project_run_base %>"
-                    data-project-preview>Open Preview</a>
-                  <a class="btn btn-link" href="#" data-base-url="<%= project_src_base %>"
-                    data-project-repo>View Repository</a>
-                </div>
-              </div>
-            </div>
-          </div>
+      </div>
+      <div class="container col-center">
+        <p class="projects-showing more-projects-text">
+          I have many more projects (including non-web ones) on
+          <a class="show-child d-inline-block" href="https://github.com/eniallator/">my github</a>.
+        </p>
+        <div class="projects-toggle-button">
+          <label tabindex="0" for="projects-toggle" class="secondary button">
+            <span class="projects-not-showing"><i class="fas fa-angle-down"></i></span>
+            <span class="projects-showing"><i class="fas fa-angle-up"></i></span>
+          </label>
         </div>
       </div>
-    </section>
-  </main>
-  <section id="contact" class="bg-white py-4" role="dialog" title="Contact me">
-    <div class="container">
-      <div class="col-lg-8 offset-lg-2 text-center">
-        <h1 class="theme-font">Contact</h1>
-        <div class="contact-links flex-row mb-4">
-          <div class="border-top mb-2"></div>
-          <a class="text-decoration-none" href="https://github.com/eniallator">
-            <img alt="Github Icon" src="/static/images/github-icon.png" width="40" height="40" />
-          </a>
-          <a class="text-decoration-none" href="https://www.linkedin.com/in/niall-coleman-clarke/">
-            <img alt="Linkedin Icon" src="/static/images/linkedin-icon.png" width="40" height="40" />
-          </a>
-        </div>
-        <form accept-charset="utf-8" action="" method="POST">
-          <input name="recaptcha" type="hidden"/>
-          <input name="name" type="text" class="mb-3 form-control" placeholder="Name" required />
-          <input name="email" type="email" class="mb-3 form-control" placeholder="Email" required
-            pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$" />
-          <textarea name="message" class="form-control mb-3" placeholder="Message" rows="4" required></textarea>
-          <div class="text-left">
-            <input type="submit" class="btn btn-secondary form-control" value="Submit" style="width: unset" />
+      <dialog id="project-preview">
+        <form method="dialog">
+          <div class="header">
+            <h3></h3>
+            <button class="button close-button">&times;</button>
+          </div>
+          <iframe title="Project Preview"></iframe>
+          <div class="button-group">
+            <a class="button primary js-preview" href="#">
+              Open Preview <em class="fas fa-external-link-alt"></em>
+            </a>
+            <a class="button secondary js-repository" href="#">
+              View Repository <em class="fas fa-folder-open"></em>
+            </a>
           </div>
         </form>
+      </dialog>
+    </section>
+    <section id="contact" class="container">
+      <h1 class="theme-font section-heading" title="Contact me">Contact</h1>
+      <div class="contact-links">
+        <a href="https://github.com/eniallator" role="link">
+          <img alt="Github Icon" src="/static/images/github-icon.png" width="40" height="40" />
+        </a>
+        <a href="https://www.linkedin.com/in/niall-coleman-clarke/" role="link">
+          <img alt="Linkedin Icon" src="/static/images/linkedin-icon.png" width="40" height="40" />
+        </a>
       </div>
-    </div>
-  </section>
-  <script src="/static/js/vendor/jquery-3.5.1.slim.min.js"></script>
-  <script src="/static/js/vendor/popper.min.js"></script>
-  <script src="/static/js/vendor/bootstrap.min.js"></script>
+      <form accept-charset="utf-8" action="" method="POST">
+        <input name="recaptcha" type="hidden" />
+        <input name="name" type="text" placeholder="Name" required />
+        <input name="email" type="email" placeholder="Email" required pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$" />
+        <textarea name="message" placeholder="Message" rows="4" required></textarea>
+        <input type="submit" class="button secondary" value="Submit" />
+      </form>
+    </section>
+  </main>
   <script src="/static/js/index.js"></script>
   <script async src="https://www.google.com/recaptcha/api.js?render=6LeINQMdAAAAAHgXsB7RrMoKehfacEyBVa1trZo3"></script>
-  <% if (theme !== "no-theme") { %>
+  <% if (theme !=="no-theme" ) { %>
     <script src="/static/js/themes/<%= theme %>.js"></script>
-  <% } %>
+    <% } %>
 </body>
 
 </html>
