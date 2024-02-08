@@ -64,3 +64,17 @@ document.querySelectorAll(".project").forEach((project) => {
     previewDialog.showModal();
   };
 });
+
+document.querySelector("#contact form").onsubmit = (evt) => {
+  evt.preventDefault();
+  grecaptcha.ready(() => {
+    grecaptcha
+      .execute("6LeINQMdAAAAAHgXsB7RrMoKehfacEyBVa1trZo3", {
+        action: "submit",
+      })
+      .then((token) => {
+        evt.target.querySelector("input[name=recaptcha]").value = token;
+        evt.target.submit();
+      });
+  });
+};
