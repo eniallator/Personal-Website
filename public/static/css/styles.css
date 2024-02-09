@@ -197,11 +197,13 @@ nav ul > li {
     justify-content: center;
     align-items: center;
     background: transparent;
-    color: white;
+    fill: white;
     border: none;
     font-size: large;
-    width: 42px;
-    height: 42px;
+  }
+  #nav-burger-menu svg {
+    width: 2rem;
+    height: 2rem;
   }
   nav ul {
     visibility: hidden;
@@ -240,7 +242,8 @@ nav ul > li {
 }
 
 section {
-  scroll-margin-top: 48px;
+  /* Nav height */
+  scroll-margin-top: 49px;
 }
 
 .section-heading {
@@ -339,6 +342,11 @@ main section {
   }
 }
 
+.button-group {
+  display: flex;
+  flex-direction: row;
+}
+
 .button-group .button {
   border-radius: 0;
 }
@@ -351,12 +359,24 @@ main section {
 
 .button {
   color: white;
+  fill: white;
   text-decoration: none !important;
   padding: 0.5rem 0.75rem;
   border-radius: 0.5rem;
   text-wrap: nowrap;
   font-weight: bold;
   border: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button svg {
+  height: 1em;
+}
+
+.button *:not(:first-child) {
+  margin-left: 0.5ch;
 }
 
 .button.primary {
@@ -483,7 +503,7 @@ main section {
   background-color: var(--grey-100) !important;
   cursor: pointer;
 }
-.projects-toggle-button i {
+.projects-toggle-button svg {
   display: block;
 }
 
