@@ -21,16 +21,6 @@
   <% if (theme !=="no-theme" ) { %>
     <link rel="stylesheet" href="/static/css/themes/<%= theme %>.css" />
     <% } %>
-
-      <!-- Global site tag (gtag.js) - Google Analytics -->
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-WN0CTS2W8R"></script>
-      <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-
-        gtag('config', 'G-WN0CTS2W8R');
-      </script>
 </head>
 
 <body>
@@ -215,7 +205,13 @@
         </a>
       </div>
       <form accept-charset="utf-8" action="" method="POST">
-        <input name="recaptcha" type="hidden" />
+        <!-- Honey Pots -->
+        <input name="phone" type="hidden" />
+        <input name="city" type="hidden" />
+        <input name="address" type="hidden" />
+        <input name="country" type="hidden" />
+        <input name="zip code" type="hidden" />
+        <!-- Form Content -->
         <input name="name" type="text" placeholder="Name" required />
         <input name="email" type="email" placeholder="Email" required pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$" />
         <textarea name="message" placeholder="Message" rows="4" required></textarea>
@@ -224,7 +220,6 @@
     </section>
   </main>
   <script src="/static/js/index.js"></script>
-  <script async src="https://www.google.com/recaptcha/api.js?render=6LeINQMdAAAAAHgXsB7RrMoKehfacEyBVa1trZo3"></script>
   <% if (theme !=="no-theme" ) { %>
     <script src="/static/js/themes/<%= theme %>.js"></script>
     <% } %>

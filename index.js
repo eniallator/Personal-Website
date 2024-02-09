@@ -4,7 +4,6 @@ const multer = require("multer");
 const sgMail = require("@sendgrid/mail");
 const sgClient = require("@sendgrid/client");
 const fs = require("fs");
-const axios = require("axios");
 const { Octokit } = require("@octokit/core");
 const acceptWebp = require("accept-webp");
 const compression = require("compression");
@@ -120,18 +119,24 @@ function validateEmail(email) {
   return re.test(String(email).toLowerCase());
 }
 
-async function validateRecaptcha(token) {
-  const response = await axios.post(
-    `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_SECRET}&response=${token}`
-  );
-  return response.data.success && response.data.score >= 0.5;
-}
+const honeyPotFields = new Set([
+  "phone",
+  "city",
+  "address",
+  "country",
+  "zip code",
+]);
 
-const dataFields = new Set(["recaptcha", "name", "email", "message"]);
+const dataFields = new Set(["name", "email", "message"]);
 
 function validateFields(data) {
   for (const key in data) {
-    if (!dataFields.has(key)) {
+    if (!dataFields.has(key) && !honeyPotFields.has(key)) {
+      return false;
+    }
+  }
+  for (const field of honeyPotFields.values()) {
+    if (data[field] == null || data[field].length !== 0) {
       return false;
     }
   }
@@ -146,8 +151,6 @@ function validateFields(data) {
 async function sendMail(data) {
   if (!validateFields(data) || !validateEmail(data.email)) {
     console.log("Received spam:", data);
-  } else if (!(await validateRecaptcha(data.recaptcha))) {
-    console.log("Invalid recaptcha for:", data);
   } else {
     console.log("Sending:", {
       to: process.env.EMAIL_RECIPIENT,

@@ -10,7 +10,6 @@
     "@octokit/core": "^3.5.1",
     "@sendgrid/mail": "^7.7.0",
     "accept-webp": "^1.4.0",
-    "axios": "^0.24.0",
     "body-parser": "^1.19.0",
     "compression": "^1.7.4",
     "dotenv": "^8.6.0",
@@ -21,7 +20,6 @@
   },
   "description": "My personal website's source code",
   "main": "index.js",
-  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/eniallator/Personal-Website.git"
