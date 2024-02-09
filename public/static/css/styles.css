@@ -371,6 +371,10 @@ main section {
   justify-content: center;
 }
 
+.button:has(svg) {
+  line-height: 0;
+}
+
 .button svg {
   height: 1em;
 }
@@ -536,23 +540,33 @@ main section {
 #project-preview form {
   display: flex;
   flex-direction: column;
-  row-gap: 0.75rem;
-  padding: 1rem 1.5rem;
-}
-
-#project-preview .close-button {
-  background-color: white;
-  font-size: 2.5rem;
-  padding: 0 0.75rem;
-  border: 3px solid var(--grey-100);
-  color: black;
-  cursor: pointer;
+  row-gap: 0.5rem;
+  padding: 0.5rem 1.5rem;
+  max-height: 90vh;
 }
 
 #project-preview .header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
+}
+
+#project-preview h3 {
+  margin: 0;
+  font-size: 1.75em;
+}
+
+#project-preview .close-button {
+  background-color: white;
+  font-size: 2rem;
+  padding: 0.25rem;
+  border: 3px solid var(--grey-100);
+  fill: black;
+  cursor: pointer;
+}
+#project-preview .close-button svg {
+  padding: 0 3px;
 }
 
 #project-preview iframe {
