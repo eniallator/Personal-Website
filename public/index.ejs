@@ -206,16 +206,20 @@
       </div>
       <form accept-charset="utf-8" action="" method="POST">
         <!-- Honey Pots -->
-        <input name="phone" type="hidden" />
-        <input name="city" type="hidden" />
-        <input name="address" type="hidden" />
-        <input name="country" type="hidden" />
-        <input name="zip code" type="hidden" />
+        <div class="ignore">
+          <input tabindex="-1" name="phone" type="text" />
+          <input tabindex="-1" name="city" type="text" />
+          <input tabindex="-1" name="address" type="text" />
+          <input tabindex="-1" name="country" type="text" />
+          <input tabindex="-1" name="zip code" type="text" />
+        </div>
         <!-- Form Content -->
-        <input name="name" type="text" placeholder="Name" required />
-        <input name="email" type="email" placeholder="Email" required pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$" />
-        <textarea name="message" placeholder="Message" rows="4" required></textarea>
-        <input type="submit" class="button secondary" value="Submit" />
+        <div class="fields">
+          <input name="name" type="text" placeholder="Name" required />
+          <input name="email" type="email" placeholder="Email" required pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$" />
+          <textarea name="message" placeholder="Message" rows="4" required></textarea>
+          <input type="submit" class="button secondary" value="Submit" />
+        </div>
       </form>
     </section>
   </main>
