@@ -1,9 +1,9 @@
 [
   {
-    "url": "https://cartographer.io/",
-    "name": "Cartographer",
-    "img": "/static/images/logos/cartographer.png",
-    "aspectRatio": 1
+    "url": "https://exeter.ac.uk/",
+    "name": "University of Exeter",
+    "img": "/static/images/logos/UoE.png",
+    "aspectRatio": 2.945
   },
   {
     "url": "https://photobot.co/",
@@ -16,6 +16,12 @@
     "name": "Google Fonts",
     "img": "/static/images/logos/google-fonts.png",
     "aspectRatio": 1.339
+  },
+  {
+    "url": "https://cartographer.io/",
+    "name": "Cartographer",
+    "img": "/static/images/logos/cartographer.png",
+    "aspectRatio": 1
   },
   {
     "url": "https://buzzshot.co/",

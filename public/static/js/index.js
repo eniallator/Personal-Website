@@ -49,9 +49,9 @@ document.querySelectorAll(".project").forEach((project) => {
 
     const iframe = document.querySelector("#project-preview iframe");
     iframe.src = `${projectRunBase}${this.getAttribute("data-github")}`;
-    iframe.style.backgroundImage = `url(${
+    iframe.style.background = `url(${
       this.querySelector("img.project-thumbnail").src
-    })`;
+    }) no-repeat center/100%`;
     iframe.onload = () => (iframe.style.backgroundImage = "none");
 
     document.querySelector(
