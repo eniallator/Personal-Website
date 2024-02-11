@@ -1,232 +1,290 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Niall's personal website: About | Projects | Contact"
+    />
+    <meta name="theme-color" content="#808080" />
+    <meta property="og:title" content="Niall's Personal Site" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://eniallator.com" />
+    <meta
+      property="og:image"
+      content="https://eniallator.com/static/images/avatar.jpg"
+    />
+    <meta
+      property="og:description"
+      content="Niall's personal website: About | Projects | Contact"
+    />
+    <meta
+      name="twitter:card"
+      content="https://eniallator.com/static/images/avatar.jpg"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Niall's personal website: About | Projects | Contact" />
-  <meta name="theme-color" content="#808080" />
-  <meta property="og:title" content="Niall's Personal Site" />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://eniallator.com" />
-  <meta property="og:image" content="https://eniallator.com/static/images/avatar.jpg" />
-  <meta property="og:description" content="Niall's personal website: About | Projects | Contact" />
-  <meta name="twitter:card" content="https://eniallator.com/static/images/avatar.jpg">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Niall's Personal Site</title>
 
-  <title>Niall's Personal Site</title>
-
-  <link rel="preload" as="image" href="/static/images/dark-trees.jpg" />
-  <link rel="stylesheet" href="/static/css/styles.css" />
-  <% if (theme !=="no-theme" ) { %>
+    <link rel="preload" as="image" href="/static/images/dark-trees.jpg" />
+    <link rel="stylesheet" href="/static/css/styles.css" />
+    <% if (theme !=="no-theme" ) { %>
     <link rel="stylesheet" href="/static/css/themes/<%= theme %>.css" />
     <% } %>
-</head>
+  </head>
 
-<body>
-  <nav role="navigation">
-    <input id="nav-menu-toggle" class="hidden" type="checkbox" />
-    <div class="container-lg nav-container">
-      <a class="nav-home" href="/">
-        <img src="/static/images/avatar.jpg" alt="Niall's avatar" width="42" height="42" />
-      </a>
-      <label tabindex="0" id="nav-burger-menu" for="nav-menu-toggle">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-          <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc. -->
-          <path
-            d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z" />
-        </svg>
-      </label>
-      <ul>
-        <li> <a class="theme-font" href="#about">About</a> </li>
-        <li> <a class="theme-font" href="#projects">Projects</a> </li>
-        <li> <a class="theme-font" href="#contact">Contact</a> </li>
-      </ul>
-    </div>
-    <label id="close-menu-overlay" for="nav-menu-toggle"></label>
-  </nav>
-  <section id="landing" role="banner">
-    <% if (theme !=="no-theme" ) { %>
+  <body>
+    <nav role="navigation">
+      <input id="nav-menu-toggle" class="hidden" type="checkbox" />
+      <div class="container-lg nav-container">
+        <a class="nav-home" href="/">
+          <img
+            src="/static/images/avatar.jpg"
+            alt="Niall's avatar"
+            width="42"
+            height="42"
+          />
+        </a>
+        <label tabindex="0" id="nav-burger-menu" for="nav-menu-toggle">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+            <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc. -->
+            <path
+              d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"
+            />
+          </svg>
+        </label>
+        <ul>
+          <li><a class="theme-font" href="#about">About</a></li>
+          <li><a class="theme-font" href="#projects">Projects</a></li>
+          <li><a class="theme-font" href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <label id="close-menu-overlay" for="nav-menu-toggle"></label>
+    </nav>
+    <section id="landing" role="banner">
+      <% if (theme !=="no-theme" ) { %>
       <div id="theme-overlay">
         <div id="theme-container"></div>
       </div>
       <% } %>
-        <div class="landing-text col-center">
-          <h1 class="theme-font section-heading">Hi I'm Niall</h1>
-          <p class="theme-font">I'm a full-stack developer</p>
-        </div>
-  </section>
-  <main>
-    <section id="about" class="container">
-      <h1 class="theme-font section-heading" title="About me">About</h1>
-      <p>
-        I am a full-stack developer by trade, however I have worked on many different tech stacks for different
-        purposes in the past, including an embedded Lua scripting project.
-      </p>
-      <div id="about-panels">
-        <div id="about-panel-companies">
-          <p>
-            I delivered projects for these companies
-          </p>
-          <div id="companies">
-            <a class="company" target="_blank" href="https://cartographer.io/" title="Cartographer">
-              <img src="/static/images/logos/cartographer.png" height="40px" width="40px" alt="Cartographer Logo" />
-            </a>
-            <a class="company" target="_blank" href="https://photobot.co/" title="Photobot">
-              <img src="/static/images/logos/photobot.svg" height="40px" width="137.31px" alt="Photobot Logo" />
-            </a>
-            <a class="company" target="_blank" href="https://fonts.google.com/" title="Google Fonts">
-              <img src="/static/images/logos/google-fonts.png" height="40px" width="53.55px" alt="Font Bakery Logo" />
-            </a>
-            <a class="company" target="_blank" href="https://buzzshot.co/" title="Buzzshot">
-              <img src="/static/images/logos/buzzshot.png" height="40px" width="174.2px" alt="Buzzshot Logo" />
-            </a>
-            <a class="company" target="_blank" href="https://uxbri.org/" title="UX Brighton">
-              <img src="/static/images/logos/uxbri.svg" height="40px" width="40px" alt="UX Brighton Logo" />
-            </a>
-            <a class="company" target="_blank" href="https://livevideoescaperooms.com/" title="Live Video Escape Rooms">
-              <img src="/static/images/logos/lver.png" height="40px" width="162.84px"
-                alt="Live Video Escape Rooms Logo" />
-            </a>
-          </div>
-        </div>
-        <div id="about-panel-text">
-          <p>
-            I program as a hobby and love to explore a variety of concepts in computer science by implementing them
-            myself. Highly motivated and creative thinker in terms of theory application and software engineering. More
-            of a "make it work" rather than "make it look good" type of person.
-          </p>
-          <div class="button-group">
-            <a href="/cv" class="button primary" target="_blank">
-              <span>Online CV</span>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc. -->
-                <path
-                  d="M352 0c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9L370.7 96 201.4 265.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L416 141.3l41.4 41.4c9.2 9.2 22.9 11.9 34.9 6.9s19.8-16.6 19.8-29.6V32c0-17.7-14.3-32-32-32H352zM80 32C35.8 32 0 67.8 0 112V432c0 44.2 35.8 80 80 80H400c44.2 0 80-35.8 80-80V320c0-17.7-14.3-32-32-32s-32 14.3-32 32V432c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V112c0-8.8 7.2-16 16-16H192c17.7 0 32-14.3 32-32s-14.3-32-32-32H80z" />
-              </svg>
-            </a>
-            <a href="/cv/pdf-download" class="button secondary" target="_blank">
-              <span>PDF CV</span>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
-                <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc. -->
-                <path
-                  d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM216 232V334.1l31-31c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-72 72c-9.4 9.4-24.6 9.4-33.9 0l-72-72c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l31 31V232c0-13.3 10.7-24 24-24s24 10.7 24 24z" />
-              </svg>
-            </a>
-          </div>
-        </div>
+      <div class="landing-text col-center">
+        <h1 class="theme-font section-heading">Hi I'm Niall</h1>
+        <p class="theme-font">I'm a full-stack developer</p>
       </div>
     </section>
-    <section id="projects">
-      <h1 class="theme-font section-heading" title="Projects">Projects</h1>
-      <input id="projects-toggle" class="hidden" type="checkbox" />
-      <div id="project-container" role="feed">
-        <% for (let project of projects) { %>
-          <article tabindex="0" title="<%= project.title %>" class="project" data-github="<%= project.github %>">
-            <img class="project-thumbnail" src="/static/images/thumbnails/<%= project.thumbnail %>"
-              alt="<%= project.title %> Thumbnail" />
+    <main>
+      <section id="about" class="container">
+        <h1 class="theme-font section-heading" title="About me">About</h1>
+        <p>
+          I am a full-stack developer by trade, however I have worked on many
+          different tech stacks for different purposes in the past, including an
+          embedded Lua scripting project.
+        </p>
+        <div id="about-panels">
+          <div id="about-panel-companies">
+            <p>I delivered projects for these companies</p>
+            <div id="companies">
+              <% for (let company of companies) { %>
+              <a
+                class="company"
+                target="_blank"
+                href="<%= company.url %>"
+                title="<%= company.name %>"
+              >
+                <img
+                  src="<%= company.img %>"
+                  height="40px"
+                  width="<%= Math.round(company.aspectRatio * 40) %>px"
+                  alt="<%= company.name %> Logo"
+                />
+              </a>
+              <% } %>
+            </div>
+          </div>
+          <div id="about-panel-text">
+            <p>
+              I program as a hobby and love to explore a variety of concepts in
+              computer science by implementing them myself. Highly motivated and
+              creative thinker in terms of theory application and software
+              engineering. More of a "make it work" rather than "make it look
+              good" type of person.
+            </p>
+            <div class="button-group">
+              <a href="/cv" class="button primary" target="_blank">
+                <span>Online CV</span>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                  <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc. -->
+                  <path
+                    d="M352 0c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9L370.7 96 201.4 265.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L416 141.3l41.4 41.4c9.2 9.2 22.9 11.9 34.9 6.9s19.8-16.6 19.8-29.6V32c0-17.7-14.3-32-32-32H352zM80 32C35.8 32 0 67.8 0 112V432c0 44.2 35.8 80 80 80H400c44.2 0 80-35.8 80-80V320c0-17.7-14.3-32-32-32s-32 14.3-32 32V432c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V112c0-8.8 7.2-16 16-16H192c17.7 0 32-14.3 32-32s-14.3-32-32-32H80z"
+                  />
+                </svg>
+              </a>
+              <a
+                href="/cv/pdf-download"
+                class="button secondary"
+                target="_blank"
+              >
+                <span>PDF CV</span>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                  <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc. -->
+                  <path
+                    d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM216 232V334.1l31-31c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-72 72c-9.4 9.4-24.6 9.4-33.9 0l-72-72c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l31 31V232c0-13.3 10.7-24 24-24s24 10.7 24 24z"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="projects">
+        <h1 class="theme-font section-heading" title="Projects">Projects</h1>
+        <input id="projects-toggle" class="hidden" type="checkbox" />
+        <div id="project-container" role="feed">
+          <% for (let project of projects) { %>
+          <article
+            tabindex="0"
+            title="<%= project.title %>"
+            class="project"
+            data-github="<%= project.github %>"
+          >
+            <img
+              class="project-thumbnail"
+              src="<%= project.img %>"
+              alt="<%= project.title %> Thumbnail"
+            />
             <div class="project-text">
-              <h2>
-                <%= project.title %>
-              </h2>
-              <p>
-                <%= project.description %>
-              </p>
+              <h2><%= project.title %></h2>
+              <p><%= project.description %></p>
             </div>
           </article>
           <% } %>
-      </div>
-      <div class="container col-center">
-        <p class="projects-showing more-projects-text">
-          I have many more projects (including non-web ones) on
-          <a href="https://github.com/eniallator/" target="_blank">my github</a>.
-        </p>
-        <div class="projects-toggle-button">
-          <label tabindex="0" for="projects-toggle" class="secondary button">
-            <span class="projects-not-showing">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc. -->
-                <path
-                  d="M201.4 342.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 274.7 86.6 137.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z" />
-              </svg>
-            </span>
-            <span class="projects-showing">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc. -->
-                <path
-                  d="M201.4 137.4c12.5-12.5 32.8-12.5 45.3 0l160 160c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L224 205.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l160-160z" />
-              </svg>
-            </span>
-          </label>
         </div>
-      </div>
-      <dialog id="project-preview">
-        <form method="dialog">
-          <div class="header">
-            <h3></h3>
-            <button class="button close-button">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
-                <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc. -->
-                <path
-                  d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
-              </svg>
-            </button>
+        <div class="container col-center">
+          <p class="projects-showing more-projects-text">
+            I have many more projects (including non-web ones) on
+            <a href="https://github.com/eniallator/" target="_blank">
+              my github</a
+            >.
+          </p>
+          <div class="projects-toggle-button">
+            <label tabindex="0" for="projects-toggle" class="secondary button">
+              <span class="projects-not-showing">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                  <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc. -->
+                  <path
+                    d="M201.4 342.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 274.7 86.6 137.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"
+                  />
+                </svg>
+              </span>
+              <span class="projects-showing">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                  <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc. -->
+                  <path
+                    d="M201.4 137.4c12.5-12.5 32.8-12.5 45.3 0l160 160c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L224 205.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l160-160z"
+                  />
+                </svg>
+              </span>
+            </label>
           </div>
-          <iframe title="Project Preview"></iframe>
-          <div class="button-group">
-            <a class="button primary js-preview" href="#" target="_blank">
-              <span>Open</span>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc. -->
-                <path
-                  d="M352 0c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9L370.7 96 201.4 265.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L416 141.3l41.4 41.4c9.2 9.2 22.9 11.9 34.9 6.9s19.8-16.6 19.8-29.6V32c0-17.7-14.3-32-32-32H352zM80 32C35.8 32 0 67.8 0 112V432c0 44.2 35.8 80 80 80H400c44.2 0 80-35.8 80-80V320c0-17.7-14.3-32-32-32s-32 14.3-32 32V432c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V112c0-8.8 7.2-16 16-16H192c17.7 0 32-14.3 32-32s-14.3-32-32-32H80z" />
-              </svg>
-            </a>
-            <a class="button secondary js-repository" href="#" target="_blank">
-              <span>Repository</span>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc. -->
-                <path
-                  d="M88.7 223.8L0 375.8V96C0 60.7 28.7 32 64 32H181.5c17 0 33.3 6.7 45.3 18.7l26.5 26.5c12 12 28.3 18.7 45.3 18.7H416c35.3 0 64 28.7 64 64v32H144c-22.8 0-43.8 12.1-55.3 31.8zm27.6 16.1C122.1 230 132.6 224 144 224H544c11.5 0 22 6.1 27.7 16.1s5.7 22.2-.1 32.1l-112 192C453.9 474 443.4 480 432 480H32c-11.5 0-22-6.1-27.7-16.1s-5.7-22.2 .1-32.1l112-192z" />
-              </svg>
-            </a>
+        </div>
+        <dialog id="project-preview">
+          <form method="dialog">
+            <div class="header">
+              <h3></h3>
+              <button class="button close-button">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                  <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc. -->
+                  <path
+                    d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"
+                  />
+                </svg>
+              </button>
+            </div>
+            <iframe title="Project Preview"></iframe>
+            <div class="button-group">
+              <a class="button primary js-preview" href="#" target="_blank">
+                <span>Open</span>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                  <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc. -->
+                  <path
+                    d="M352 0c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9L370.7 96 201.4 265.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L416 141.3l41.4 41.4c9.2 9.2 22.9 11.9 34.9 6.9s19.8-16.6 19.8-29.6V32c0-17.7-14.3-32-32-32H352zM80 32C35.8 32 0 67.8 0 112V432c0 44.2 35.8 80 80 80H400c44.2 0 80-35.8 80-80V320c0-17.7-14.3-32-32-32s-32 14.3-32 32V432c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V112c0-8.8 7.2-16 16-16H192c17.7 0 32-14.3 32-32s-14.3-32-32-32H80z"
+                  />
+                </svg>
+              </a>
+              <a
+                class="button secondary js-repository"
+                href="#"
+                target="_blank"
+              >
+                <span>Repository</span>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                  <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc. -->
+                  <path
+                    d="M88.7 223.8L0 375.8V96C0 60.7 28.7 32 64 32H181.5c17 0 33.3 6.7 45.3 18.7l26.5 26.5c12 12 28.3 18.7 45.3 18.7H416c35.3 0 64 28.7 64 64v32H144c-22.8 0-43.8 12.1-55.3 31.8zm27.6 16.1C122.1 230 132.6 224 144 224H544c11.5 0 22 6.1 27.7 16.1s5.7 22.2-.1 32.1l-112 192C453.9 474 443.4 480 432 480H32c-11.5 0-22-6.1-27.7-16.1s-5.7-22.2 .1-32.1l112-192z"
+                  />
+                </svg>
+              </a>
+            </div>
+          </form>
+        </dialog>
+      </section>
+      <section id="contact" class="container">
+        <h1 class="theme-font section-heading" title="Contact me">Contact</h1>
+        <div class="contact-links">
+          <a href="https://github.com/eniallator" role="link">
+            <img
+              alt="Github Icon"
+              src="/static/images/github-icon.png"
+              width="40"
+              height="40"
+            />
+          </a>
+          <a
+            href="https://www.linkedin.com/in/niall-coleman-clarke/"
+            role="link"
+          >
+            <img
+              alt="Linkedin Icon"
+              src="/static/images/linkedin-icon.png"
+              width="40"
+              height="40"
+            />
+          </a>
+        </div>
+        <form accept-charset="utf-8" action="" method="POST">
+          <!-- Honey Pots -->
+          <div class="ignore">
+            <input tabindex="-1" name="phone" type="text" />
+            <input tabindex="-1" name="city" type="text" />
+            <input tabindex="-1" name="address" type="text" />
+            <input tabindex="-1" name="country" type="text" />
+            <input tabindex="-1" name="zip code" type="text" />
+          </div>
+          <!-- Form Content -->
+          <div class="fields">
+            <input name="name" type="text" placeholder="Name" required />
+            <input
+              name="email"
+              type="email"
+              placeholder="Email"
+              required
+              pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"
+            />
+            <textarea
+              name="message"
+              placeholder="Message"
+              rows="4"
+              required
+            ></textarea>
+            <input type="submit" class="button secondary" value="Submit" />
           </div>
         </form>
-      </dialog>
-    </section>
-    <section id="contact" class="container">
-      <h1 class="theme-font section-heading" title="Contact me">Contact</h1>
-      <div class="contact-links">
-        <a href="https://github.com/eniallator" role="link">
-          <img alt="Github Icon" src="/static/images/github-icon.png" width="40" height="40" />
-        </a>
-        <a href="https://www.linkedin.com/in/niall-coleman-clarke/" role="link">
-          <img alt="Linkedin Icon" src="/static/images/linkedin-icon.png" width="40" height="40" />
-        </a>
-      </div>
-      <form accept-charset="utf-8" action="" method="POST">
-        <!-- Honey Pots -->
-        <div class="ignore">
-          <input tabindex="-1" name="phone" type="text" />
-          <input tabindex="-1" name="city" type="text" />
-          <input tabindex="-1" name="address" type="text" />
-          <input tabindex="-1" name="country" type="text" />
-          <input tabindex="-1" name="zip code" type="text" />
-        </div>
-        <!-- Form Content -->
-        <div class="fields">
-          <input name="name" type="text" placeholder="Name" required />
-          <input name="email" type="email" placeholder="Email" required pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$" />
-          <textarea name="message" placeholder="Message" rows="4" required></textarea>
-          <input type="submit" class="button secondary" value="Submit" />
-        </div>
-      </form>
-    </section>
-  </main>
-  <script src="/static/js/index.js"></script>
-  <% if (theme !=="no-theme" ) { %>
+      </section>
+    </main>
+    <script src="/static/js/index.js"></script>
+    <% if (theme !=="no-theme" ) { %>
     <script src="/static/js/themes/<%= theme %>.js"></script>
     <% } %>
-</body>
-
+  </body>
 </html>

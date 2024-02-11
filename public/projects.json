@@ -2,103 +2,103 @@
     {
         "title": "Particle Cellular Automata",
         "description": "Particle based cellular automata using convolution with tensorflowjs",
-        "thumbnail": "particle-cellular-automata.png",
+        "img": "/static/images/thumbnails/particle-cellular-automata.png",
         "github": "GPU-Accelerated-Cellular-Automata"
     },
     {
         "title": "Aurora Borealis Simulation",
         "description": "An art project where I've recreated a mountain scene with the aurora borealis",
-        "thumbnail": "aurora-borealis-art.png",
+        "img": "/static/images/thumbnails/aurora-borealis-art.png",
         "github": "Aurora-Borealis-Art"
     },
     {
         "title": "Maze Animations",
         "description": "Maze animations generated using Javascript and displayed with the HTML canvas",
-        "thumbnail": "maze-animations.png",
+        "img": "/static/images/thumbnails/maze-animations.png",
         "github": "Maze-Animations"
     },
     {
         "title": "Falling Coloured Rectangles",
         "description": "Falling coloured rectangles inspired by an artwork made by my grandad",
-        "thumbnail": "falling-coloured-rectangles.png",
+        "img": "/static/images/thumbnails/falling-coloured-rectangles.png",
         "github": "Falling-Coloured-Rectangles"
     },
     {
         "title": "Mandela Generator",
         "description": "Generates mandelas using tensorflowjs, with all sorts of interesting config options",
-        "thumbnail": "mandela-generator.png",
+        "img": "/static/images/thumbnails/mandela-generator.png",
         "github": "Mandela-Generator"
     },
     {
         "title": "Koi Fish Pond",
         "description": "Animated fish using javascript that swim around using the boids algorithm",
-        "thumbnail": "koi-fish-pond.png",
+        "img": "/static/images/thumbnails/koi-fish-pond.png",
         "github": "Koi-Fish-Pond"
     },
     {
         "title": "Bezier Curve Generator",
         "description": "My implementation of the bezier curve algorithm which allows you to edit them in real-time",
-        "thumbnail": "bezier-curve-generator.png",
+        "img": "/static/images/thumbnails/bezier-curve-generator.png",
         "github": "Bezier-Curve-Generator"
     },
     {
         "title": "Boids",
         "description": "Boids algorithm implemented using Javascript and the HTML canvas",
-        "thumbnail": "boids.png",
+        "img": "/static/images/thumbnails/boids.png",
         "github": "boids"
     },
     {
         "title": "Firework Simulation",
         "description": "Firework simulation in the browser using javascript and the HTML canvas",
-        "thumbnail": "firework-simulation.png",
+        "img": "/static/images/thumbnails/firework-simulation.png",
         "github": "Firework-Simulation"
     },
     {
         "title": "Ray Marching",
         "description": "A ray marching simulation created using the HTML canvas and Javascript",
-        "thumbnail": "ray-marching.png",
+        "img": "/static/images/thumbnails/ray-marching.png",
         "github": "Ray-Marching"
     },
     {
         "title": "Symmetry Line Animation",
         "description": "A symmetrical line animation written for the canvas",
-        "thumbnail": "symmetry-line.png",
+        "img": "/static/images/thumbnails/symmetry-line.png",
         "github": "Symmetry-Line-Animation"
     },
     {
         "title": "Reactive Hexagon Points",
         "description": "Connected points that form hexagons and when clicked, move around",
-        "thumbnail": "reactive-hexagons.png",
+        "img": "/static/images/thumbnails/reactive-hexagons.png",
         "github": "Reactive-Hexagon-Points"
     },
     {
         "title": "Circle Segments Animation",
         "description": "An animation of circle segments growing from the center of the screen, towards the outside",
-        "thumbnail": "circle-segments.png",
+        "img": "/static/images/thumbnails/circle-segments.png",
         "github": "Circle-Segments-Animation"
     },
     {
         "title": "Contour Lines",
         "description": "A simulation of contour lines using the marching squares algorithm",
-        "thumbnail": "contour-lines.png",
+        "img": "/static/images/thumbnails/contour-lines.png",
         "github": "Contour-Lines"
     },
     {
         "title": "Sand Piles Animation",
         "description": "A sand piles simulation in javascript",
-        "thumbnail": "sand-piles.png",
+        "img": "/static/images/thumbnails/sand-piles.png",
         "github": "Sand-Piles-JS"
     },
     {
         "title": "Physics Ball Toss",
         "description": "A physics ball toss simulation using the kinematic equations",
-        "thumbnail": "physics-ball-toss.png",
+        "img": "/static/images/thumbnails/physics-ball-toss.png",
         "github": "Physics-Ball-Toss"
     },
     {
         "title": "Pride Rainbow Animation",
         "description": "A canvas animation of a rainbow that I made one year for pride",
-        "thumbnail": "pride-rainbow.png",
+        "img": "/static/images/thumbnails/pride-rainbow.png",
         "github": "pride-rainbow-animation"
     }
 ]

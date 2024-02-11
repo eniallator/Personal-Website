@@ -1,0 +1,38 @@
+[
+  {
+    "url": "https://cartographer.io/",
+    "name": "Cartographer",
+    "img": "/static/images/logos/cartographer.png",
+    "aspectRatio": 1
+  },
+  {
+    "url": "https://photobot.co/",
+    "name": "Photobot",
+    "img": "/static/images/logos/photobot.svg",
+    "aspectRatio": 3.433
+  },
+  {
+    "url": "https://fonts.google.com/",
+    "name": "Google Fonts",
+    "img": "/static/images/logos/google-fonts.png",
+    "aspectRatio": 1.339
+  },
+  {
+    "url": "https://buzzshot.co/",
+    "name": "Buzzshot",
+    "img": "/static/images/logos/buzzshot.png",
+    "aspectRatio": 4.355
+  },
+  {
+    "url": "https://uxbri.org/",
+    "name": "UX Brighton",
+    "img": "/static/images/logos/uxbri.svg",
+    "aspectRatio": 1
+  },
+  {
+    "url": "https://livevideoescaperooms.com/",
+    "name": "Live Video Escape Rooms",
+    "img": "/static/images/logos/lver.png",
+    "aspectRatio": 4.071
+  }
+]

@@ -35,6 +35,7 @@ sgClient
   })
   .catch(console.error);
 
+const companies = JSON.parse(fs.readFileSync("public/companies.json"));
 const projects = JSON.parse(fs.readFileSync("public/projects.json"));
 const sortProjectsInterval = 3600000; // 1hr
 let lastSortTime = Date.now() - sortProjectsInterval - 1;
@@ -185,6 +186,7 @@ app.get("/", (req, res) => {
         ? req.query.theme
         : currentTheme,
     projects,
+    companies,
   });
 });
 
