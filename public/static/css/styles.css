@@ -47,6 +47,13 @@
     U+FEFF, U+FFFD;
 }
 
+@font-face {
+  font-family: "Noto Sans";
+  font-style: normal;
+  font-display: swap;
+  src: url(/static/google-fonts/notosans/NotoSans.ttf) format("truetype");
+}
+
 /* CONSTANTS */
 
 :root {
@@ -74,11 +81,12 @@
 html,
 body {
   margin: 0;
-  font-family: "Rubik", sans-serif;
+  font-family: "Noto Sans", sans-serif;
+  font-variation-settings: "wdth" 100;
   font-optical-sizing: auto;
   font-weight: 400;
-  line-height: 1.4;
   font-style: normal;
+  line-height: 1.4;
   text-wrap: pretty;
   scroll-behavior: smooth;
 }
