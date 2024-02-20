@@ -51,7 +51,7 @@
   font-family: "Noto Sans";
   font-style: normal;
   font-display: swap;
-  src: url(/static/google-fonts/notosans/NotoSans.ttf) format("truetype");
+  src: url(/static/google-fonts/notosans/NotoSans.woff) format("truetype");
 }
 
 /* CONSTANTS */
