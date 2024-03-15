@@ -1,4 +1,4 @@
-document.querySelectorAll("[tabindex]").forEach((el) => {
+document.querySelectorAll('[tabindex="0"]').forEach((el) => {
   el.onkeyup = (evt) => {
     if (evt.key === "Enter" && evt.target === el) el.click();
   };
@@ -11,8 +11,8 @@ projectsToggle.oninput = () => {
 
   allProjects.forEach((el) =>
     !projectsToggle.checked && firstY !== el.getBoundingClientRect().y
-      ? el.removeAttribute("tabindex")
-      : el.setAttribute("tabindex", "0")
+      ? el.setAttribute("tabindex", "-1")
+      : el.removeAttribute("tabindex")
   );
 };
 

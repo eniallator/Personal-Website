@@ -37,11 +37,12 @@ sgClient
 
 const companies = JSON.parse(fs.readFileSync("public/companies.json"));
 const projects = JSON.parse(fs.readFileSync("public/projects.json"));
-const sortProjectsInterval = 3600000; // 1hr
+const hourInMs = 3600000;
+const sortProjectsInterval = hourInMs;
 let lastSortTime = Date.now() - sortProjectsInterval - 1;
 let currentTheme = "no-theme";
 const daysThemeIsShowing = 7;
-const halfMsThemeIsShowing = daysThemeIsShowing * 43200000; // 12hrs
+const halfMsThemeIsShowing = daysThemeIsShowing * 12 * hourInMs;
 
 const themes = {
   halloween: {
