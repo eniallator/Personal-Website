@@ -6,6 +6,12 @@
     "aspectRatio": 2.945
   },
   {
+    "url": "https://www.gold.ac.uk/",
+    "name": "Goldsmiths, University of London",
+    "img": "/static/images/logos/UoG.png",
+    "aspectRatio": 3.2
+  },
+  {
     "url": "https://photobot.co/",
     "name": "Photobot",
     "img": "/static/images/logos/photobot.svg",
