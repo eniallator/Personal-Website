@@ -573,7 +573,6 @@ main section {
 
 #project-preview .close-button {
   background-color: white;
-  /* margin-right: -3px; */
   font-size: 2rem;
   padding: 0.25rem;
   outline: 3px solid var(--grey-100);
