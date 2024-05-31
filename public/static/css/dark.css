@@ -35,7 +35,7 @@ main {
 }
 
 .company {
-  background-color: var(--grey-750);
+  background-color: var(--grey-50);
 }
 
 @media (min-width: 930px) {
