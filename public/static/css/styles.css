@@ -89,6 +89,7 @@ body {
   line-height: 1.4;
   text-wrap: pretty;
   scroll-behavior: smooth;
+  height: fit-content;
 }
 
 body:has(dialog[open]) {
@@ -103,10 +104,6 @@ h5,
 h6 {
   line-height: 1;
   text-wrap: balance;
-}
-
-*:focus-visible {
-  outline: var(--grey-200) solid 2px;
 }
 
 .container {
@@ -138,14 +135,16 @@ h6 {
 }
 
 nav {
-  background-color: var(--grey-800);
   position: sticky;
   top: 0;
   z-index: 10;
   padding: 0 2rem;
+  display: flex;
+  flex-direction: row;
 }
 
 .nav-container {
+  position: relative;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -189,12 +188,7 @@ nav ul > li {
     padding: 0 1rem;
     font-weight: bold;
     font-size: x-large;
-    color: white;
     text-decoration: none;
-  }
-
-  & a:hover {
-    color: var(--grey-100);
   }
 }
 
@@ -205,7 +199,6 @@ nav ul > li {
     justify-content: center;
     align-items: center;
     background: transparent;
-    fill: white;
     border: none;
     font-size: large;
   }
@@ -217,7 +210,7 @@ nav ul > li {
     visibility: hidden;
     display: none;
 
-    & a {
+    & > li a {
       padding: 0.3rem 0;
     }
   }
@@ -249,6 +242,38 @@ nav ul > li {
   padding: 0;
 }
 
+.theme-switch {
+  cursor: pointer;
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  fill: inherit;
+}
+.theme-switch svg {
+  width: 2rem;
+  height: 2rem;
+}
+
+.theme-switch.narrow {
+  display: none;
+}
+.theme-switch.wide {
+  display: flex;
+}
+
+@media (max-width: 500px) {
+  #nav-menu-toggle:checked + .nav-container .theme-switch.narrow {
+    position: absolute;
+    bottom: 0.6rem;
+    right: 0;
+    display: flex;
+    z-index: 10;
+  }
+  .theme-switch.wide {
+    display: none;
+  }
+}
+
 section {
   /* Nav height */
   scroll-margin-top: 49px;
@@ -264,13 +289,11 @@ section {
 }
 
 #landing {
-  background-image: url(/static/images/dark-trees.jpg);
   width: 100%;
   height: 30vh;
   background-position: 50% 0;
   background-size: cover;
   position: relative;
-  color: white;
 }
 
 .landing-text {
@@ -310,7 +333,6 @@ main section {
 }
 
 #companies {
-  background-color: var(--grey-10);
   padding: 0.75rem;
   display: flex;
   flex-wrap: wrap;
@@ -320,7 +342,6 @@ main section {
 }
 
 .company {
-  background-color: white;
   padding: 0.5em;
   border: 1px solid rgba(0, 0, 0, 0.125);
   border-radius: 0.5em;
@@ -333,7 +354,6 @@ main section {
     flex-direction: row-reverse;
   }
   #about-panels > div {
-    background-color: white;
     width: 50%;
     padding: 0 1rem;
   }
@@ -346,7 +366,6 @@ main section {
     justify-content: center;
     align-items: flex-start;
     row-gap: 1rem;
-    border-right: 1px solid var(--grey-50);
   }
 }
 
@@ -405,10 +424,6 @@ main section {
   background-color: var(--secondary-button-hover);
 }
 
-#projects {
-  background-color: var(--grey-10);
-}
-
 #project-container {
   margin: 1rem auto 0;
   display: flex;
@@ -455,15 +470,11 @@ main section {
   display: flex;
   flex-direction: column;
   width: 100%;
+  height: 100%;
   text-align: inherit;
   border-radius: inherit;
-  border: 1px solid var(--grey-50);
-  background-color: white;
   color: inherit;
   text-decoration: none;
-}
-.project:hover {
-  background-color: var(--grey-10);
 }
 
 .project-thumbnail {
@@ -518,7 +529,6 @@ main section {
   width: 60%;
   display: flex;
   justify-content: center;
-  background-color: var(--grey-100) !important;
   cursor: pointer;
 }
 .projects-toggle-button svg {
@@ -572,10 +582,8 @@ main section {
 }
 
 #project-preview .close-button {
-  background-color: white;
   font-size: 2rem;
   padding: 0.25rem;
-  outline: 3px solid var(--grey-100);
   fill: black;
   cursor: pointer;
 }
@@ -594,7 +602,6 @@ main section {
 }
 
 .contact-links {
-  border-top: 1px solid var(--grey-50);
   padding-top: 1rem;
   display: flex;
   justify-content: center;
@@ -625,17 +632,10 @@ main section {
 
 #contact form input,
 #contact form textarea {
-  border: 1px solid var(--grey-50);
   font-size: large;
   padding: 0.5em 0.75em;
   border-radius: 0.5em;
   font-family: inherit;
-}
-
-#contact form input:focus-visible,
-#contact form textarea:focus-visible {
-  border: 1px solid var(--grey-200);
-  outline: var(--grey-200) solid 2px;
 }
 
 #contact form input[type="submit"] {

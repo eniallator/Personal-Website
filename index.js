@@ -1,4 +1,5 @@
 const express = require("express");
+const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const multer = require("multer");
 const sgMail = require("@sendgrid/mail");
@@ -173,6 +174,7 @@ async function sendMail(data) {
 }
 
 app.use(compression());
+app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -180,9 +182,17 @@ app.use(upload.array());
 app.use(acceptWebp("public", ["jpg", "jpeg", "png"]));
 app.use(express.static("public"));
 
+app.use((req, res, next) => {
+  if (["light", "dark"].includes(req.query["set-theme"])) {
+    res.cookie("theme", req.query["set-theme"]);
+  }
+  next();
+});
+
 app.get("/", (req, res) => {
   res.render("index.ejs", {
-    theme:
+    theme: req.cookies["theme"],
+    specialTheme:
       themes[req.query.theme] || req.query.theme === "no-theme"
         ? req.query.theme
         : currentTheme,
@@ -196,12 +206,12 @@ app.post("/", (req, res) => {
   res.redirect(req.url);
 });
 
-app.get("/projects/", (req, res) => {
+app.get("/projects/", (_req, res) => {
   trySortProjects();
   return res.json(projects);
 });
 
-app.get("/resume|cv/pdf-download", (req, res) =>
+app.get("/resume|cv/pdf-download", (_req, res) =>
   res.download("public/cv/nialls_cv.pdf")
 );
 

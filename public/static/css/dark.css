@@ -1,0 +1,102 @@
+*:focus-visible {
+  outline: var(--grey-200) solid 2px;
+}
+
+nav {
+  background-color: var(--grey-900);
+}
+
+nav ul > li {
+  & a {
+    color: var(--grey-10);
+  }
+
+  & a:hover {
+    color: var(--grey-100);
+  }
+}
+
+#landing {
+  background-image: url(/static/images/dark-trees.jpg);
+  color: var(--grey-10);
+  fill: var(--grey-10);
+}
+
+html,
+body,
+main {
+  background-color: var(--grey-700);
+  color: var(--grey-10);
+  fill: var(--grey-10);
+}
+
+#companies {
+  background-color: var(--grey-800);
+}
+
+.company {
+  background-color: var(--grey-700);
+}
+
+@media (min-width: 930px) {
+  #about-panel-text {
+    border-right: 1px solid var(--grey-500);
+  }
+}
+
+#projects {
+  background-color: var(--grey-800);
+}
+
+.project {
+  background-color: var(--grey-700);
+  border: 1px solid var(--grey-500);
+}
+.project:hover {
+  background-color: var(--grey-600);
+}
+
+.projects-toggle-button label {
+  background-color: var(--grey-700) !important;
+}
+
+#project-preview form {
+  background-color: var(--grey-800);
+  color: var(--grey-10);
+}
+
+#project-preview .close-button {
+  background-color: var(--grey-700);
+  outline: 3px solid var(--grey-500);
+}
+
+#project-preview iframe {
+  border: 1px solid var(--grey-500);
+}
+
+.contact-links {
+  border-top: 1px solid var(--grey-500);
+}
+
+#contact form input,
+#contact form textarea {
+  background-color: var(--grey-700);
+  border: 1px solid var(--grey-500);
+  color: white;
+}
+
+#contact form input::placeholder,
+#contact form textarea::placeholder {
+  color: var(--grey-300);
+}
+
+#contact form input::-ms-input-placeholder,
+#contact form textarea::-ms-input-placeholder {
+  color: var(--grey-300);
+}
+
+#contact form input:focus-visible,
+#contact form textarea:focus-visible {
+  border: 1px solid var(--grey-400);
+  outline: var(--grey-400) solid 2px;
+}

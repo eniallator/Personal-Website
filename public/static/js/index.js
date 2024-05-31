@@ -1,3 +1,12 @@
+document.querySelectorAll(".theme-switch").forEach((el) =>
+  el.addEventListener("click", (evt) => {
+    evt.preventDefault();
+    const linkParams = new URLSearchParams(el.getAttribute("href").slice(1));
+    document.cookie = `theme=${linkParams.get("set-theme")}`;
+    location.reload();
+  })
+);
+
 document.querySelectorAll('[tabindex="0"]').forEach((el) => {
   el.onkeyup = (evt) => {
     if (evt.key === "Enter" && evt.target === el) el.click();
