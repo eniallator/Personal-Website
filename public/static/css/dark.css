@@ -25,7 +25,7 @@ nav ul > li {
 html,
 body,
 main {
-  background-color: var(--grey-700);
+  background-color: var(--grey-750);
   color: var(--grey-10);
   fill: var(--grey-10);
 }
@@ -35,7 +35,7 @@ main {
 }
 
 .company {
-  background-color: var(--grey-700);
+  background-color: var(--grey-750);
 }
 
 @media (min-width: 930px) {
@@ -49,7 +49,7 @@ main {
 }
 
 .project {
-  background-color: var(--grey-700);
+  background-color: var(--grey-750);
   border: 1px solid var(--grey-500);
 }
 .project:hover {
@@ -57,7 +57,7 @@ main {
 }
 
 .projects-toggle-button label {
-  background-color: var(--grey-700) !important;
+  background-color: var(--grey-750) !important;
 }
 
 #project-preview form {
@@ -66,7 +66,7 @@ main {
 }
 
 #project-preview .close-button {
-  background-color: var(--grey-700);
+  background-color: var(--grey-750);
   outline: 3px solid var(--grey-500);
 }
 
@@ -80,7 +80,7 @@ main {
 
 #contact form input,
 #contact form textarea {
-  background-color: var(--grey-700);
+  background-color: var(--grey-750);
   border: 1px solid var(--grey-500);
   color: white;
 }
