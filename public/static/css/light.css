@@ -58,6 +58,10 @@ main {
   background-color: var(--grey-100) !important;
 }
 
+.more-projects-text a {
+  color: var(--primary-button-hover);
+}
+
 #project-preview .close-button {
   outline: 3px solid var(--grey-100);
   background-color: white;
