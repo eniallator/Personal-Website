@@ -53,7 +53,7 @@ main {
   border: 1px solid var(--grey-500);
 }
 .project:hover {
-  background-color: var(--grey-600);
+  background-color: var(--grey-700);
 }
 
 .projects-toggle-button label {
