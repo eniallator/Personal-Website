@@ -616,6 +616,11 @@ main section {
   text-decoration: none;
 }
 
+.contact-links svg {
+  width: 40px;
+  height: 40px;
+}
+
 #contact {
   margin-bottom: 4rem;
 }
