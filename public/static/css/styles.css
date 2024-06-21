@@ -140,7 +140,7 @@ h6 {
 nav {
   position: sticky;
   top: 0;
-  z-index: 10;
+  z-index: 2;
   padding: 0 2rem;
   display: flex;
   flex-direction: row;
@@ -157,6 +157,7 @@ nav {
 .nav-home {
   padding: 0.2rem 0;
   line-height: 0;
+  z-index: 1;
 }
 
 #nav-burger-menu {
@@ -195,6 +196,25 @@ nav ul > li {
   }
 }
 
+.theme-switch {
+  cursor: pointer;
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  fill: inherit;
+}
+.theme-switch svg {
+  width: 2rem;
+  height: 2rem;
+}
+
+.theme-switch.narrow {
+  display: none;
+}
+.theme-switch.wide {
+  display: flex;
+}
+
 @media (max-width: 500px) {
   #nav-burger-menu {
     visibility: visible;
@@ -227,6 +247,7 @@ nav ul > li {
       flex-direction: column;
       padding: 0.5rem 0;
       text-align: start;
+      z-index: 1;
     }
   }
 
@@ -239,38 +260,13 @@ nav ul > li {
     left: 0;
     right: 0;
   }
-}
 
-#nav-avatar {
-  padding: 0;
-}
-
-.theme-switch {
-  cursor: pointer;
-  align-self: stretch;
-  display: flex;
-  align-items: center;
-  fill: inherit;
-}
-.theme-switch svg {
-  width: 2rem;
-  height: 2rem;
-}
-
-.theme-switch.narrow {
-  display: none;
-}
-.theme-switch.wide {
-  display: flex;
-}
-
-@media (max-width: 500px) {
   #nav-menu-toggle:checked + .nav-container .theme-switch.narrow {
     position: absolute;
     bottom: 0.6rem;
     right: 0;
     display: flex;
-    z-index: 10;
+    z-index: 1;
   }
   .theme-switch.wide {
     display: none;
@@ -279,7 +275,7 @@ nav ul > li {
 
 section {
   /* Nav height */
-  scroll-margin-top: 49px;
+  scroll-margin-top: 48.38px;
 }
 
 .section-heading {
@@ -533,6 +529,9 @@ main section {
   display: flex;
   justify-content: center;
   cursor: pointer;
+}
+.projects-toggle-button span.projects-showing {
+  margin-left: 0;
 }
 .projects-toggle-button svg {
   display: block;
