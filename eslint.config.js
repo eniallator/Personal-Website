@@ -2,7 +2,6 @@ import typescriptParser from "@typescript-eslint/parser";
 import jslint from "@eslint/js";
 import tslint from "typescript-eslint";
 import tsPlugin from "@typescript-eslint/eslint-plugin";
-import comments from "eslint-plugin-eslint-comments";
 
 export default tslint.config(
   jslint.configs.recommended,
@@ -15,7 +14,7 @@ export default tslint.config(
       parserOptions: { project: "./tsconfig.json" },
     },
 
-    plugins: { comments, tsPlugin },
+    plugins: { tsPlugin },
 
     rules: {
       // CORE

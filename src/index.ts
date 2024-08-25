@@ -5,13 +5,22 @@ import cookieParser from "cookie-parser";
 import express from "express";
 
 import { companies, THEMES } from "./constants.js";
-import { getProjects, trySortProjects } from "./github.js";
+import { initProjects, trySortProjects } from "./github.js";
 import { sendMail } from "./mail.js";
 import { isString } from "./utils.js";
 import { calculateCurrentTheme } from "./theme.js";
 import { initEnv } from "./env.js";
 
 initEnv();
+let projects = initProjects();
+
+void trySortProjects(projects)
+  .then((sorted) => {
+    projects = sorted;
+  })
+  .catch((err: unknown) => {
+    console.error(err);
+  });
 
 const app = express();
 
@@ -36,7 +45,13 @@ app.use((req, res, next) => {
 });
 
 app.get("/", (req, res) => {
-  void trySortProjects();
+  void trySortProjects(projects)
+    .then((sorted) => {
+      projects = sorted;
+    })
+    .catch((err: unknown) => {
+      console.error(err);
+    });
 
   res.render("index.ejs", {
     theme: (req.cookies as Record<string, string>)["theme"],
@@ -45,7 +60,7 @@ app.get("/", (req, res) => {
       (req.query.theme in THEMES || req.query.theme === "no-theme")
         ? req.query.theme
         : calculateCurrentTheme(),
-    projects: getProjects(),
+    projects,
     companies,
   });
 });
@@ -56,7 +71,7 @@ app.post("/", (req, res) => {
 });
 
 app.get("/projects/", (_req, res) => {
-  return res.json(getProjects());
+  return res.json(projects);
 });
 
 app.get("/resume|cv/pdf-download", (_req, res) => {
