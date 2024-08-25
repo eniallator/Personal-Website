@@ -1,34 +1,56 @@
 {
+  "author": "eniallator",
+  "description": "My personal website's source code",
+  "homepage": "https://eniallator.com/",
+  "license": "MIT",
+  "main": "src/index.ts",
   "name": "personal-website",
-  "version": "1.0.0",
+  "packageManager": "yarn@3.8.2",
   "private": true,
+  "type": "module",
+  "version": "1.0.0",
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js"
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "tsnd --respawn ./src",
+    "lint": "eslint ./src",
+    "typecheck": "tsc --noEmit",
+    "findissues": "yarn typecheck && yarn lint"
   },
   "dependencies": {
-    "@octokit/core": "^3.5.1",
-    "@sendgrid/mail": "^7.7.0",
+    "@octokit/core": "^6.1.2",
+    "@sendgrid/mail": "^8.1.3",
     "accept-webp": "^1.4.0",
-    "body-parser": "^1.19.0",
+    "body-parser": "^1.20.2",
     "compression": "^1.7.4",
     "cookie-parser": "^1.4.6",
-    "dotenv": "^8.6.0",
-    "ejs": "^3.1.6",
-    "express": "~4.16.1",
-    "multer": "^1.4.3",
-    "nodemon": "^2.0.13"
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
+    "express": "~4.19.2"
   },
-  "description": "My personal website's source code",
-  "main": "index.js",
+  "devDependencies": {
+    "@eslint/compat": "^1.1.1",
+    "@eslint/js": "^9.9.1",
+    "@types/compression": "1.7.5",
+    "@types/cookie-parser": "1.4.7",
+    "@types/eslint__js": "^8.42.3",
+    "@types/express": "4.17.21",
+    "@typescript-eslint/eslint-plugin": "^8.2.0",
+    "@typescript-eslint/parser": "^8.2.0",
+    "eslint": "^9.9.1",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-eslint-comments": "^3.2.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-prettier": "^5.2.1",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.5.4",
+    "typescript-eslint": "^8.2.0"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/eniallator/Personal-Website.git"
   },
-  "author": "eniallator",
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/eniallator/Personal-Website/issues"
-  },
-  "homepage": "https://eniallator.com/"
+  }
 }

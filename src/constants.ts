@@ -1,0 +1,31 @@
+import { readFileSync } from "fs";
+
+import { Company, DayOfYear } from "./types.js";
+
+export const HOUR_IN_MS = 3600000;
+export const DAYS_THEME_IS_SHOWING = 7;
+
+export const THEMES: Record<string, DayOfYear> = {
+  halloween: {
+    month: 9,
+    day: 31,
+  },
+  christmas: {
+    month: 11,
+    day: 25,
+  },
+};
+
+export const companies = JSON.parse(
+  readFileSync("public/companies.json").toString()
+) as Company[];
+
+export const HONEY_POT_FIELDS = [
+  "phone",
+  "city",
+  "address",
+  "country",
+  "zip code",
+] as const;
+
+export const DATA_FIELDS = ["name", "email", "message"] as const;
