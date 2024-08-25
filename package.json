@@ -5,14 +5,16 @@
   "license": "MIT",
   "main": "src/index.ts",
   "name": "personal-website",
-  "packageManager": "yarn@3.8.2",
+  "packageManager": "yarn@1.22.22",
   "private": true,
   "type": "module",
   "version": "1.0.0",
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "scripts": {
     "build": "tsc",
     "start": "node dist/index.js",
-    "dev": "tsnd --respawn ./src",
     "lint": "eslint ./src",
     "typecheck": "tsc --noEmit",
     "findissues": "yarn typecheck && yarn lint"
@@ -37,14 +39,14 @@
     "@types/express": "4.17.21",
     "@typescript-eslint/eslint-plugin": "^8.2.0",
     "@typescript-eslint/parser": "^8.2.0",
-    "eslint": "^9.9.1",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-eslint-comments": "^3.2.0",
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-prettier": "^5.2.1",
-    "ts-node-dev": "^2.0.0",
-    "typescript": "^5.5.4",
-    "typescript-eslint": "^8.2.0"
+    "eslint": "^9.9.1",
+    "prettier": "^3.3.3",
+    "typescript-eslint": "^8.2.0",
+    "typescript": "^5.5.4"
   },
   "repository": {
     "type": "git",
