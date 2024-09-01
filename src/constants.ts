@@ -29,3 +29,8 @@ export const HONEY_POT_FIELDS = [
 ] as const;
 
 export const DATA_FIELDS = ["name", "email", "message"] as const;
+
+export const ALL_FIELDS: Set<string> = new Set([
+  ...HONEY_POT_FIELDS,
+  ...DATA_FIELDS,
+]);

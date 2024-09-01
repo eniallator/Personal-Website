@@ -1,7 +1,7 @@
 import sgClient from "@sendgrid/client";
 import sgMail from "@sendgrid/mail";
 
-import { DATA_FIELDS, HONEY_POT_FIELDS } from "./constants.js";
+import { ALL_FIELDS, DATA_FIELDS, HONEY_POT_FIELDS } from "./constants.js";
 import env from "./env.js";
 
 sgMail.setApiKey(env.sendgridApiKey);
@@ -37,11 +37,7 @@ function validateFields(data: Record<string, string>): data is {
   [S in (typeof HONEY_POT_FIELDS)[number]]: "";
 } {
   return (
-    Object.keys(data).every(
-      (key) =>
-        (DATA_FIELDS as readonly string[]).includes(key) ||
-        (HONEY_POT_FIELDS as readonly string[]).includes(key)
-    ) &&
+    Object.keys(data).every((key) => ALL_FIELDS.has(key)) &&
     DATA_FIELDS.every((key) => data[key] != null && data[key].length > 0) &&
     HONEY_POT_FIELDS.every((key) => data[key] != null && data[key].length === 0)
   );

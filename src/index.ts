@@ -14,9 +14,7 @@ import env from "./env.js";
 let projects = initProjects();
 
 void trySortProjects(projects)
-  .then((sorted) => {
-    projects = sorted;
-  })
+  .then((sorted) => (projects = sorted))
   .catch((err: unknown) => {
     console.error(err);
   });
@@ -45,9 +43,7 @@ app.use((req, res, next) => {
 
 app.get("/", (req, res) => {
   void trySortProjects(projects)
-    .then((sorted) => {
-      projects = sorted;
-    })
+    .then((sorted) => (projects = sorted))
     .catch((err: unknown) => {
       console.error(err);
     });
