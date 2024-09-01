@@ -9,9 +9,8 @@ import { initProjects, trySortProjects } from "./github.js";
 import { sendMail } from "./mail.js";
 import { isString } from "./utils.js";
 import { calculateCurrentTheme } from "./theme.js";
-import { initEnv } from "./env.js";
+import env from "./env.js";
 
-initEnv();
 let projects = initProjects();
 
 void trySortProjects(projects)
@@ -26,7 +25,7 @@ const app = express();
 
 app.set("view engine", "ejs");
 app.set("views", "./public");
-const port = process.env.PORT || 3000;
+const port = env.port || 3000;
 
 app.use(compression());
 app.use(cookieParser());
@@ -70,9 +69,7 @@ app.post("/", (req, res) => {
   res.redirect(req.url);
 });
 
-app.get("/projects/", (_req, res) => {
-  return res.json(projects);
-});
+app.get("/projects/", (_req, res) => res.json(projects));
 
 app.get("/resume|cv/pdf-download", (_req, res) => {
   res.download("public/cv/nialls_cv.pdf");

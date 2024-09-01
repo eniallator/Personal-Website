@@ -1,5 +1,17 @@
 import { config } from "dotenv";
+import { raise } from "./utils.js";
 
-export function initEnv() {
-  config();
-}
+config();
+
+export default {
+  port: process.env.PORT,
+  sendgridApiKey:
+    process.env.SENDGRID_API_KEY ??
+    raise<string>(new Error("SENDGRID_API_KEY environment variable not found")),
+  emailRecipient:
+    process.env.EMAIL_RECIPIENT ??
+    raise<string>(new Error("EMAIL_RECIPIENT environment variable not found")),
+  emailSender:
+    process.env.EMAIL_SENDER ??
+    raise<string>(new Error("EMAIL_SENDER environment variable not found")),
+};

@@ -1,23 +1,8 @@
 import sgClient from "@sendgrid/client";
 import sgMail from "@sendgrid/mail";
 
-import { raise } from "./utils.js";
-import { initEnv } from "./env.js";
 import { DATA_FIELDS, HONEY_POT_FIELDS } from "./constants.js";
-
-initEnv();
-
-const env = {
-  sendgridApiKey:
-    process.env.SENDGRID_API_KEY ??
-    raise<string>(new Error("SENDGRID_API_KEY environment variable not found")),
-  emailRecipient:
-    process.env.EMAIL_RECIPIENT ??
-    raise<string>(new Error("EMAIL_RECIPIENT environment variable not found")),
-  emailSender:
-    process.env.EMAIL_SENDER ??
-    raise<string>(new Error("EMAIL_SENDER environment variable not found")),
-};
+import env from "./env.js";
 
 sgMail.setApiKey(env.sendgridApiKey);
 sgClient.setApiKey(env.sendgridApiKey);
@@ -43,7 +28,7 @@ sgClient
 // https://stackoverflow.com/a/9204568/11824244
 function validateEmail(email: string) {
   const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return re.test(email.toLowerCase());
+  return re.test(email);
 }
 
 function validateFields(data: Record<string, string>): data is {
@@ -51,26 +36,15 @@ function validateFields(data: Record<string, string>): data is {
 } & {
   [S in (typeof HONEY_POT_FIELDS)[number]]: "";
 } {
-  for (const key in data) {
-    if (
-      !(DATA_FIELDS as readonly string[]).includes(key) &&
-      !(HONEY_POT_FIELDS as readonly string[]).includes(key)
-    ) {
-      console.log(key, "not in fields");
-      return false;
-    }
-  }
-  for (const field of HONEY_POT_FIELDS.values()) {
-    if (data[field] == null || data[field].length !== 0) {
-      return false;
-    }
-  }
-  for (const field of DATA_FIELDS.values()) {
-    if (data[field] == null || data[field].length === 0) {
-      return false;
-    }
-  }
-  return true;
+  return (
+    Object.keys(data).every(
+      (key) =>
+        (DATA_FIELDS as readonly string[]).includes(key) ||
+        (HONEY_POT_FIELDS as readonly string[]).includes(key)
+    ) &&
+    DATA_FIELDS.every((key) => data[key] != null && data[key].length > 0) &&
+    HONEY_POT_FIELDS.every((key) => data[key] != null && data[key].length === 0)
+  );
 }
 
 export async function sendMail(data: Record<string, string>) {
@@ -80,8 +54,8 @@ export async function sendMail(data: Record<string, string>) {
     console.log("Received invalid email:", data);
   } else {
     console.log("Sending:", {
-      to: process.env.EMAIL_RECIPIENT,
-      from: process.env.EMAIL_SENDER,
+      to: env.emailRecipient,
+      from: env.emailSender,
       subject: `[Personal Site] From ${data.name}`,
       text: `Name: ${data.name}\n\nEmail: ${data.email}\n\nMessage: ${data.message}`,
     });
