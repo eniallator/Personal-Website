@@ -49,23 +49,24 @@ export async function sendMail(data: Record<string, string>) {
   } else if (!validateEmail(data.email)) {
     console.log("Received invalid email:", data);
   } else {
-    console.log("Sending:", {
-      to: env.emailRecipient,
+    const mail = {
       from: env.emailSender,
+      to: env.emailRecipient,
       subject: `[Personal Site] From ${data.name}`,
       text: `Name: ${data.name}\n\nEmail: ${data.email}\n\nMessage: ${data.message}`,
-    });
+    };
+    const mailStringified = Object.entries(mail)
+      .map(([k, v]) => `${k}: <<<${v}>>>`)
+      .join("\n");
     return sgMail
-      .send({
-        to: env.emailRecipient,
-        from: env.emailSender,
-        subject: `[Personal Site] From ${data.name}`,
-        text: `Name: ${data.name}\n\nEmail: ${data.email}\n\nMessage: ${data.message}`,
-      })
+      .send(mail)
       .then(([resp]) => {
-        console.log(`Status: ${resp.statusCode}, New email from ${data.name}`);
+        console.log(
+          `Status: ${resp.statusCode}, New email\n${mailStringified}`
+        );
       })
       .catch((err: unknown) => {
+        console.log(`Failed with ${mailStringified}`);
         console.error(err);
       });
   }

@@ -65,13 +65,13 @@ app.post("/", (req, res) => {
   res.redirect(req.url);
 });
 
-app.get("/projects/", (_req, res) => res.json(projects));
+app.get("/projects", (_req, res) => res.json(projects));
 
 app.get("/resume|cv/pdf-download", (_req, res) => {
   res.download("public/cv/nialls_cv.pdf");
 });
 
-app.use("/resume/", express.static("public/cv"));
+app.use("/resume", express.static("public/cv"));
 
 app.listen(port, () => {
   console.log(`Personal website listening on port ${port}!`);
