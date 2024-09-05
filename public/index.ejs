@@ -28,13 +28,15 @@
     <title>Niall's Personal Site</title>
     <link rel="stylesheet" href="/static/css/styles.css" />
 
-    <% if (theme ==="light" ) { %>
+    <% if (theme === "light") { %>
     <link rel="preload" as="image" href="/static/images/light-trees.jpg" />
     <link rel="stylesheet" href="/static/css/light.css" />
     <% } else { %>
     <link rel="preload" as="image" href="/static/images/dark-trees.jpg" />
     <link rel="stylesheet" href="/static/css/dark.css" />
-    <%}%> <% if (specialTheme !=="no-theme" ) { %>
+    <% } %>
+
+    <% if (specialTheme !== "no-theme") { %>
     <link rel="stylesheet" href="/static/css/themes/<%= specialTheme %>.css" />
     <% } %>
   </head>
@@ -64,7 +66,7 @@
           <li><a class="theme-font" href="#projects">Projects</a></li>
           <li><a class="theme-font" href="#contact">Contact</a></li>
         </ul>
-        <% if (theme ==="light" ) { %>
+        <% if (theme === "light") { %>
         <a
           title="Set theme to dark"
           class="theme-switch narrow"
@@ -90,9 +92,9 @@
             />
           </svg>
         </a>
-        <%}%>
+        <% } %>
       </div>
-      <% if (theme ==="light" ) { %>
+      <% if (theme === "light") { %>
       <a
         title="Set theme to dark"
         class="theme-switch wide"
@@ -118,7 +120,7 @@
           />
         </svg>
       </a>
-      <%}%>
+      <% } %>
       <label
         id="close-menu-overlay"
         for="nav-menu-toggle"
@@ -126,7 +128,7 @@
       ></label>
     </nav>
     <header id="landing">
-      <% if (specialTheme !=="no-theme" ) { %>
+      <% if (specialTheme !== "no-theme") { %>
       <div id="theme-overlay">
         <div id="theme-container"></div>
       </div>
@@ -409,7 +411,7 @@
       </section>
     </main>
     <script src="/static/js/index.js"></script>
-    <% if (specialTheme !=="no-theme" ) { %>
+    <% if (specialTheme !== "no-theme") { %>
     <script src="/static/js/themes/<%= specialTheme %>.js"></script>
     <% } %>
   </body>

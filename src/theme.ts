@@ -24,4 +24,5 @@ export function calculateCurrentTheme() {
       return theme;
     }
   }
+  return "no-theme";
 }

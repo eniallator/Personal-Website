@@ -30,7 +30,7 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use(acceptWebp("public/static/images"));
+app.use(acceptWebp("public"));
 app.use(express.static("public"));
 
 app.use((req, res, next) => {
