@@ -624,17 +624,23 @@ main section {
   margin-bottom: 4rem;
 }
 
+#contact fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+#contact .ignore {
+  height: 0;
+  overflow-y: hidden;
+}
+
 #contact .fields {
   margin-top: 1.5em;
   display: flex;
   flex-direction: column;
   align-items: stretch;
   row-gap: 1rem;
-}
-
-#contact .ignore {
-  height: 0;
-  overflow-y: hidden;
 }
 
 #contact form input,
