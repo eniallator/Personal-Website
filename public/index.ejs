@@ -133,10 +133,10 @@
         <div id="theme-container"></div>
       </div>
       <% } %>
-      <div class="landing-text col-center">
+      <hgroup class="landing-text col-center">
         <h1 class="theme-font section-heading">Hi I'm Niall</h1>
         <p class="theme-font">I'm a full-stack developer</p>
-      </div>
+      </hgroup>
     </header>
     <main>
       <section id="about" class="container">
@@ -212,9 +212,9 @@
       <section id="projects">
         <h1 class="theme-font section-heading" title="Projects">Projects</h1>
         <input id="projects-toggle" class="hidden" type="checkbox" />
-        <div id="project-container" role="feed">
+        <div id="project-container">
           <% for (let project of projects) { %>
-          <article>
+          <figure>
             <a
               href="javascript:return false"
               title="<%= project.title %>"
@@ -226,12 +226,12 @@
                 src="<%= project.img %>"
                 alt="<%= project.title %> Thumbnail"
               />
-              <div class="project-text">
+              <figcaption class="project-text">
                 <h2><%= project.title %></h2>
                 <p><%= project.description %></p>
-              </div>
+              </figcaption>
             </a>
-          </article>
+          </figure>
           <% } %>
         </div>
         <div class="container col-center">
@@ -391,13 +391,20 @@
           </fieldset>
           <!-- Form Content -->
           <fieldset class="fields">
-            <input name="name" type="text" placeholder="Name" required />
+            <input
+              name="name"
+              type="text"
+              autocomplete="name"
+              placeholder="Name"
+              required
+            />
             <input
               name="email"
               type="email"
+              autocomplete="email"
               placeholder="Email"
-              required
               pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"
+              required
             />
             <textarea
               name="message"

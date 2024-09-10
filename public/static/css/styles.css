@@ -460,7 +460,8 @@ main section {
   display: none;
 }
 
-#project-container article {
+#project-container figure {
+  margin: 0;
   border-radius: 0.33rem;
   width: 18rem;
 }
