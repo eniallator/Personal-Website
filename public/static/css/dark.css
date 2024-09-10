@@ -28,6 +28,7 @@ main {
   background-color: var(--grey-750);
   color: var(--grey-10);
   fill: var(--grey-10);
+  scrollbar-color: var(--grey-650) var(--grey-800);
 }
 
 #companies {
