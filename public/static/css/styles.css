@@ -70,6 +70,7 @@
   --grey-700: #555555;
   --grey-650: #666666;
   --grey-600: #777777;
+  --grey-550: #888888;
   --grey-500: #999999;
   --grey-400: #a7a7a7;
   --grey-300: #b4b4b4;
@@ -417,10 +418,10 @@ main section {
 }
 
 .button.secondary {
-  background-color: var(--secondary-button);
+  background-color: var(--grey-650);
 }
 .button.secondary:hover {
-  background-color: var(--secondary-button-hover);
+  background-color: var(--grey-700);
 }
 
 #project-container {
@@ -645,6 +646,7 @@ main section {
 }
 
 #contact form input,
+#contact form button,
 #contact form textarea {
   font-size: large;
   padding: 0.5em 0.75em;
@@ -652,7 +654,7 @@ main section {
   font-family: inherit;
 }
 
-#contact form input[type="submit"] {
+#contact form button {
   align-self: flex-start;
   cursor: pointer;
 }

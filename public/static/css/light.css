@@ -58,6 +58,9 @@ main {
 .projects-toggle-button label {
   background-color: var(--grey-100) !important;
 }
+.projects-toggle-button label:hover {
+  background-color: var(--grey-200) !important;
+}
 
 .more-projects-text a {
   color: var(--primary-button-hover);
