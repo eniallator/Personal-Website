@@ -61,7 +61,7 @@ main {
   background-color: var(--grey-650) !important;
 }
 .projects-toggle-button label:hover {
-  background-color: var(--grey-550) !important;
+  background-color: var(--grey-700) !important;
 }
 
 .more-projects-text a {

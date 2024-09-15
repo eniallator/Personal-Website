@@ -4,7 +4,13 @@ import compression from "compression";
 import cookieParser from "cookie-parser";
 import express from "express";
 
-import { companies, THEMES } from "./constants.js";
+import {
+  companies,
+  DEFAULT_SPECIAL_THEME,
+  DEFAULT_THEME,
+  SPECIAL_THEMES,
+  THEMES,
+} from "./constants.js";
 import { initProjects, trySortProjects } from "./github.js";
 import { sendMail } from "./mail.js";
 import { isString } from "./utils.js";
@@ -41,23 +47,49 @@ app.use((req, res, next) => {
   next();
 });
 
+let renderedMemo: Record<string, string> = {};
 app.get("/", (req, res) => {
   void trySortProjects(projects)
-    .then((sorted) => (projects = sorted))
+    .then((sorted) => {
+      if (!projects.every((proj, i) => proj.github === sorted[i]?.github)) {
+        renderedMemo = {};
+        projects = sorted;
+      }
+    })
     .catch((err: unknown) => {
       console.error(err);
     });
 
-  res.render("index.ejs", {
-    theme: (req.cookies as Record<string, string>)["theme"],
-    specialTheme:
-      isString(req.query.theme) &&
-      (req.query.theme in THEMES || req.query.theme === "no-theme")
-        ? req.query.theme
-        : calculateCurrentTheme(),
-    projects,
-    companies,
-  });
+  const cookiesTheme = (req.cookies as Record<string, string>)["theme"];
+  const theme =
+    cookiesTheme != null && THEMES.includes(cookiesTheme)
+      ? cookiesTheme
+      : DEFAULT_THEME;
+  const specialTheme =
+    isString(req.query.theme) &&
+    (SPECIAL_THEMES[req.query.theme] != null ||
+      req.query.theme === DEFAULT_SPECIAL_THEME)
+      ? req.query.theme
+      : calculateCurrentTheme();
+
+  const memoKey = `${theme}:${specialTheme}`;
+  if (renderedMemo[memoKey] != null) {
+    res.send(renderedMemo[memoKey]);
+  } else {
+    console.log(`Rendering to memo "${memoKey}"`);
+    res.render(
+      "index.ejs",
+      { theme, specialTheme, projects, companies },
+      (err: Error | null, html: string | null) => {
+        if (err != null) {
+          console.error(err);
+        }
+        if (html != null) {
+          renderedMemo[memoKey] = html;
+        }
+      }
+    );
+  }
 });
 
 app.post("/", (req, res) => {

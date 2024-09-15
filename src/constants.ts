@@ -5,7 +5,10 @@ import { Company, DayOfYear } from "./types.js";
 export const HOUR_IN_MS = 3600000;
 export const DAYS_THEME_IS_SHOWING = 7;
 
-export const THEMES: Record<string, DayOfYear> = {
+export const DEFAULT_THEME = "dark";
+export const THEMES = ["dark", "light"];
+export const DEFAULT_SPECIAL_THEME = "no-theme";
+export const SPECIAL_THEMES: Record<string, DayOfYear> = {
   halloween: {
     month: 9,
     day: 31,
