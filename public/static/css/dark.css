@@ -1,3 +1,12 @@
+html,
+body,
+main {
+  background-color: var(--grey-750);
+  color: var(--grey-10);
+  fill: var(--grey-10);
+  scrollbar-color: var(--grey-650) var(--grey-800);
+}
+
 *:focus-visible {
   outline: var(--grey-200) solid 2px;
 }
@@ -16,19 +25,10 @@ nav ul > li {
   }
 }
 
-#landing {
+header {
   background-image: url(/static/images/dark-trees.jpg);
   color: var(--grey-10);
   fill: var(--grey-10);
-}
-
-html,
-body,
-main {
-  background-color: var(--grey-750);
-  color: var(--grey-10);
-  fill: var(--grey-10);
-  scrollbar-color: var(--grey-650) var(--grey-800);
 }
 
 #companies {

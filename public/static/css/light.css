@@ -1,3 +1,12 @@
+html,
+body,
+main {
+  background-color: white;
+  color: var(--grey-800);
+  fill: var(--grey-800);
+  scrollbar-color: var(--grey-100) var(--grey-10);
+}
+
 *:focus-visible {
   outline: var(--grey-600) solid 2px;
 }
@@ -16,17 +25,8 @@ nav ul > li {
   }
 }
 
-#landing {
+header {
   background-image: url(/static/images/light-trees.jpg);
-}
-
-html,
-body,
-main {
-  background-color: white;
-  color: var(--grey-800);
-  fill: var(--grey-800);
-  scrollbar-color: var(--grey-100) var(--grey-10);
 }
 
 #companies {
