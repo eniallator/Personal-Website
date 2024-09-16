@@ -18,9 +18,13 @@ import { calculateSpecialTheme } from "./specialTheme.js";
 import env from "./env.js";
 
 let projects = initProjects();
+let renderedMemo: Record<string, string> = {};
 
 void trySortProjects(projects)
-  .then((sorted) => (projects = sorted))
+  .then((sorted) => {
+    projects = sorted;
+    renderedMemo = {};
+  })
   .catch((err: unknown) => {
     console.error(err);
   });
@@ -47,7 +51,6 @@ app.use((req, res, next) => {
   next();
 });
 
-let renderedMemo: Record<string, string> = {};
 app.get("/", (req, res) => {
   void trySortProjects(projects)
     .then((sorted) => {

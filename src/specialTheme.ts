@@ -1,11 +1,11 @@
 import {
-  DAYS_THEME_IS_SHOWING,
+  DAYS_SPECIAL_THEME_IS_SHOWING,
   DEFAULT_SPECIAL_THEME,
   HOUR_IN_MS,
   SPECIAL_THEMES,
 } from "./constants.js";
 
-const halfMsThemeIsShowing = DAYS_THEME_IS_SHOWING * 12 * HOUR_IN_MS;
+const halfMsThemeIsShowing = DAYS_SPECIAL_THEME_IS_SHOWING * 12 * HOUR_IN_MS;
 
 export function calculateSpecialTheme() {
   const currDate = new Date();
