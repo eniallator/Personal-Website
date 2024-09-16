@@ -81,11 +81,11 @@ app.get("/", (req, res) => {
       "index.ejs",
       { theme, specialTheme, projects, companies },
       (err: Error | null, html: string | null) => {
-        if (err != null) {
-          console.error(err);
-        }
         if (html != null) {
           renderedMemo[memoKey] = html;
+          res.send(html);
+        } else {
+          console.error(err);
         }
       }
     );
