@@ -14,7 +14,7 @@ import {
 import { initProjects, trySortProjects } from "./github.js";
 import { sendMail } from "./mail.js";
 import { isString } from "./utils.js";
-import { calculateCurrentTheme } from "./theme.js";
+import { calculateSpecialTheme } from "./specialTheme.js";
 import env from "./env.js";
 
 let projects = initProjects();
@@ -70,7 +70,7 @@ app.get("/", (req, res) => {
     (SPECIAL_THEMES[req.query.theme] != null ||
       req.query.theme === DEFAULT_SPECIAL_THEME)
       ? req.query.theme
-      : calculateCurrentTheme();
+      : calculateSpecialTheme();
 
   const memoKey = `${theme}:${specialTheme}`;
   if (renderedMemo[memoKey] != null) {
@@ -86,6 +86,7 @@ app.get("/", (req, res) => {
           res.send(html);
         } else {
           console.error(err);
+          res.status(500).send("Something went wrong rendering the HTML ...");
         }
       }
     );

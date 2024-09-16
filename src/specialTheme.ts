@@ -7,7 +7,7 @@ import {
 
 const halfMsThemeIsShowing = DAYS_THEME_IS_SHOWING * 12 * HOUR_IN_MS;
 
-export function calculateCurrentTheme() {
+export function calculateSpecialTheme() {
   const currDate = new Date();
   for (const [theme, themeCfg] of Object.entries(SPECIAL_THEMES)) {
     let msToTheme;
