@@ -8,6 +8,7 @@ import {
   companies,
   DEFAULT_SPECIAL_THEME,
   DEFAULT_THEME,
+  HOUR_IN_MS,
   SPECIAL_THEMES,
   THEMES,
 } from "./constants.js";
@@ -46,7 +47,7 @@ app.use(express.static("public"));
 app.use((req, res, next) => {
   const setTheme = req.query["set-theme"];
   if (isString(setTheme) && ["light", "dark"].includes(setTheme)) {
-    res.cookie("theme", setTheme);
+    res.cookie("theme", setTheme, { maxAge: HOUR_IN_MS * 24 * 365.25 * 5 });
   }
   next();
 });
@@ -76,7 +77,7 @@ app.get("/", (req, res) => {
       : calculateSpecialTheme();
 
   const memoKey = `${theme}:${specialTheme}`;
-  if (renderedMemo[memoKey] != null) {
+  if (env.nodeEnv !== "development" && renderedMemo[memoKey] != null) {
     res.send(renderedMemo[memoKey]);
   } else {
     console.log(`Rendering to memo "${memoKey}"`);
@@ -89,7 +90,7 @@ app.get("/", (req, res) => {
           res.send(html);
         } else {
           console.error(err);
-          res.status(500).send("Something went wrong rendering the HTML ...");
+          res.status(500).send("Something went wrong rendering this page ...");
         }
       }
     );
@@ -110,5 +111,5 @@ app.get("/resume|cv/pdf-download", (_req, res) => {
 app.use("/resume", express.static("public/cv"));
 
 app.listen(port, () => {
-  console.log(`Personal website listening on port ${port}!`);
+  console.log(`Listening on port ${port} in env ${env.nodeEnv}`);
 });

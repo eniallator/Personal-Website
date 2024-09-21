@@ -5,6 +5,7 @@ config();
 
 export default {
   port: process.env.PORT,
+  nodeEnv: process.env.NODE_ENV,
   sendgridApiKey:
     process.env.SENDGRID_API_KEY ??
     raise<string>(new Error("SENDGRID_API_KEY environment variable not found")),

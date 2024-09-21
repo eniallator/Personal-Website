@@ -3,6 +3,7 @@ import sgMail from "@sendgrid/mail";
 
 import { ALL_FIELDS, DATA_FIELDS, HONEY_POT_FIELDS } from "./constants.js";
 import env from "./env.js";
+import { isEmail } from "./utils.js";
 
 sgMail.setApiKey(env.sendgridApiKey);
 sgClient.setApiKey(env.sendgridApiKey);
@@ -25,12 +26,6 @@ sgClient
     console.error(err);
   });
 
-// https://stackoverflow.com/a/9204568/11824244
-function validateEmail(email: string) {
-  const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return re.test(email);
-}
-
 function validateFields(data: Record<string, string>): data is {
   [S in (typeof DATA_FIELDS)[number]]: string;
 } & {
@@ -46,7 +41,7 @@ function validateFields(data: Record<string, string>): data is {
 export async function sendMail(data: Record<string, string>) {
   if (!validateFields(data)) {
     console.log("Received spam:", data);
-  } else if (!validateEmail(data.email)) {
+  } else if (!isEmail(data.email)) {
     console.log("Received invalid email:", data);
   } else {
     const mail = {
