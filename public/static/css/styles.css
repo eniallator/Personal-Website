@@ -93,7 +93,7 @@ body {
   line-height: 1.4;
   text-wrap: pretty;
   scroll-behavior: smooth;
-  height: 100%;
+  height: fit-content;
 }
 
 body:has(dialog[open]) {
