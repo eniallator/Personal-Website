@@ -1,5 +1,11 @@
 [
     {
+        "title": "Wind Animations",
+        "description": "Colourful particle simulations which look like wind animations",
+        "img": "/static/images/thumbnails/wind-animations.png",
+        "github": "Wind-Animations"
+    },
+    {
         "title": "Starfield Generator",
         "description": "Starfield generator animation created using 3D rasterising techniques",
         "img": "/static/images/thumbnails/3d-rasteriser.png",
