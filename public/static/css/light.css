@@ -11,6 +11,10 @@ main {
   outline: var(--grey-600) solid 2px;
 }
 
+a {
+  color: #0353a4;
+}
+
 nav {
   background-color: var(--grey-100);
 }
@@ -60,10 +64,6 @@ header {
 }
 .projects-toggle-button label:hover {
   background-color: var(--grey-200) !important;
-}
-
-.more-projects-text a {
-  color: var(--primary-button-hover);
 }
 
 #project-preview .close-button {
