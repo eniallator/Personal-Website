@@ -89,7 +89,7 @@ app.get("/", (req, res) => {
           renderedMemo[memoKey] = html;
           res.send(html);
         } else {
-          console.error(err);
+          console.error(err ?? "Unknown rendering error");
           res.status(500).send("Something went wrong rendering this page ...");
         }
       }
@@ -102,7 +102,7 @@ app.post("/", (req, res) => {
   res.redirect(req.url);
 });
 
-app.get("/resume|cv/pdf-download", (_req, res) => {
+app.get(["/cv/pdf-download", "/resume/pdf-download"], (_req, res) => {
   res.download("public/cv/nialls_cv.pdf");
 });
 
