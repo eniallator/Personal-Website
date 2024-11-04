@@ -7,27 +7,25 @@ import {
 
 const halfMsThemeIsShowing = DAYS_SPECIAL_THEME_IS_SHOWING * 12 * HOUR_IN_MS;
 
-export function calculateSpecialTheme() {
-  const currDate = new Date();
-  for (const [theme, themeCfg] of Object.entries(SPECIAL_THEMES)) {
-    let msToTheme;
-    for (let yearOffset = -1; yearOffset <= 1; yearOffset++) {
-      const themeDate = new Date(
-        currDate.getFullYear() + yearOffset,
-        themeCfg.month,
-        themeCfg.day,
-        12
-      );
-      const currMsToTheme = Math.abs(themeDate.getTime() - currDate.getTime());
-      if (msToTheme === undefined || currMsToTheme < msToTheme) {
-        msToTheme = currMsToTheme;
-      }
-    }
+export function calculateSpecialTheme(): string {
+  const now = new Date();
+  const nowTimestamp = now.getTime();
 
-    if (msToTheme != null && msToTheme < halfMsThemeIsShowing) {
-      console.log(`Current theme: ${theme}`);
-      return theme;
-    }
-  }
-  return DEFAULT_SPECIAL_THEME;
+  const closest = Object.entries(SPECIAL_THEMES)
+    .map(([theme, themeDate]) => {
+      const diffs = [-1, 0, 1].map((yearOffset) => {
+        const dateToCheck = new Date(
+          now.getFullYear() + yearOffset,
+          themeDate.month,
+          themeDate.day,
+          12
+        );
+        return Math.abs(nowTimestamp - dateToCheck.getTime());
+      });
+      return { theme, diff: Math.min(...diffs) };
+    })
+    .filter(({ diff }) => diff < halfMsThemeIsShowing)
+    .sort((a, b) => a.diff - b.diff)[0];
+
+  return closest?.theme ?? DEFAULT_SPECIAL_THEME;
 }

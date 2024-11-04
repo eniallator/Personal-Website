@@ -46,30 +46,31 @@ const projectSrcBase = "https://github.com/eniallator/";
 
 const previewDialog = document.getElementById("project-preview");
 
-previewDialog.onclick = (evt) =>
-  evt.target === previewDialog ? previewDialog.close() : null;
+previewDialog.onclick = (evt) => {
+  if (evt.target === previewDialog) {
+    previewDialog.close();
+  }
+};
+
 previewDialog.onclose = () =>
   document.querySelector("#project-preview iframe").removeAttribute("src");
 
 document.querySelectorAll(".project").forEach((project) => {
-  project.onclick = function () {
+  project.onclick = () => {
     document.querySelector("#project-preview h3").innerText =
-      this.getElementsByTagName("h2")[0]?.innerText;
+      project.getElementsByTagName("h2")[0]?.innerText;
 
     const iframe = document.querySelector("#project-preview iframe");
-    iframe.src = `${projectRunBase}${this.getAttribute("data-github")}`;
+    iframe.src = `${projectRunBase}${project.getAttribute("data-github")}`;
     iframe.style.background = `url(${
-      this.querySelector("img.project-thumbnail").src
+      project.querySelector("img.project-thumbnail").src
     }) no-repeat center/100%`;
     iframe.onload = () => (iframe.style.backgroundImage = "none");
 
-    document.querySelector(
-      "#project-preview a.js-preview"
-    ).href = `${projectRunBase}${this.getAttribute("data-github")}`;
+    document.querySelector("#project-preview a.js-preview").href = iframe.src;
+    document.querySelector("#project-preview a.js-repository").href =
+      `${projectSrcBase}${project.getAttribute("data-github")}`;
 
-    document.querySelector(
-      "#project-preview a.js-repository"
-    ).href = `${projectSrcBase}${this.getAttribute("data-github")}`;
     previewDialog.showModal();
   };
 });

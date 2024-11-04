@@ -33,9 +33,7 @@ export async function trySortProjects(projects: Project[]): Promise<Project[]> {
     })) as { data: { name: string }[] | undefined };
 
     if (resp.data) {
-      repos.push(
-        ...resp.data.map((repo: { name: string }) => repo.name.toLowerCase())
-      );
+      repos.push(...resp.data.map(({ name }) => name.toLowerCase()));
     }
   } while (resp.data && resp.data.length === perPage);
 
