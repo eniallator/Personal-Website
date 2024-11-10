@@ -206,11 +206,11 @@ nav ul > li {
 }
 
 #dark-theme:checked ~ * .theme-switch.light {
-  display: none;
+  display: none !important;
 }
 
 #dark-theme:not(:checked) ~ * .theme-switch.dark {
-  display: none;
+  display: none !important;
 }
 
 .theme-switch svg {
