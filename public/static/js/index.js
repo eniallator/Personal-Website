@@ -1,11 +1,6 @@
-document.querySelectorAll(".theme-switch").forEach((el) =>
-  el.addEventListener("click", (evt) => {
-    evt.preventDefault();
-    const linkParams = new URLSearchParams(el.getAttribute("href").slice(1));
-    document.cookie = `theme=${linkParams.get("set-theme")}`;
-    location.reload();
-  })
-);
+document.getElementById("dark-theme").onchange = function () {
+  document.cookie = `theme=${this.checked ? "dark" : "light"}`;
+};
 
 document.querySelectorAll('[tabindex="0"]').forEach((el) => {
   el.onkeyup = (evt) => {
