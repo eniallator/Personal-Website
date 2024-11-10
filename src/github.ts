@@ -1,7 +1,8 @@
 import { Octokit } from "@octokit/core";
 import { readFileSync } from "fs";
 
-import { HOUR_IN_MS } from "./constants.js";
+import { GITHUB_PAGE_SIZE, HOUR_IN_MS } from "./constants.js";
+import { isArrayOf, isObjectOf, isString } from "./guard.js";
 import { Project } from "./types.js";
 
 const octokit = new Octokit();
@@ -14,28 +15,41 @@ export function initProjects() {
   ) as Project[];
 }
 
+const responseGuard = isObjectOf({
+  data: isArrayOf(
+    isObjectOf({
+      name: isString,
+    })
+  ),
+});
+
+async function getRepoOrder(
+  page: number = 1,
+  acc: string[] = []
+): Promise<string[]> {
+  const res: unknown = await octokit.request("GET /users/eniallator/repos", {
+    username: "eniallator",
+    per_page: GITHUB_PAGE_SIZE,
+    page,
+    sort: "pushed",
+    direction: "desc",
+  });
+
+  if (responseGuard(res)) {
+    const repos = acc.concat(res.data.map(({ name }) => name.toLowerCase()));
+    return res.data.length === GITHUB_PAGE_SIZE
+      ? getRepoOrder(page + 1, repos)
+      : repos;
+  }
+  return acc;
+}
+
 export async function trySortProjects(projects: Project[]): Promise<Project[]> {
   const currTime = Date.now();
   if (lastSortTime + sortProjectsInterval > currTime) return projects;
   lastSortTime = currTime;
 
-  const repos: string[] = [];
-  let page = 1;
-  const perPage = 100;
-  let resp;
-  do {
-    resp = (await octokit.request("GET /users/eniallator/repos", {
-      username: "eniallator",
-      per_page: perPage,
-      page: page++,
-      sort: "pushed",
-      direction: "desc",
-    })) as { data: { name: string }[] | undefined };
-
-    if (resp.data) {
-      repos.push(...resp.data.map(({ name }) => name.toLowerCase()));
-    }
-  } while (resp.data && resp.data.length === perPage);
+  const repos = await getRepoOrder();
 
   return projects.toSorted(
     (p1, p2) =>

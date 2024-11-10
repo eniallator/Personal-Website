@@ -14,9 +14,9 @@ import {
 } from "./constants.js";
 import { initProjects, trySortProjects } from "./github.js";
 import { sendMail } from "./mail.js";
-import { isString } from "./utils.js";
 import { calculateSpecialTheme } from "./specialTheme.js";
 import env from "./env.js";
+import { isString } from "./guard.js";
 
 let projects = initProjects();
 let renderedMemo: Record<string, string> = {};

@@ -4,6 +4,7 @@ import { Company, DayOfYear } from "./types.js";
 
 export const HOUR_IN_MS = 3.6e6;
 export const DAYS_SPECIAL_THEME_IS_SHOWING = 7;
+export const GITHUB_PAGE_SIZE = 100;
 
 export const DEFAULT_THEME = "dark";
 export const THEMES = ["dark", "light"];
