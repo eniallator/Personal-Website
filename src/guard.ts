@@ -1,4 +1,4 @@
-import { hasKey, isEqual, raise } from "./utils.js";
+import { isEqual, raise } from "./utils.js";
 
 export type Guard<T> = (value: unknown) => value is T;
 
@@ -128,5 +128,6 @@ export function guardOrThrow<T>(
 }
 
 export function hasType<const S extends string>(name: S): Guard<{ type: S }> {
-  return (val) => hasKey(val, "type", (type): type is S => type === name);
+  return (value): value is { type: S } =>
+    isObject(value) && "type" in value && value.type === name;
 }
