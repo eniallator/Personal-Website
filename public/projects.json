@@ -1,5 +1,11 @@
 [
     {
+        "title": "Painting Recreation",
+        "description": "Web art inspired by one of my grandad's paintings",
+        "img": "/static/images/thumbnails/painting-recreation.png",
+        "github": "Painting-Recreation"
+    },
+    {
         "title": "Wind Animations",
         "description": "Colourful particle simulations which look like wind animations",
         "img": "/static/images/thumbnails/wind-animations.png",
