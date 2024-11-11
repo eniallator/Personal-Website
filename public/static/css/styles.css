@@ -80,7 +80,7 @@
   --grey-10: #f8f9fa;
 }
 
-/* SITE STYLES */
+/* GLOBAL STYLES */
 
 html,
 body {
@@ -137,6 +137,26 @@ h6 {
   flex-direction: column;
   align-items: center;
 }
+
+section {
+  /* Nav height */
+  scroll-margin-top: 48.38px;
+}
+
+.section-heading {
+  font-size: 2.3em;
+  min-height: fit-content;
+  height: fit-content;
+  text-align: center;
+  padding: 2rem 0 1rem;
+  margin: 0;
+}
+
+main section {
+  padding-bottom: 2.5rem;
+}
+
+/* NAV STYLES */
 
 nav {
   position: sticky;
@@ -283,12 +303,23 @@ nav ul > li {
   }
 }
 
+/* HEADER STYLES */
+
 header {
   width: 100%;
   height: 30vh;
+  background-image: url(/static/images/foggy-trees.jpg);
   background-position: 50% 0;
   background-size: cover;
   position: relative;
+}
+
+.background-filter {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
 #theme-overlay {
@@ -319,23 +350,7 @@ header h1 {
   padding: 0;
 }
 
-section {
-  /* Nav height */
-  scroll-margin-top: 48.38px;
-}
-
-.section-heading {
-  font-size: 2.3em;
-  min-height: fit-content;
-  height: fit-content;
-  text-align: center;
-  padding: 2rem 0 1rem;
-  margin: 0;
-}
-
-main section {
-  padding-bottom: 2.5rem;
-}
+/* ABOUT STYLES */
 
 #about .section-heading {
   margin: 0;
@@ -432,6 +447,8 @@ main section {
 .button.secondary:hover {
   background-color: var(--grey-700);
 }
+
+/* PROJECTS STYLES */
 
 #project-container {
   margin: 1rem auto 0;
@@ -614,6 +631,8 @@ main section {
   aspect-ratio: 16 / 9;
 }
 
+/* CONTACT STYLES */
+
 .contact-links {
   padding-top: 1rem;
   display: flex;
@@ -672,6 +691,8 @@ textarea {
   resize: none !important;
 }
 
+/* DARK THEME */
+
 html:has(#dark-theme:checked),
 body:has(#dark-theme:checked),
 #dark-theme:checked ~ main {
@@ -709,9 +730,12 @@ body:has(#dark-theme:checked),
   }
 
   ~ header {
-    background-image: url(/static/images/dark-trees.jpg);
     color: var(--grey-10);
     fill: var(--grey-10);
+  }
+
+  ~ header .background-filter {
+    background-color: rgba(0, 0, 0, 0.5);
   }
 }
 
@@ -792,6 +816,8 @@ body:has(#dark-theme:checked),
   }
 }
 
+/* LIGHT THEME */
+
 html:has(#dark-theme:not(:checked)),
 body:has(#dark-theme:not(:checked)),
 #dark-theme:not(:checked) ~ main {
@@ -828,8 +854,8 @@ body:has(#dark-theme:not(:checked)),
     }
   }
 
-  ~ header {
-    background-image: url(/static/images/light-trees.jpg);
+  ~ header .background-filter {
+    background-color: rgba(255, 255, 255, 0.6);
   }
 }
 
