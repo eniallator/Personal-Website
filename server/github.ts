@@ -23,10 +23,7 @@ const responseGuard = isObjectOf({
   ),
 });
 
-async function getRepoOrder(
-  page: number = 1,
-  acc: string[] = []
-): Promise<string[]> {
+async function getRepoOrder(page: number = 1): Promise<string[]> {
   const res: unknown = await octokit.request("GET /users/eniallator/repos", {
     username: "eniallator",
     per_page: GITHUB_PAGE_SIZE,
@@ -35,13 +32,13 @@ async function getRepoOrder(
     direction: "desc",
   });
 
-  if (responseGuard(res)) {
-    const repos = acc.concat(res.data.map(({ name }) => name.toLowerCase()));
-    return res.data.length === GITHUB_PAGE_SIZE
-      ? getRepoOrder(page + 1, repos)
-      : repos;
-  }
-  return acc;
+  const repos = responseGuard(res)
+    ? res.data.map(({ name }) => name.toLowerCase())
+    : [];
+
+  return repos.length === GITHUB_PAGE_SIZE
+    ? repos.concat(await getRepoOrder(page + 1))
+    : repos;
 }
 
 export async function trySortProjects(projects: Project[]): Promise<Project[]> {
@@ -49,11 +46,11 @@ export async function trySortProjects(projects: Project[]): Promise<Project[]> {
   if (lastSortTime + sortProjectsInterval > currTime) return projects;
   lastSortTime = currTime;
 
-  const repos = await getRepoOrder();
+  const repoOrder = await getRepoOrder();
 
   return projects.toSorted(
     (p1, p2) =>
-      repos.indexOf(p1.github.toLowerCase()) -
-      repos.indexOf(p2.github.toLowerCase())
+      repoOrder.indexOf(p1.github.toLowerCase()) -
+      repoOrder.indexOf(p2.github.toLowerCase())
   );
 }

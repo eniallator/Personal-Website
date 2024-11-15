@@ -79,7 +79,7 @@ type OptionalGuardKeys<S extends Schema> = {
   [K in keyof S]: S[K] extends OptionalGuard<unknown> ? K : never;
 }[keyof S];
 
-// Not extracting into a type so tooltips show the resultant object, not the guards
+// Not extracting into a type so tooltips show the resultant object, not the guards/intermediary types
 export function isObjectOf<S extends Schema>(
   schema: S
 ): Guard<
@@ -115,7 +115,7 @@ export function isObjectOf<S extends Schema>(
     isObject(value) &&
     Object.entries(schema).every(
       ([key, valueGuard]) =>
-        key in value && (!isFunction(valueGuard) || valueGuard(value))
+        key in value && (!isFunction(valueGuard) || valueGuard(value[key]))
     )) as ReturnType<typeof isObjectOf<S>>;
 }
 

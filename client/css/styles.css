@@ -307,6 +307,7 @@ nav ul > li {
 
 header {
   width: 100%;
+  min-height: 8rem;
   height: 30vh;
   background-image: url(/static/images/foggy-trees.jpg);
   background-position: 50% 0;
@@ -314,14 +315,7 @@ header {
   position: relative;
 }
 
-.background-filter {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-}
-
+.background-filter,
 #theme-overlay {
   position: absolute;
   top: 0;
@@ -345,9 +339,13 @@ header hgroup {
   height: 100%;
 }
 
-header h1 {
+header h1.section-heading {
   margin: 0;
-  padding: 0;
+  padding: 1rem 0 0.75rem;
+}
+header p {
+  margin: 0;
+  padding: 0.75rem 0 1rem;
 }
 
 /* ABOUT STYLES */
@@ -382,6 +380,7 @@ header h1 {
     padding: 0 1rem;
   }
   #about-panel-companies p {
+    text-wrap: pretty;
     margin-top: 0;
   }
   #about-panel-text {
@@ -568,6 +567,8 @@ header h1 {
 .more-projects-text {
   margin: 1.25rem 0 0.25rem;
   font-weight: bold;
+  text-wrap: balance;
+  text-align: center;
 }
 
 #project-preview {
@@ -679,6 +680,7 @@ header h1 {
   font-size: large;
   padding: 0.5em 0.75em;
   border-radius: 0.5em;
+  max-width: 100%;
   font-family: inherit;
 }
 
