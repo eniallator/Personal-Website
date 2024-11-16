@@ -1,6 +1,8 @@
 const unsafeById = (id: string) => document.getElementById(id) as HTMLElement;
-const unsafeSelector = (selector: string) =>
-  document.querySelector(selector) as HTMLElement;
+const unsafeSelector = (
+  selector: string,
+  el: HTMLElement | Document = document
+) => el.querySelector(selector) as HTMLElement;
 
 unsafeById("dark-theme").onchange = function () {
   document.cookie = `theme=${(this as HTMLInputElement).checked ? "dark" : "light"}`;
@@ -69,7 +71,8 @@ document.querySelectorAll<HTMLAnchorElement>(".project").forEach((project) => {
 
     previewIframe.src = `${projectRunBase}${project.getAttribute("data-github")}`;
     previewIframe.style.background = `url(${
-      (unsafeSelector("img.project-thumbnail") as HTMLIFrameElement).src
+      (unsafeSelector("img.project-thumbnail", project) as HTMLIFrameElement)
+        .src
     }) no-repeat center/100%`;
     previewIframe.onload = () => (previewIframe.style.backgroundImage = "none");
 
