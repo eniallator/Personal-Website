@@ -1,4 +1,4 @@
-import { Guard, isObject } from "./guard.js";
+import { Guard, isAnyRecord } from "deep-guards";
 
 export function checkExhausted(value: never): never {
   throw new Error(`Value not exhausted: ${JSON.stringify(value)}`);
@@ -53,7 +53,7 @@ export function hasKey<K extends string, V>(
   guard?: Guard<V>
 ): value is { [k in K]: unknown } {
   return (
-    isObject(value) && key in value && (guard == null || guard(value[key]))
+    isAnyRecord(value) && key in value && (guard == null || guard(value[key]))
   );
 }
 

@@ -2,6 +2,7 @@ import acceptWebp from "accept-webp";
 import bodyParser from "body-parser";
 import compression from "compression";
 import cookieParser from "cookie-parser";
+import { isString } from "deep-guards";
 import express from "express";
 
 import {
@@ -12,11 +13,10 @@ import {
   SPECIAL_THEMES,
   THEMES,
 } from "./constants.js";
+import env from "./env.js";
 import { initProjects, trySortProjects } from "./github.js";
 import { sendMail } from "./mail.js";
 import { calculateSpecialTheme } from "./specialTheme.js";
-import env from "./env.js";
-import { isString } from "./guard.js";
 
 let projects = initProjects();
 let renderedMemo: Record<string, string> = {};

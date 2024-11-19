@@ -1,8 +1,8 @@
 import { Octokit } from "@octokit/core";
+import { isArrayOf, isObjectOf, isString } from "deep-guards";
 import { readFileSync } from "fs";
 
 import { GITHUB_PAGE_SIZE, HOUR_IN_MS } from "./constants.js";
-import { isArrayOf, isObjectOf, isString } from "./guard.js";
 import { Project } from "./types.js";
 
 const octokit = new Octokit();
