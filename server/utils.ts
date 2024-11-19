@@ -1,5 +1,3 @@
-import { Guard, isAnyRecord } from "deep-guards";
-
 export function checkExhausted(value: never): never {
   throw new Error(`Value not exhausted: ${JSON.stringify(value)}`);
 }
@@ -36,25 +34,6 @@ export function formatDate(date: Date): string {
       /(?<d>\d+)\/(?<m>\d+)\/(?<y>\d+)[^\d]*(?<t>\d+:\d+).*/,
       "$<y>-$<m>-$<d>T$<t>"
     );
-}
-
-export function hasKey<K extends string>(
-  value: unknown,
-  key: K
-): value is { [k in K]: unknown };
-export function hasKey<K extends string, V>(
-  value: unknown,
-  key: K,
-  guard: Guard<V>
-): value is { [k in K]: V };
-export function hasKey<K extends string, V>(
-  value: unknown,
-  key: K,
-  guard?: Guard<V>
-): value is { [k in K]: unknown } {
-  return (
-    isAnyRecord(value) && key in value && (guard == null || guard(value[key]))
-  );
 }
 
 export function isEqual<T>(a: T, b: T): boolean {

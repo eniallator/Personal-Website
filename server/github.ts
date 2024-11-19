@@ -1,18 +1,20 @@
 import { Octokit } from "@octokit/core";
-import { isArrayOf, isObjectOf, isString } from "deep-guards";
+import { guardOrThrow, isArrayOf, isObjectOf, isString } from "deep-guards";
 import { readFileSync } from "fs";
 
 import { GITHUB_PAGE_SIZE, HOUR_IN_MS } from "./constants.js";
-import { Project } from "./types.js";
+import { isProject, Project } from "./types.js";
 
 const octokit = new Octokit();
 const sortProjectsInterval = HOUR_IN_MS;
 let lastSortTime = Date.now() - sortProjectsInterval;
 
 export function initProjects() {
-  return JSON.parse(
-    readFileSync("public/projects.json").toString()
-  ) as Project[];
+  return guardOrThrow(
+    JSON.parse(readFileSync("public/projects.json").toString()),
+    isArrayOf(isProject),
+    "Invalid project format"
+  );
 }
 
 const responseGuard = isObjectOf({

@@ -1,6 +1,7 @@
 import { readFileSync } from "fs";
 
-import { Company, DayOfYear } from "./types.js";
+import { guardOrThrow, isArrayOf } from "deep-guards";
+import { DayOfYear, isCompany } from "./types.js";
 
 export const HOUR_IN_MS = 3.6e6;
 export const DAYS_SPECIAL_THEME_IS_SHOWING = 7;
@@ -20,9 +21,11 @@ export const SPECIAL_THEMES: Record<string, DayOfYear> = {
   },
 };
 
-export const companies = JSON.parse(
-  readFileSync("public/companies.json").toString()
-) as Company[];
+export const companies = guardOrThrow(
+  JSON.parse(readFileSync("public/companies.json").toString()),
+  isArrayOf(isCompany),
+  "Invalid company format"
+);
 
 export const HONEY_POT_FIELDS = [
   "phone",
