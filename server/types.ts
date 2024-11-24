@@ -1,34 +1,24 @@
-import { isNumber, isObjectOf, isString } from "deep-guards";
+import { isNumber, isObjectOf, isString, TypeFromGuard } from "deep-guards";
 
 export interface DayOfYear {
   month: number;
   day: number;
 }
 
-export interface Project {
-  title: string;
-  description: string;
-  img: string;
-  github: string;
-}
-
-export const isProject = isObjectOf<Project>({
+export const isProject = isObjectOf({
   title: isString,
   description: isString,
   img: isString,
   github: isString,
 });
 
-export interface Company {
-  url: string;
-  name: string;
-  img: string;
-  aspectRatio: number;
-}
+export type Project = TypeFromGuard<typeof isProject>;
 
-export const isCompany = isObjectOf<Company>({
+export const isCompany = isObjectOf({
   url: isString,
   name: isString,
   img: isString,
   aspectRatio: isNumber,
 });
+
+export type Company = TypeFromGuard<typeof isCompany>;
