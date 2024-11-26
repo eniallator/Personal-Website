@@ -18,16 +18,11 @@ export function initProjects() {
 }
 
 const responseGuard = isObjectOf({
-  data: isArrayOf(
-    isObjectOf({
-      name: isString,
-    })
-  ),
+  data: isArrayOf(isObjectOf({ name: isString })),
 });
 
 async function getRepoOrder(page: number = 1): Promise<string[]> {
   const res: unknown = await octokit.request("GET /users/eniallator/repos", {
-    username: "eniallator",
     per_page: GITHUB_PAGE_SIZE,
     page,
     sort: "pushed",
