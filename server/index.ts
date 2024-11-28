@@ -98,7 +98,7 @@ app.get("/", (req, res) => {
 });
 
 app.post("/", (req, res) => {
-  void sendMail(req.body as Record<string, string>);
+  void sendMail(req.body);
   res.redirect(req.url);
 });
 

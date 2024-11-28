@@ -1,7 +1,14 @@
+import {
+  guardOrThrow,
+  isArrayOf,
+  isExact,
+  isObjectOf,
+  isString,
+} from "deep-guards";
 import { readFileSync } from "fs";
 
-import { guardOrThrow, isArrayOf } from "deep-guards";
 import { DayOfYear, isCompany } from "./types.js";
+import { isEmail } from "./utils.js";
 
 export const HOUR_IN_MS = 3.6e6;
 export const DAYS_SPECIAL_THEME_IS_SHOWING = 7;
@@ -27,17 +34,16 @@ export const companies = guardOrThrow(
   "Invalid company format"
 );
 
-export const HONEY_POT_FIELDS = [
-  "phone",
-  "city",
-  "address",
-  "country",
-  "zip code",
-] as const;
-
-export const DATA_FIELDS = ["name", "email", "message"] as const;
-
-export const ALL_FIELDS = new Set<string>([
-  ...HONEY_POT_FIELDS,
-  ...DATA_FIELDS,
-]);
+export const mailGuard = isObjectOf(
+  {
+    phone: isExact("", false),
+    city: isExact("", false),
+    address: isExact("", false),
+    country: isExact("", false),
+    ["zip code"]: isExact("", false),
+    name: isString,
+    email: isEmail,
+    message: isString,
+  },
+  true
+);

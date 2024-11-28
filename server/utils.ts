@@ -66,9 +66,9 @@ export function raise<T = never>(err: Error): T {
 // https://stackoverflow.com/a/9204568/11824244
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 export function isEmail(
-  email: string
-): email is `${string}@${string}.${string}` {
-  return emailRegex.test(email);
+  value: unknown
+): value is `${string}@${string}.${string}` {
+  return typeof value === "string" && emailRegex.test(value);
 }
 
 export type RemainingKeys<O extends object, T extends object> = Exclude<
