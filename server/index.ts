@@ -80,10 +80,11 @@ app.get("/", (req, res) => {
   if (env.nodeEnv !== "development" && renderedMemo[memoKey] != null) {
     res.send(renderedMemo[memoKey]);
   } else {
+    const fullHost = `https://${req.get("host")}`;
     console.log(`Rendering to memo "${memoKey}"`);
     res.render(
       "index.ejs",
-      { theme, specialTheme, projects, companies },
+      { theme, specialTheme, projects, companies, fullHost },
       (err: Error | null, html: string | null) => {
         if (html != null) {
           renderedMemo[memoKey] = html;
