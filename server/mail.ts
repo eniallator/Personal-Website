@@ -1,32 +1,34 @@
 import sgClient from "@sendgrid/client";
 import sgMail from "@sendgrid/mail";
+import {
+  isArrayOf,
+  isObjectOf,
+  isString,
+  isTupleOf,
+  isUnknown,
+} from "deep-guards";
 
-import { mailGuard } from "./constants.js";
 import env from "./env.js";
+import { isValidMail } from "./types.js";
 
 sgMail.setApiKey(env.sendgridApiKey);
 sgClient.setApiKey(env.sendgridApiKey);
 
-sgClient
-  .request({ url: "/v3/scopes", method: "GET" })
-  .then(([_response, body]: [unknown, { scopes: string[] }]) => {
-    console.log("Scopes result", body.scopes);
-    if (
-      "scopes" in body &&
-      Array.isArray(body.scopes) &&
-      body.scopes.includes("mail.send")
-    ) {
-      console.log("Happiness! Includes mail.send");
-    } else {
-      throw new Error("Invalid scopes");
-    }
-  })
-  .catch((err: unknown) => {
-    console.error(err);
-  });
+const bodyGuard = isTupleOf(
+  isUnknown,
+  isObjectOf({ scopes: isArrayOf(isString) })
+);
+
+void sgClient.request({ url: "/v3/scopes", method: "GET" }, (_, r: unknown) => {
+  if (bodyGuard(r) && r[1].scopes.includes("mail.send")) {
+    console.log("Scopes result", r[1].scopes);
+  } else {
+    throw new Error("Invalid scopes");
+  }
+});
 
 export async function sendMail(data: unknown) {
-  if (!mailGuard(data)) {
+  if (!isValidMail(data)) {
     console.log("Received spam:", data);
   } else {
     const mail = {
@@ -38,16 +40,13 @@ export async function sendMail(data: unknown) {
     const mailStringified = Object.entries(mail)
       .map(([k, v]) => `${k}: <<<${v}>>>`)
       .join("\n");
-    return sgMail
-      .send(mail)
-      .then(([resp]) => {
-        console.log(
-          `Status: ${resp.statusCode}, New email\n${mailStringified}`
-        );
-      })
-      .catch((err: unknown) => {
-        console.log(`Failed with ${mailStringified}`);
-        console.error(err);
-      });
+
+    try {
+      const [resp] = await sgMail.send(mail);
+      console.log(`Status: ${resp.statusCode}, New email\n${mailStringified}`);
+    } catch (err: unknown) {
+      console.log(`Failed with ${mailStringified}`);
+      console.error(err);
+    }
   }
 }

@@ -162,7 +162,7 @@ nav {
   position: sticky;
   top: 0;
   z-index: 2;
-  padding: 0 2rem;
+  padding: 0 2rem 0 4rem;
   display: flex;
   flex-direction: row;
 }
@@ -246,6 +246,14 @@ nav ul > li {
 }
 
 @media (max-width: 500px) {
+  nav {
+    padding: 0 2rem;
+  }
+
+  .nav-home {
+    margin-left: 0;
+  }
+
   #nav-burger-menu {
     visibility: visible;
     display: flex;
@@ -632,6 +640,12 @@ header p {
   aspect-ratio: 16 / 9;
 }
 
+@media (max-width: 300px) {
+  .hidden-xs {
+    display: none;
+  }
+}
+
 /* CONTACT STYLES */
 
 .contact-links {
@@ -659,6 +673,7 @@ header p {
   margin: 0;
   padding: 0;
   border: 0;
+  min-width: 0;
 }
 
 #contact .ignore {

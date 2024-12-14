@@ -15,6 +15,7 @@
   "scripts": {
     "build:client-css": "css-minify -f client/css/styles.css -o public/static/css",
     "build:client-ts": "esbuild client/ts/index.ts --outfile=public/static/js/bundle.js --bundle --minify",
+    "build:client": "yarn build:client-css && yarn build:client-ts",
     "build:server": "esbuild server/*.ts --outdir=dist --platform=node",
     "build": "yarn build:client-css && yarn build:client-ts && yarn build:server",
     "start": "node dist/index.js",

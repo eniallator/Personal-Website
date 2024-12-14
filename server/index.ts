@@ -2,33 +2,23 @@ import acceptWebp from "accept-webp";
 import bodyParser from "body-parser";
 import compression from "compression";
 import cookieParser from "cookie-parser";
-import { isString } from "deep-guards";
 import express from "express";
+import { isObjectOf } from "deep-guards";
 
 import {
   companies,
-  DEFAULT_SPECIAL_THEME,
   DEFAULT_THEME,
   HOUR_IN_MS,
-  SPECIAL_THEMES,
-  THEMES,
+  initialProjects,
 } from "./constants.js";
 import env from "./env.js";
-import { initProjects, trySortProjects } from "./github.js";
+import { trySortProjects } from "./github.js";
 import { sendMail } from "./mail.js";
 import { calculateSpecialTheme } from "./specialTheme.js";
+import { isSpecialTheme, isTheme } from "./types.js";
 
-let projects = initProjects();
+let projects = await trySortProjects(initialProjects);
 let renderedMemo: Record<string, string> = {};
-
-void trySortProjects(projects)
-  .then((sorted) => {
-    projects = sorted;
-    renderedMemo = {};
-  })
-  .catch((err: unknown) => {
-    console.error(err);
-  });
 
 const app = express();
 
@@ -45,12 +35,14 @@ app.use(acceptWebp("public"));
 app.use(express.static("public"));
 
 app.use((req, res, next) => {
-  const setTheme = req.query["set-theme"];
-  if (isString(setTheme) && ["light", "dark"].includes(setTheme)) {
-    res.cookie("theme", setTheme, { maxAge: HOUR_IN_MS * 24 * 365.25 * 5 });
+  const theme = req.query["set-theme"];
+  if (isTheme(theme)) {
+    res.cookie("theme", theme, { maxAge: HOUR_IN_MS * 24 * 365.25 * 5 });
   }
   next();
 });
+
+const isCookiesWithTheme = isObjectOf({ theme: isTheme });
 
 app.get("/", (req, res) => {
   void trySortProjects(projects)
@@ -60,21 +52,14 @@ app.get("/", (req, res) => {
         projects = sorted;
       }
     })
-    .catch((err: unknown) => {
-      console.error(err);
-    });
+    .catch(console.error as (err: unknown) => void);
 
-  const cookiesTheme = (req.cookies as Record<string, string>)["theme"];
-  const theme =
-    cookiesTheme != null && THEMES.includes(cookiesTheme)
-      ? cookiesTheme
-      : DEFAULT_THEME;
-  const specialTheme =
-    isString(req.query.theme) &&
-    (SPECIAL_THEMES[req.query.theme] != null ||
-      req.query.theme === DEFAULT_SPECIAL_THEME)
-      ? req.query.theme
-      : calculateSpecialTheme();
+  const theme = isCookiesWithTheme(req.cookies)
+    ? req.cookies.theme
+    : DEFAULT_THEME;
+  const specialTheme = isSpecialTheme(req.query.theme)
+    ? req.query.theme
+    : calculateSpecialTheme();
 
   const memoKey = `${theme}:${specialTheme}`;
   if (env.nodeEnv !== "development" && renderedMemo[memoKey] != null) {
