@@ -36,24 +36,6 @@ export function formatDate(date: Date): string {
     );
 }
 
-export function isEqual<T>(a: T, b: T): boolean {
-  return (
-    a === b ||
-    (a != null &&
-      b != null &&
-      typeof a === "object" &&
-      typeof b === "object" &&
-      (Array.isArray(a)
-        ? Array.isArray(b) &&
-          a.length === b.length &&
-          a.every((v, i) => isEqual(v, b[i]))
-        : Object.keys(a).length === Object.keys(b).length &&
-          Object.entries(a).every(
-            ([k, v]) => k in b && isEqual(v, (b as Record<string, unknown>)[k])
-          )))
-  );
-}
-
 export function tuple<const T extends unknown[]>(...tuple: T): T {
   return tuple;
 }

@@ -18,14 +18,8 @@ export const SPECIAL_THEMES: Record<
   Exclude<SpecialTheme, "no-theme">,
   DayOfYear
 > = {
-  halloween: {
-    month: 9,
-    day: 31,
-  },
-  christmas: {
-    month: 11,
-    day: 25,
-  },
+  halloween: { month: 9, day: 31 },
+  christmas: { month: 11, day: 25 },
 };
 
 export const companies = guardOrThrow(

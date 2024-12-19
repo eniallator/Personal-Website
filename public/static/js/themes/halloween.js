@@ -21,13 +21,13 @@ function spawnEyes() {
       lifeTime: 10000 + Math.random() * 2000,
     });
 
-    const scale = 0.2 + Math.random() * 0.3;
+    const scale = 0.4 + Math.random() * 0.6;
 
     document.getElementById("theme-container").innerHTML +=
       "<img width='" +
-      Math.round(scale * 318) +
+      Math.round(scale * 109) +
       "px' height='" +
-      Math.round(scale * 61) +
+      Math.round(scale * 30) +
       "px' id='eyes-" +
       eyesId +
       "' src='static/images/themes/spooky-eyes.png' style='top: " +

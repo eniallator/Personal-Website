@@ -1,5 +1,4 @@
 import { Octokit } from "@octokit/core";
-import { isArrayOf, isObjectOf, isString } from "deep-guards";
 
 import { GITHUB_PAGE_SIZE, HOUR_IN_MS } from "./constants.js";
 import { Project } from "./types.js";
@@ -8,37 +7,34 @@ const octokit = new Octokit();
 const sortProjectsInterval = HOUR_IN_MS;
 let lastSortTime = Date.now() - sortProjectsInterval;
 
-const responseGuard = isObjectOf({
-  data: isArrayOf(isObjectOf({ name: isString })),
-});
-
-async function getRepoOrder(page: number = 1): Promise<string[]> {
-  const res: unknown = await octokit.request("GET /users/eniallator/repos", {
-    per_page: GITHUB_PAGE_SIZE,
-    page,
-    sort: "pushed",
-    direction: "desc",
-  });
-
-  const repos = responseGuard(res)
-    ? res.data.map(({ name }) => name.toLowerCase())
-    : [];
-
-  return repos.length === GITHUB_PAGE_SIZE
-    ? repos.concat(await getRepoOrder(page + 1))
-    : repos;
-}
-
-export async function trySortProjects(projects: Project[]): Promise<Project[]> {
+export async function trySortProjects(projects: Project[]) {
   const currTime = Date.now();
-  if (lastSortTime + sortProjectsInterval > currTime) return projects;
+  if (lastSortTime + sortProjectsInterval > currTime) return null;
   lastSortTime = currTime;
 
-  const repoOrder = await getRepoOrder();
+  const order: string[] = [];
+  let page = 1;
+  do {
+    try {
+      const res = await octokit.request("GET /users/{username}/repos", {
+        username: "eniallator",
+        per_page: GITHUB_PAGE_SIZE,
+        page: page++,
+        sort: "pushed",
+        direction: "desc",
+      });
+      order.push(...res.data.map(({ name }) => name.toLowerCase()));
+    } catch (err) {
+      console.error(err);
+      return null;
+    }
+  } while (order.length === page * GITHUB_PAGE_SIZE);
 
-  return projects.toSorted(
-    (p1, p2) =>
-      repoOrder.indexOf(p1.github.toLowerCase()) -
-      repoOrder.indexOf(p2.github.toLowerCase())
-  );
+  return projects.every((project, i) => project.github === order[i])
+    ? null
+    : projects.toSorted(
+        (p1, p2) =>
+          order.indexOf(p1.github.toLowerCase()) -
+          order.indexOf(p2.github.toLowerCase())
+      );
 }

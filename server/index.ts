@@ -17,14 +17,14 @@ import { sendMail } from "./mail.js";
 import { calculateSpecialTheme } from "./specialTheme.js";
 import { isSpecialTheme, isTheme } from "./types.js";
 
-let projects = await trySortProjects(initialProjects);
+let projects = (await trySortProjects(initialProjects)) ?? initialProjects;
 let renderedMemo: Record<string, string> = {};
 
 const app = express();
 
 app.set("view engine", "ejs");
 app.set("views", "./public");
-const port = env.port || 3000;
+const port = env.port ?? 3000;
 
 app.use(compression());
 app.use(cookieParser());
@@ -47,7 +47,7 @@ const isCookiesWithTheme = isObjectOf({ theme: isTheme });
 app.get("/", (req, res) => {
   void trySortProjects(projects)
     .then((sorted) => {
-      if (!projects.every((proj, i) => proj.github === sorted[i]?.github)) {
+      if (sorted != null) {
         renderedMemo = {};
         projects = sorted;
       }
@@ -65,11 +65,10 @@ app.get("/", (req, res) => {
   if (env.nodeEnv !== "development" && renderedMemo[memoKey] != null) {
     res.send(renderedMemo[memoKey]);
   } else {
-    const fullHost = `https://${req.get("host")}`;
     console.log(`Rendering to memo "${memoKey}"`);
     res.render(
       "index.ejs",
-      { theme, specialTheme, projects, companies, fullHost },
+      { theme, specialTheme, projects, companies, fullHost: env.fullHost },
       (err: Error | null, html: string | null) => {
         if (html != null) {
           renderedMemo[memoKey] = html;

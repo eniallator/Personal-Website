@@ -10,22 +10,15 @@ const halfMsThemeIsShowing = DAYS_SPECIAL_THEME_IS_SHOWING * 12 * HOUR_IN_MS;
 
 export function calculateSpecialTheme(): SpecialTheme {
   const now = new Date();
+  const nowYear = now.getFullYear();
   const nowTimestamp = now.getTime();
 
   const closest = typedToEntries(SPECIAL_THEMES)
-    .map(([theme, themeDay]) => ({
+    .map(([theme, { month, day }]) => ({
       theme,
       diff: [-1, 0, 1].reduce((closest, yearOffset) => {
-        const dateToCheck = new Date(
-          now.getFullYear() + yearOffset,
-          themeDay.month,
-          themeDay.day,
-          12
-        );
-        return Math.min(
-          closest,
-          Math.abs(nowTimestamp - dateToCheck.getTime())
-        );
+        const date = new Date(nowYear + yearOffset, month, day, 12);
+        return Math.min(closest, Math.abs(nowTimestamp - date.getTime()));
       }, Infinity),
     }))
     .filter(({ diff }) => diff < halfMsThemeIsShowing)
