@@ -7,8 +7,6 @@ import {
   TypeFromGuard,
 } from "deep-guards";
 
-import { isEmail } from "./utils.js";
-
 export interface DayOfYear {
   month: number;
   day: number;
@@ -43,6 +41,11 @@ export const isCompany = isObjectOf(
 );
 
 export type Company = TypeFromGuard<typeof isCompany>;
+
+// https://stackoverflow.com/a/9204568/11824244
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const isEmail = (value: unknown): value is `${string}@${string}.${string}` =>
+  typeof value === "string" && emailRegex.test(value);
 
 export const isValidMail = isObjectOf(
   {

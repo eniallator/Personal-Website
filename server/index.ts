@@ -42,8 +42,6 @@ app.use((req, res, next) => {
   next();
 });
 
-const isCookiesWithTheme = isObjectOf({ theme: isTheme });
-
 app.get("/", (req, res) => {
   void trySortProjects(projects)
     .then((sorted) => {
@@ -54,7 +52,7 @@ app.get("/", (req, res) => {
     })
     .catch(console.error as (err: unknown) => void);
 
-  const theme = isCookiesWithTheme(req.cookies)
+  const theme = isObjectOf({ theme: isTheme })(req.cookies)
     ? req.cookies.theme
     : DEFAULT_THEME;
   const specialTheme = isSpecialTheme(req.query.theme)

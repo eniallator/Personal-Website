@@ -17,8 +17,7 @@ export function findAndMap<I, O>(
   mapper: (val: I, index: number, arr: I[]) => O | null | undefined
 ): O | null {
   for (let i = 0; i < arr.length; i++) {
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    const output = mapper(arr[i]!, i, arr);
+    const output = mapper(arr[i] as I, i, arr);
 
     if (output != null) {
       return output;
@@ -43,14 +42,6 @@ export function tuple<const T extends unknown[]>(...tuple: T): T {
 // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-parameters
 export function raise<T = never>(err: Error): T {
   throw err;
-}
-
-// https://stackoverflow.com/a/9204568/11824244
-const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-export function isEmail(
-  value: unknown
-): value is `${string}@${string}.${string}` {
-  return typeof value === "string" && emailRegex.test(value);
 }
 
 export type RemainingKeys<O extends object, T extends object> = Exclude<
