@@ -70,12 +70,12 @@ allProjects.forEach((el) => {
     const github = el.getAttribute("data-github");
     const heading = getEl("h2", el);
 
-    previewIframe.style.background = `url(${bg.src}) no-repeat center/100%`;
-    previewIframe.src = previewUrl.href;
-    previewHeading.innerText = heading.innerText;
     repoUrl.href = `https://github.com/eniallator/${github}`;
     previewUrl.href = `https://eniallator.github.io/${github}`;
+    previewIframe.style.background = `url(${bg.src}) no-repeat center/100%`;
 
+    previewIframe.src = previewUrl.href;
+    previewHeading.innerText = heading.innerText;
     previewDialog.showModal();
   };
 });
