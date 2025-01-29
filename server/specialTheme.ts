@@ -8,7 +8,7 @@ import { typedToEntries } from "./utils.js";
 
 const halfMsThemeIsShowing = DAYS_SPECIAL_THEME_IS_SHOWING * 12 * HOUR_IN_MS;
 
-export function calculateSpecialTheme(): SpecialTheme {
+export const calculateSpecialTheme = (): SpecialTheme => {
   const now = new Date();
   const nowYear = now.getFullYear();
   const nowTimestamp = now.getTime();
@@ -25,4 +25,4 @@ export function calculateSpecialTheme(): SpecialTheme {
     .sort((a, b) => a.diff - b.diff)[0];
 
   return closest?.theme ?? "no-theme";
-}
+};

@@ -22,7 +22,7 @@ if (
   throw new Error("Invalid scopes");
 }
 
-export async function sendMail(data: unknown) {
+export const sendMail = async (data: unknown) => {
   if (!isValidMail(data)) {
     console.log("Received spam:", data);
   } else {
@@ -45,4 +45,4 @@ export async function sendMail(data: unknown) {
       console.error(err);
     }
   }
-}
+};

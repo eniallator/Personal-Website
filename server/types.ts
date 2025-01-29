@@ -27,7 +27,6 @@ export const isProject = isObjectOf(
   },
   true
 );
-
 export type Project = TypeFromGuard<typeof isProject>;
 
 export const isCompany = isObjectOf(
@@ -39,7 +38,6 @@ export const isCompany = isObjectOf(
   },
   true
 );
-
 export type Company = TypeFromGuard<typeof isCompany>;
 
 // https://stackoverflow.com/a/9204568/11824244
