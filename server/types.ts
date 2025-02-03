@@ -18,26 +18,20 @@ export type Theme = TypeFromGuard<typeof isTheme>;
 export const isSpecialTheme = isOneOf("halloween", "christmas", "no-theme");
 export type SpecialTheme = TypeFromGuard<typeof isSpecialTheme>;
 
-export const isProject = isObjectOf(
-  {
-    title: isString,
-    description: isString,
-    img: isString,
-    github: isString,
-  },
-  true
-);
+export const isProject = isObjectOf({
+  title: isString,
+  description: isString,
+  img: isString,
+  github: isString,
+});
 export type Project = TypeFromGuard<typeof isProject>;
 
-export const isCompany = isObjectOf(
-  {
-    url: isString,
-    name: isString,
-    img: isString,
-    aspectRatio: isNumber,
-  },
-  true
-);
+export const isCompany = isObjectOf({
+  url: isString,
+  name: isString,
+  img: isString,
+  aspectRatio: isNumber,
+});
 export type Company = TypeFromGuard<typeof isCompany>;
 
 // https://stackoverflow.com/a/9204568/11824244

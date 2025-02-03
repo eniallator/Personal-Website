@@ -1,10 +1,4 @@
-const getId = (id: string) => document.getElementById(id) as HTMLElement;
-const getEl = (selector: string, el: ParentNode = document) =>
-  el.querySelector(selector) as HTMLElement;
-const getAll = <E extends Element>(
-  selector: string,
-  el: ParentNode = document
-) => [...el.querySelectorAll<E>(selector)];
+import { getAll, getEl, getId } from "./helpers";
 
 getAll<HTMLDivElement>('[tabindex="0"]').forEach((el) => {
   el.onkeyup = (evt) => {

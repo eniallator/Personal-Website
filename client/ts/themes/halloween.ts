@@ -1,24 +1,26 @@
+import { getEl, getId } from "../helpers";
+
 const spawnDelay = 5000;
 const spawnInterval = 1000;
 const halfFadeTime = 3000;
 
 let lastScrolled = Date.now();
 let eyesId = 0;
-let activeEyes = [];
+let activeEyes: { id: number; spawnTime: number }[] = [];
 
-const container = document.querySelector("#theme-container");
-const overlay = document.getElementById("theme-overlay");
+const container = getEl("#theme-container");
+const overlay = getId("theme-overlay");
 
 const eyesLoop = () => {
   const now = Date.now();
   if (lastScrolled + spawnDelay > now) return;
 
   if (!overlay.classList.contains("fadein")) {
-    document.getElementById("theme-overlay").classList.add("fadein");
+    getId("theme-overlay").classList.add("fadein");
   }
 
   activeEyes = activeEyes.filter(({ id, spawnTime }) => {
-    const el = document.getElementById(`theme-eyes-${id}`);
+    const el = getId(`theme-eyes-${id}`);
     if (spawnTime + 2 * halfFadeTime < now) {
       el.remove();
       return false;
@@ -39,22 +41,22 @@ const eyesLoop = () => {
     activeEyes.unshift(eyes);
 
     container.innerHTML += `
-        <img
-          id="theme-eyes-${eyes.id}"
-          src='static/images/themes/spooky-eyes.png'
-          width="${width}"
-          height="${height}"
-          style="
-            top: ${Math.round(Math.random() * (bounds.height - height))}px;
-            left: ${Math.round(Math.random() * (bounds.width - width))}px;
-            opacity: 0%;
-          "
-        />`;
+      <img
+        id="theme-eyes-${eyes.id}"
+        src='static/images/themes/spooky-eyes.png'
+        width="${width}"
+        height="${height}"
+        style="
+          top: ${Math.round(Math.random() * (bounds.height - height))}px;
+          left: ${Math.round(Math.random() * (bounds.width - width))}px;
+          opacity: 0%;
+        "
+      />`;
   }
   requestAnimationFrame(eyesLoop);
 };
 
-let eyesTimeout = setTimeout(eyesLoop, spawnDelay);
+let eyesTimeout: NodeJS.Timeout | null = setTimeout(eyesLoop, spawnDelay);
 
 window.onscroll = function () {
   container.innerHTML = "";
@@ -65,6 +67,7 @@ window.onscroll = function () {
 
   if (eyesTimeout != null) {
     clearTimeout(eyesTimeout);
+    eyesTimeout = null;
   }
   eyesTimeout = setTimeout(eyesLoop, spawnDelay);
 };

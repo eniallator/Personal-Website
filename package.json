@@ -13,11 +13,9 @@
     "node": ">=18.0.0"
   },
   "scripts": {
-    "build:client-css": "css-minify -f client/css/styles.css -o public/static/css",
-    "build:client-ts": "esbuild client/ts/index.ts --outfile=public/static/js/bundle.js --bundle --minify",
-    "build:client": "yarn build:client-css && yarn build:client-ts",
-    "build:server": "esbuild server/*.ts --outdir=dist --platform=node",
-    "build": "yarn build:client-css && yarn build:client-ts && yarn build:server",
+    "build:css": "css-minify -f client/css/styles.css -o public/static/css",
+    "build:ts": "node esbuild.mjs",
+    "build": "yarn build:ts && yarn build:css",
     "start": "node dist/index.js",
     "lint": "eslint ./server ./client",
     "typecheck": "tsc --noEmit",
@@ -39,21 +37,21 @@
     "tsc-files": "^1.1.4"
   },
   "devDependencies": {
-    "@eslint/compat": "^1.2.5",
+    "@eslint/compat": "^1.2.6",
     "@eslint/js": "^9.19.0",
     "@types/compression": "1.7.5",
     "@types/cookie-parser": "1.4.8",
     "@types/eslint__js": "^8.42.3",
     "@types/express": "5.0.0",
-    "@typescript-eslint/eslint-plugin": "^8.22.0",
-    "@typescript-eslint/parser": "^8.22.0",
+    "@typescript-eslint/eslint-plugin": "^8.23.0",
+    "@typescript-eslint/parser": "^8.23.0",
     "eslint": "^9.19.0",
     "eslint-config-prettier": "^10.0.1",
     "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-prettier": "^5.2.3",
     "prettier": "^3.4.2",
     "typescript": "^5.7.3",
-    "typescript-eslint": "^8.22.0"
+    "typescript-eslint": "^8.23.0"
   },
   "repository": {
     "type": "git",
