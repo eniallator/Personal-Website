@@ -1,5 +1,4 @@
-// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-parameters
-export const raise = <T = never>(err: Error): T => {
+export const raise = (err: Error): never => {
   throw err;
 };
 

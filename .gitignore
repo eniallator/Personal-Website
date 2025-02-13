@@ -1,7 +1,7 @@
 node_modules
 **/*bundle.js
 **/*bundle.js.map
-styles.min.css
+**/*.min.css
 dist
 .yarn/cache
 .yarn/install-state.gz

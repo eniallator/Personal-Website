@@ -59,7 +59,7 @@ app.get("/", (req, res) => {
     ? req.query.theme
     : calculateSpecialTheme();
 
-  const memoKey = `${theme}:${specialTheme}`;
+  const memoKey = `${theme}:${specialTheme}` as const;
   if (env.nodeEnv !== "development" && renderedMemo[memoKey] != null) {
     res.send(renderedMemo[memoKey]);
   } else {
