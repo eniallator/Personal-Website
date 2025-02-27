@@ -1,3 +1,10 @@
+export const tuple = <const T extends unknown[]>(...tuple: T): T => tuple;
+
+export const positiveMod = (a: number, b: number): number => ((a % b) + b) % b;
+
+export const formatDate = (date: Date) =>
+  date.toISOString().replace(/z.*$/i, "");
+
 export const raise = (err: Error): never => {
   throw err;
 };
@@ -5,6 +12,25 @@ export const raise = (err: Error): never => {
 export const checkExhausted = (value: never): never => {
   throw new Error(`Value not exhausted: ${JSON.stringify(value)}`);
 };
+
+export type Entry<O extends object> = readonly [keyof O, O[keyof O]];
+
+export const typedToEntries = <const O extends object>(obj: O): Entry<O>[] =>
+  Object.entries(obj) as unknown as Entry<O>[];
+
+export const typedFromEntries = <const O extends object>(
+  entries: Entry<O>[]
+): O => Object.fromEntries(entries) as O;
+
+export const mapObject = <const I extends object, const O extends object>(
+  obj: I,
+  mapper: (entry: Entry<I>, index: number, array: Entry<I>[]) => Entry<O>
+): O => typedFromEntries(typedToEntries(obj).map(mapper));
+
+export const iterable = <T>(value: T): Iterable<T> =>
+  (function* () {
+    yield value;
+  })();
 
 export const filterAndMap = <I, O>(
   arr: readonly I[],
@@ -15,46 +41,13 @@ export const filterAndMap = <I, O>(
     return mapped != null ? [...acc, mapped] : acc;
   }, []);
 
-export const iterable = <T>(fn: () => T): Iterable<T> =>
-  (function* () {
-    yield fn();
-  })();
-
 export const findAndMap = <I, O>(
   arr: readonly I[],
   mapper: (val: I, index: number, arr: readonly I[]) => O | null | undefined
 ): O | null => {
   for (let i = 0; i < arr.length; i++) {
-    const output = mapper(arr[i] as I, i, arr);
-
-    if (output != null) {
-      return output;
-    }
+    const mapped = mapper(arr[i] as I, i, arr);
+    if (mapped != null) return mapped;
   }
   return null;
 };
-
-export const formatDate = (date: Date): string =>
-  date
-    .toLocaleString()
-    .replace(
-      /(?<d>\d+)\/(?<m>\d+)\/(?<y>\d+)[^\d]*(?<t>\d+:\d+).*/,
-      "$<y>-$<m>-$<d>T$<t>"
-    );
-
-export const tuple = <const T extends unknown[]>(...tuple: T): T => tuple;
-
-export type Entry<O, K extends keyof O = keyof O> = readonly [K, O[K]];
-
-export const typedToEntries = <O extends object>(obj: O): Entry<O>[] =>
-  Object.entries(obj) as unknown as Entry<O>[];
-
-export const typedFromEntries = <O extends object>(entries: Entry<O>[]): O =>
-  Object.fromEntries(entries) as O;
-
-export const mapObject = <const O extends object, const N extends object>(
-  obj: O,
-  mapper: (entry: Entry<O>) => Entry<N>
-): N => typedFromEntries(typedToEntries(obj).map(mapper));
-
-export const posMod = (a: number, b: number): number => ((a % b) + b) % b;

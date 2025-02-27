@@ -26,10 +26,10 @@ projectsToggle.oninput = () => {
   const firstY = allProjects[0]?.getBoundingClientRect().y;
 
   allProjects.forEach((el) => {
-    if (projectsToggle.checked && firstY !== el.getBoundingClientRect().y) {
-      el.setAttribute("tabindex", "-1");
-    } else {
+    if (projectsToggle.checked || firstY === el.getBoundingClientRect().y) {
       el.removeAttribute("tabindex");
+    } else {
+      el.setAttribute("tabindex", "-1");
     }
   });
 };
