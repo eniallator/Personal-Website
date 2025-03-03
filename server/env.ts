@@ -4,19 +4,15 @@ import { raise } from "./utils.js";
 
 config();
 
+const getEnv = (name: string) => process.env[name];
+const getEnvOrRaise = (name: string) =>
+  getEnv(name) ?? raise(new Error(`${name} environment variable not found`));
+
 export default {
-  port: process.env.PORT,
-  nodeEnv: process.env.NODE_ENV,
-  fullHost:
-    process.env.FULL_HOST ??
-    raise(new Error("FULL_HOST environment variable not found")),
-  sendgridApiKey:
-    process.env.SENDGRID_API_KEY ??
-    raise(new Error("SENDGRID_API_KEY environment variable not found")),
-  emailRecipient:
-    process.env.EMAIL_RECIPIENT ??
-    raise(new Error("EMAIL_RECIPIENT environment variable not found")),
-  emailSender:
-    process.env.EMAIL_SENDER ??
-    raise(new Error("EMAIL_SENDER environment variable not found")),
+  port: getEnv("PORT"),
+  nodeEnv: getEnv("NODE_ENV"),
+  fullHost: getEnvOrRaise("FULL_HOST"),
+  emailSender: getEnvOrRaise("EMAIL_SENDER"),
+  emailRecipient: getEnvOrRaise("EMAIL_RECIPIENT"),
+  sendgridApiKey: getEnvOrRaise("SENDGRID_API_KEY"),
 };

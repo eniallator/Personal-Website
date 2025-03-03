@@ -52,31 +52,32 @@ app.get("/", (req, res) => {
     })
     .catch(console.error as (err: unknown) => void);
 
-  const theme = isObjectOf({ theme: isTheme })(req.cookies)
-    ? req.cookies.theme
-    : DEFAULT_THEME;
-  const specialTheme = isSpecialTheme(req.query.theme)
-    ? req.query.theme
-    : calculateSpecialTheme();
+  const ctx = {
+    theme: isObjectOf({ theme: isTheme })(req.cookies)
+      ? req.cookies.theme
+      : DEFAULT_THEME,
+    specialTheme: isSpecialTheme(req.query.theme)
+      ? req.query.theme
+      : calculateSpecialTheme(),
+    fullHost: env.fullHost,
+    projects,
+    companies,
+  };
 
-  const memoKey = `${theme}:${specialTheme}` as const;
+  const memoKey = `${ctx.theme}:${ctx.specialTheme}` as const;
   if (env.nodeEnv !== "development" && renderedMemo[memoKey] != null) {
     res.send(renderedMemo[memoKey]);
   } else {
     console.log(`Rendering to memo "${memoKey}"`);
-    res.render(
-      "index.ejs",
-      { theme, specialTheme, projects, companies, fullHost: env.fullHost },
-      (err: Error | null, html: string | null) => {
-        if (html != null) {
-          renderedMemo[memoKey] = html;
-          res.send(html);
-        } else {
-          console.error(err ?? "Unknown rendering error");
-          res.status(500).send("Something went wrong rendering this page ...");
-        }
+    res.render("index.ejs", ctx, (err: Error | null, html: string | null) => {
+      if (html != null) {
+        renderedMemo[memoKey] = html;
+        res.send(html);
+      } else {
+        console.error(err ?? "Unknown rendering error");
+        res.status(500).send("Something went wrong rendering this page ...");
       }
-    );
+    });
   }
 });
 

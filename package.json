@@ -1,7 +1,7 @@
 {
   "author": "eniallator",
   "description": "My personal website's source code",
-  "homepage": "https://eniallator.com/",
+  "homepage": "https://cdrn.cc/",
   "license": "MIT",
   "main": "src/index.ts",
   "name": "personal-website",
@@ -37,21 +37,20 @@
     "tsc-files": "^1.1.4"
   },
   "devDependencies": {
-    "@eslint/compat": "^1.2.6",
-    "@eslint/js": "^9.20.0",
+    "@eslint/compat": "^1.2.7",
+    "@eslint/js": "^9.21.0",
     "@types/compression": "1.7.5",
     "@types/cookie-parser": "1.4.8",
-    "@types/eslint__js": "^8.42.3",
     "@types/express": "5.0.0",
-    "@typescript-eslint/eslint-plugin": "^8.24.0",
-    "@typescript-eslint/parser": "^8.24.0",
-    "eslint": "^9.20.1",
-    "eslint-config-prettier": "^10.0.1",
+    "@typescript-eslint/eslint-plugin": "^8.26.0",
+    "@typescript-eslint/parser": "^8.26.0",
+    "eslint": "^9.21.0",
+    "eslint-config-prettier": "^10.0.2",
     "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-prettier": "^5.2.3",
-    "prettier": "^3.5.1",
-    "typescript": "^5.7.3",
-    "typescript-eslint": "^8.24.0"
+    "prettier": "^3.5.3",
+    "typescript": "^5.8.2",
+    "typescript-eslint": "^8.26.0"
   },
   "repository": {
     "type": "git",

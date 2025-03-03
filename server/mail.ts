@@ -13,10 +13,8 @@ const [_, body] = (await sgClient.request({
   method: "GET",
 })) as [unknown, unknown];
 
-if (
-  isObjectOf({ scopes: isArrayOf(isString) })(body) &&
-  body.scopes.includes("mail.send")
-) {
+const hasScopes = isObjectOf({ scopes: isArrayOf(isString) });
+if (hasScopes(body) && body.scopes.includes("mail.send")) {
   console.log("Scopes result", body.scopes);
 } else {
   throw new Error("Invalid scopes");

@@ -13,16 +13,16 @@ export const calculateSpecialTheme = (): SpecialTheme => {
   const nowYear = now.getFullYear();
   const nowTimestamp = now.getTime();
 
-  const closest = typedToEntries(SPECIAL_THEMES)
+  const [closest] = typedToEntries(SPECIAL_THEMES)
     .map(([theme, { month, day }]) => ({
-      theme,
       diff: [-1, 0, 1].reduce((closest, yearOffset) => {
         const date = new Date(nowYear + yearOffset, month, day, 12);
         return Math.min(closest, Math.abs(nowTimestamp - date.getTime()));
       }, Infinity),
+      theme,
     }))
     .filter(({ diff }) => diff < halfMsThemeIsShowing)
-    .sort((a, b) => a.diff - b.diff)[0];
+    .sort((a, b) => a.diff - b.diff);
 
   return closest?.theme ?? "no-theme";
 };
