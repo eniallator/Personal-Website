@@ -2,9 +2,9 @@ import {
   DAYS_SPECIAL_THEME_IS_SHOWING,
   HOUR_IN_MS,
   SPECIAL_THEMES,
-} from "./constants.js";
-import { SpecialTheme } from "./types.js";
-import { typedToEntries } from "./utils.js";
+} from "./constants.ts";
+import { SpecialTheme } from "./types.ts";
+import { typedToEntries } from "./utils.ts";
 
 const halfMsThemeIsShowing = DAYS_SPECIAL_THEME_IS_SHOWING * 12 * HOUR_IN_MS;
 

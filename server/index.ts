@@ -10,12 +10,12 @@ import {
   DEFAULT_THEME,
   HOUR_IN_MS,
   initialProjects,
-} from "./constants.js";
-import env from "./env.js";
-import { trySortProjects } from "./github.js";
-import { sendMail } from "./mail.js";
-import { calculateSpecialTheme } from "./specialTheme.js";
-import { isSpecialTheme, isTheme } from "./types.js";
+} from "./constants.ts";
+import env from "./env.ts";
+import { trySortProjects } from "./github.ts";
+import { sendMail } from "./mail.ts";
+import { calculateSpecialTheme } from "./specialTheme.ts";
+import { isSpecialTheme, isTheme } from "./types.ts";
 
 let projects = (await trySortProjects(initialProjects)) ?? initialProjects;
 let renderedMemo: Record<string, string> = {};

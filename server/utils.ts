@@ -27,11 +27,6 @@ export const mapObject = <const I extends object, const O extends object>(
   mapper: (entry: Entry<I>, index: number, array: Entry<I>[]) => Entry<O>
 ): O => typedFromEntries(typedToEntries(obj).map(mapper));
 
-export const iterable = <T>(value: T): Iterable<T> =>
-  (function* () {
-    yield value;
-  })();
-
 export const filterAndMap = <I, O>(
   arr: readonly I[],
   mapper: (val: I, index: number, arr: readonly I[]) => O | null | undefined

@@ -2,8 +2,8 @@ import sgClient from "@sendgrid/client";
 import sgMail from "@sendgrid/mail";
 import { isArrayOf, isObjectOf, isString } from "deep-guards";
 
-import env from "./env.js";
-import { isValidMail } from "./types.js";
+import env from "./env.ts";
+import { isValidMail } from "./types.ts";
 
 sgMail.setApiKey(env.sendgridApiKey);
 sgClient.setApiKey(env.sendgridApiKey);

@@ -21,9 +21,6 @@ const isDevelopment =
     minify: true,
   })),
 ].forEach(({ entry, ...rest }) => {
-  esbuild.buildSync({
-    entryPoints: [entry],
-    ...rest,
-  });
+  esbuild.buildSync({ entryPoints: [entry], ...rest });
   console.log(`Built ${entry}`);
 });
