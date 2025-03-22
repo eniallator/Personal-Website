@@ -2,9 +2,9 @@ import {
   DAYS_SPECIAL_THEME_IS_SHOWING,
   HOUR_IN_MS,
   SPECIAL_THEMES,
-} from "./constants.ts";
-import { SpecialTheme } from "./types.ts";
-import { typedToEntries } from "./utils.ts";
+} from "./constants.js";
+import { typedToEntries } from "./entries.js";
+import { SpecialTheme } from "./types.js";
 
 const halfMsThemeIsShowing = DAYS_SPECIAL_THEME_IS_SHOWING * 12 * HOUR_IN_MS;
 
@@ -14,9 +14,9 @@ export const calculateSpecialTheme = (): SpecialTheme => {
   const nowTimestamp = now.getTime();
 
   const [closest] = typedToEntries(SPECIAL_THEMES)
-    .map(([theme, { month, day }]) => ({
+    .map(([theme, { month, day, hour = 12 }]) => ({
       diff: [-1, 0, 1].reduce((closest, yearOffset) => {
-        const date = new Date(nowYear + yearOffset, month, day, 12);
+        const date = new Date(nowYear + yearOffset, month, day, hour);
         return Math.min(closest, Math.abs(nowTimestamp - date.getTime()));
       }, Infinity),
       theme,

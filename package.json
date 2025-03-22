@@ -32,25 +32,25 @@
     "deep-guards": "^1.0.5",
     "dotenv": "^16.4.7",
     "ejs": "^3.1.10",
-    "esbuild": "^0.25.0",
+    "esbuild": "^0.25.1",
     "express": "^5.0.1",
     "tsc-files": "^1.1.4"
   },
   "devDependencies": {
     "@eslint/compat": "^1.2.7",
-    "@eslint/js": "^9.21.0",
+    "@eslint/js": "^9.23.0",
     "@types/compression": "1.7.5",
     "@types/cookie-parser": "1.4.8",
-    "@types/express": "5.0.0",
-    "@typescript-eslint/eslint-plugin": "^8.26.0",
-    "@typescript-eslint/parser": "^8.26.0",
-    "eslint": "^9.21.0",
-    "eslint-config-prettier": "^10.0.2",
+    "@types/express": "5.0.1",
+    "@typescript-eslint/eslint-plugin": "^8.27.0",
+    "@typescript-eslint/parser": "^8.27.0",
+    "eslint": "^9.23.0",
+    "eslint-config-prettier": "^10.1.1",
     "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-prettier": "^5.2.3",
     "prettier": "^3.5.3",
     "typescript": "^5.8.2",
-    "typescript-eslint": "^8.26.0"
+    "typescript-eslint": "^8.27.0"
   },
   "repository": {
     "type": "git",

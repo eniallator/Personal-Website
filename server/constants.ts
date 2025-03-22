@@ -7,7 +7,7 @@ import {
   isProject,
   SpecialTheme,
   Theme,
-} from "./types.ts";
+} from "./types.js";
 
 export const HOUR_IN_MS = 3.6e6;
 export const DAYS_SPECIAL_THEME_IS_SHOWING = 7;

@@ -2,23 +2,23 @@ import acceptWebp from "accept-webp";
 import bodyParser from "body-parser";
 import compression from "compression";
 import cookieParser from "cookie-parser";
-import express from "express";
 import { isObjectOf } from "deep-guards";
+import express from "express";
 
 import {
   companies,
   DEFAULT_THEME,
   HOUR_IN_MS,
   initialProjects,
-} from "./constants.ts";
-import env from "./env.ts";
-import { trySortProjects } from "./github.ts";
-import { sendMail } from "./mail.ts";
-import { calculateSpecialTheme } from "./specialTheme.ts";
-import { isSpecialTheme, isTheme } from "./types.ts";
+} from "./constants.js";
+import env from "./env.js";
+import { trySortProjects } from "./project.js";
+import { sendMail } from "./mail.js";
+import { calculateSpecialTheme } from "./specialTheme.js";
+import { isSpecialTheme, isTheme, SpecialTheme, Theme } from "./types.js";
 
 let projects = (await trySortProjects(initialProjects)) ?? initialProjects;
-let renderedMemo: Record<string, string> = {};
+let renderedMemo: Partial<Record<`${Theme}:${SpecialTheme}`, string>> = {};
 
 const app = express();
 
@@ -37,11 +37,12 @@ app.use(express.static("public"));
 app.use((req, res, next) => {
   const theme = req.query["set-theme"];
   if (isTheme(theme)) {
-    res.cookie("theme", theme, { maxAge: HOUR_IN_MS * 24 * 365.25 * 5 });
+    res.cookie("theme", theme, { maxAge: 5 * 365.25 * 24 * HOUR_IN_MS });
   }
   next();
 });
 
+const hasTheme = isObjectOf({ theme: isTheme });
 app.get("/", (req, res) => {
   void trySortProjects(projects)
     .then((sorted) => {
@@ -53,9 +54,7 @@ app.get("/", (req, res) => {
     .catch(console.error as (err: unknown) => void);
 
   const ctx = {
-    theme: isObjectOf({ theme: isTheme })(req.cookies)
-      ? req.cookies.theme
-      : DEFAULT_THEME,
+    theme: hasTheme(req.cookies) ? req.cookies.theme : DEFAULT_THEME,
     specialTheme: isSpecialTheme(req.query.theme)
       ? req.query.theme
       : calculateSpecialTheme(),

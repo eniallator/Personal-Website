@@ -10,6 +10,7 @@ import {
 export interface DayOfYear {
   month: number;
   day: number;
+  hour?: number;
 }
 
 export const isTheme = isOneOf("dark", "light");

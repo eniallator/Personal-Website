@@ -1,6 +1,6 @@
 import { config } from "dotenv";
 
-import { raise } from "./utils.ts";
+import { raise } from "./utils.js";
 
 config();
 
