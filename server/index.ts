@@ -14,12 +14,12 @@ import {
 import { env } from "./env.js";
 import { sendMail } from "./mail.js";
 import { trySortProjects } from "./project.js";
+import { insertSecurityHeaders } from "./securityHeaders.js";
 import { calculateSpecialTheme } from "./specialTheme.js";
 import { isSpecialTheme, isTheme } from "./types.js";
 
 import type { RequestHandler } from "express";
 import type { SpecialTheme, Theme } from "./types.js";
-import { insertSecurityHeaders } from "./securityHeaders.js";
 
 const { fullHost, nodeEnv, port } = env;
 

@@ -1942,10 +1942,10 @@ debug@^4.3.1, debug@^4.3.2, debug@^4.3.4, debug@^4.3.5, debug@^4.4.0:
   dependencies:
     ms "^2.1.3"
 
-deep-guards@^1.0.5:
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/deep-guards/-/deep-guards-1.0.5.tgz#59eb4077bf1918e22ae1aac69f05c20bf12ce226"
-  integrity sha512-TgEFzVulgm5Rk+OvZ/zoO6jfQNUBLxPj8HgB+7EonSyoXa7YPgxgcB6fuqhNQXgLLmSJ9L/40fI62H0xpDmqmA==
+deep-guards@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/deep-guards/-/deep-guards-1.1.0.tgz#da179d44f5e81f0379392c1f91346d2f15a17ea3"
+  integrity sha512-2ImpQQ/mqPC7KVZ9KLlSrbXFoZIOMCpwC/KScv6k5Jwhynqf9uxEQq5cLjSEWKUmbiwtSPqjL90o105AlNycMQ==
 
 deep-is@^0.1.3:
   version "0.1.4"
