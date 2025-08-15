@@ -1,29 +1,22 @@
-import sgClient from "@sendgrid/client";
-import sgMail from "@sendgrid/mail";
-import { isArrayOf, isObjectOf, isString } from "deep-guards";
+import nodemailer from "nodemailer";
 
-import env from "./env.js";
+import { env } from "./env.js";
 import { isValidMail } from "./types.js";
 
-sgMail.setApiKey(env.sendgridApiKey);
-sgClient.setApiKey(env.sendgridApiKey);
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: { user: env.emailSender, pass: env.emailSenderPass },
+});
 
-const [_, body] = (await sgClient.request({
-  url: "/v3/scopes",
-  method: "GET",
-})) as [unknown, unknown];
-
-const hasScopes = isObjectOf({ scopes: isArrayOf(isString) });
-if (hasScopes(body) && body.scopes.includes("mail.send")) {
-  console.log("Scopes result", body.scopes);
-} else {
-  throw new Error("Invalid scopes");
+try {
+  await transporter.verify();
+  console.log("Can send emails!");
+} catch (err) {
+  throw new Error(`Failed email verification ${err}`);
 }
 
 export const sendMail = async (data: unknown) => {
-  if (!isValidMail(data)) {
-    console.log("Received spam:", data);
-  } else {
+  if (isValidMail(data)) {
     const mail = {
       from: env.emailSender,
       to: env.emailRecipient,
@@ -36,11 +29,12 @@ export const sendMail = async (data: unknown) => {
       .join("\n");
 
     try {
-      const [resp] = await sgMail.send(mail);
-      console.log(`Status: ${resp.statusCode}, New email\n${mailStringified}`);
+      const info = await transporter.sendMail(mail);
+      console.log(`Response: ${info.response}, New email\n${mailStringified}`);
     } catch (err) {
-      console.log(`Failed with ${mailStringified}`);
-      console.error(err);
+      console.error(`Failed with ${mailStringified}\n${JSON.stringify(err)}`);
     }
+  } else {
+    console.warn("Received spam:", data);
   }
 };

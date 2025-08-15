@@ -1,7 +1,8 @@
 import { Octokit } from "@octokit/core";
 
 import { GITHUB_PAGE_SIZE, HOUR_IN_MS } from "./constants.js";
-import { Project } from "./types.js";
+
+import type { Project } from "./types.js";
 
 const octokit = new Octokit();
 const sortProjectsInterval = HOUR_IN_MS;

@@ -1,5 +1,5 @@
 declare module "accept-webp" {
-  import { RequestHandler } from "express";
+  import type { RequestHandler } from "express";
 
   function acceptWebp(
     dirName: string,

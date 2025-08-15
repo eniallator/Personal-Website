@@ -1,12 +1,12 @@
 import { getAll, getEl, getId } from "./helpers";
 
-getAll<HTMLDivElement>('[tabindex="0"]').forEach((el) => {
+getAll('[tabindex="0"]').forEach((el) => {
   el.onkeyup = (evt) => {
     if (evt.key === "Enter" && evt.target === el) el.click();
   };
 });
 
-getAll<HTMLElement>("nav ul > li a").forEach((el) => {
+getAll("nav ul > li a").forEach((el) => {
   el.onclick = () => {
     getId<HTMLInputElement>("nav-menu-toggle").checked = false;
   };
@@ -19,8 +19,8 @@ darkThemeEl.onchange = () => {
 
 const projectContainer = getId("project-container");
 const allProjects = getAll<HTMLAnchorElement>(".project", projectContainer);
-
 const projectsToggle = getId<HTMLInputElement>("projects-toggle");
+
 projectsToggle.oninput = () => {
   const firstY = allProjects[0]?.getBoundingClientRect().y;
 
@@ -58,16 +58,16 @@ previewIframe.onload = () => {
 };
 
 allProjects.forEach((el) => {
-  el.onclick = () => {
+  el.onclick = (evt) => {
+    evt.preventDefault();
+
     const github = el.getAttribute("data-github");
+    const thumbnail = getEl<HTMLImageElement>("img.project-thumbnail", el).src;
 
+    previewIframe.src =
+      previewUrl.href = `https://eniallator.github.io/${github}`;
     repoUrl.href = `https://github.com/eniallator/${github}`;
-    previewUrl.href = `https://eniallator.github.io/${github}`;
-    previewIframe.style.background = `url(${
-      getEl<HTMLImageElement>("img.project-thumbnail", el).src
-    }) no-repeat center/100%`;
-
-    previewIframe.src = previewUrl.href;
+    previewIframe.style.background = `url(${thumbnail}) no-repeat center/100%`;
     previewHeading.innerText = getEl("h2", el).innerText;
     previewDialog.showModal();
   };

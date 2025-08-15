@@ -53,12 +53,13 @@ const eyesLoop = () => {
         "
       />`;
   }
+
   requestAnimationFrame(eyesLoop);
 };
 
 let eyesTimeout: NodeJS.Timeout | null = setTimeout(eyesLoop, spawnDelay);
 
-window.onscroll = function () {
+window.onscroll = () => {
   container.innerHTML = "";
   overlay.classList.remove("fadein");
   lastScrolled = Date.now();
@@ -69,5 +70,6 @@ window.onscroll = function () {
     clearTimeout(eyesTimeout);
     eyesTimeout = null;
   }
+
   eyesTimeout = setTimeout(eyesLoop, spawnDelay);
 };

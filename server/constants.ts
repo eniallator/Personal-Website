@@ -1,19 +1,16 @@
 import { guardOrThrow, isArrayOf } from "deep-guards";
-import { readFileSync } from "fs";
 
-import {
-  DayOfYear,
-  isCompany,
-  isProject,
-  SpecialTheme,
-  Theme,
-} from "./types.js";
+import rawCompanies from "../public/companies.json" with { type: "json" };
+import rawProjects from "../public/projects.json" with { type: "json" };
+import { isCompany, isProject } from "./types.js";
+
+import type { DayOfYear, SpecialTheme, Theme } from "./types.js";
 
 export const HOUR_IN_MS = 3.6e6;
 export const DAYS_SPECIAL_THEME_IS_SHOWING = 7;
 export const GITHUB_PAGE_SIZE = 100;
 
-export const DEFAULT_THEME: Theme = "dark";
+export const DEFAULT_THEME = "dark" satisfies Theme;
 export const SPECIAL_THEMES: Record<
   Exclude<SpecialTheme, "no-theme">,
   DayOfYear
@@ -23,13 +20,13 @@ export const SPECIAL_THEMES: Record<
 };
 
 export const companies = guardOrThrow(
-  JSON.parse(readFileSync("public/companies.json").toString()),
+  rawCompanies,
   isArrayOf(isCompany),
   "Invalid company format"
 );
 
 export const initialProjects = guardOrThrow(
-  JSON.parse(readFileSync("public/projects.json").toString()),
+  rawProjects,
   isArrayOf(isProject),
   "Invalid project format"
 );

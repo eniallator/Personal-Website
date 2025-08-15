@@ -11,36 +11,47 @@ import {
   HOUR_IN_MS,
   initialProjects,
 } from "./constants.js";
-import env from "./env.js";
-import { trySortProjects } from "./project.js";
+import { env } from "./env.js";
 import { sendMail } from "./mail.js";
+import { trySortProjects } from "./project.js";
 import { calculateSpecialTheme } from "./specialTheme.js";
-import { isSpecialTheme, isTheme, SpecialTheme, Theme } from "./types.js";
+import { isSpecialTheme, isTheme } from "./types.js";
+
+import type { RequestHandler } from "express";
+import type { SpecialTheme, Theme } from "./types.js";
+import { insertSecurityHeaders } from "./securityHeaders.js";
+
+const { fullHost, nodeEnv, port } = env;
+
+const memoKey = (theme: Theme, specialTheme: SpecialTheme) =>
+  `${theme}:${specialTheme}` as const;
+let renderedMemo: Partial<Record<ReturnType<typeof memoKey>, string>> = {};
 
 let projects = (await trySortProjects(initialProjects)) ?? initialProjects;
-let renderedMemo: Partial<Record<`${Theme}:${SpecialTheme}`, string>> = {};
 
-const app = express();
-
-app.set("view engine", "ejs");
-app.set("views", "./public");
-const port = env.port ?? 3000;
-
-app.use(compression());
-app.use(cookieParser());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-
-app.use(acceptWebp("public"));
-app.use(express.static("public"));
-
-app.use((req, res, next) => {
+const themeToCookie: RequestHandler = (req, res, next) => {
   const theme = req.query["set-theme"];
   if (isTheme(theme)) {
     res.cookie("theme", theme, { maxAge: 5 * 365.25 * 24 * HOUR_IN_MS });
   }
   next();
-});
+};
+
+const app = express();
+
+app.set("view engine", "ejs");
+app.set("views", "./public");
+
+app.use(
+  compression(),
+  cookieParser(),
+  bodyParser.json(),
+  bodyParser.urlencoded({ extended: true }),
+  acceptWebp("public"),
+  express.static("public"),
+  insertSecurityHeaders,
+  themeToCookie
+);
 
 const hasTheme = isObjectOf({ theme: isTheme });
 app.get("/", (req, res) => {
@@ -53,24 +64,20 @@ app.get("/", (req, res) => {
     })
     .catch(console.error as (err: unknown) => void);
 
-  const ctx = {
-    theme: hasTheme(req.cookies) ? req.cookies.theme : DEFAULT_THEME,
-    specialTheme: isSpecialTheme(req.query.theme)
-      ? req.query.theme
-      : calculateSpecialTheme(),
-    fullHost: env.fullHost,
-    projects,
-    companies,
-  };
+  const theme = hasTheme(req.cookies) ? req.cookies.theme : DEFAULT_THEME;
+  const specialTheme = isSpecialTheme(req.query.theme)
+    ? req.query.theme
+    : calculateSpecialTheme();
+  const key = memoKey(theme, specialTheme);
 
-  const memoKey = `${ctx.theme}:${ctx.specialTheme}` as const;
-  if (env.nodeEnv !== "development" && renderedMemo[memoKey] != null) {
-    res.send(renderedMemo[memoKey]);
+  if (nodeEnv !== "development" && renderedMemo[key] != null) {
+    res.send(renderedMemo[key]);
   } else {
-    console.log(`Rendering to memo "${memoKey}"`);
+    console.log(`Rendering to memo "${key}"`);
+    const ctx = { theme, specialTheme, fullHost, projects, companies };
     res.render("index.ejs", ctx, (err: Error | null, html: string | null) => {
       if (html != null) {
-        renderedMemo[memoKey] = html;
+        renderedMemo[key] = html;
         res.send(html);
       } else {
         console.error(err ?? "Unknown rendering error");
@@ -92,5 +99,5 @@ app.get(["/cv/pdf-download", "/resume/pdf-download"], (_req, res) => {
 app.use("/resume", express.static("public/cv"));
 
 app.listen(port, () => {
-  console.log(`Listening on port ${port} in env ${env.nodeEnv}`);
+  console.log(`Listening on port ${port} in env ${nodeEnv}`);
 });
