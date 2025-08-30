@@ -95,6 +95,7 @@
         />
       </a>
       <label
+        aria-label="Toggle nav menu"
         tabindex="0"
         id="nav-burger-menu"
         for="nav-menu-toggle"
@@ -122,6 +123,7 @@
         </li>
       </ul>
       <label
+        aria-label="Set theme to dark"
         tabindex="0"
         for="dark-theme"
         title="Set theme to dark"
@@ -133,6 +135,7 @@
         </svg>
       </label>
       <label
+        aria-label="Set theme to light"
         tabindex="0"
         for="dark-theme"
         title="Set theme to light"
@@ -145,6 +148,7 @@
       </label>
     </div>
     <label
+      aria-label="Set theme to dark"
       tabindex="0"
       for="dark-theme"
       title="Set theme to dark"
@@ -156,6 +160,7 @@
       </svg>
     </label>
     <label
+      aria-label="Set theme to light"
       tabindex="0"
       for="dark-theme"
       title="Set theme to light"
@@ -189,10 +194,7 @@
       id="about"
       class="container"
     >
-      <h1
-        class="theme-font section-heading"
-        title="About me"
-      >
+      <h1 class="theme-font section-heading">
         About
       </h1>
       <p>
@@ -271,10 +273,7 @@
       </div>
     </section>
     <section id="projects">
-      <h1
-        class="theme-font section-heading"
-        title="Projects"
-      >
+      <h1 class="theme-font section-heading">
         Projects
       </h1>
       <input
@@ -317,6 +316,7 @@
         </p>
         <div class="projects-toggle-button">
           <label
+            aria-label="Toggle more projects"
             tabindex="0"
             for="projects-toggle"
             class="secondary button"
@@ -397,15 +397,13 @@
       id="contact"
       class="container"
     >
-      <h1
-        class="theme-font section-heading"
-        title="Contact me"
-      >
+      <h1 class="theme-font section-heading">
         Contact
       </h1>
       <div class="contact-links">
         <a
-          title="Github"
+          aria-label="My Github"
+          title="My Github"
           href="https://github.com/eniallator"
           target="_blank"
           rel="noreferrer"
@@ -418,7 +416,8 @@
           </svg>
         </a>
         <a
-          title="LinkedIn"
+          aria-label="My LinkedIn"
+          title="My LinkedIn"
           href="https://www.linkedin.com/in/niall-coleman-clarke/"
           target="_blank"
           rel="noreferrer"
@@ -438,11 +437,12 @@
         autocomplete="off"
       >
         <!-- Honey Pots -->
-        <fieldset class="ignore">
+        <div class="ignore">
           <input
             type="text"
             name="phone"
             placeholder="Phone"
+            aria-label="Phone"
             autocomplete="off"
             tabindex="-1"
           />
@@ -450,6 +450,7 @@
             type="text"
             name="city"
             placeholder="City"
+            aria-label="City"
             autocomplete="off"
             tabindex="-1"
           />
@@ -457,6 +458,7 @@
             type="text"
             name="address"
             placeholder="Address"
+            aria-label="Address"
             autocomplete="off"
             tabindex="-1"
           />
@@ -464,6 +466,7 @@
             type="text"
             name="country"
             placeholder="Country"
+            aria-label="Country"
             autocomplete="off"
             tabindex="-1"
           />
@@ -471,16 +474,18 @@
             type="text"
             name="zip code"
             placeholder="Zip Code"
+            aria-label="Zip Code"
             autocomplete="off"
             tabindex="-1"
           />
-        </fieldset>
+        </div>
         <!-- Form Content -->
-        <fieldset class="fields">
+        <div class="fields">
           <input
             type="text"
             name="name"
             placeholder="Name"
+            aria-label="Name"
             autocomplete="name"
             required
           />
@@ -488,6 +493,7 @@
             type="email"
             name="email"
             placeholder="Email"
+            aria-label="Email"
             autocomplete="email"
             pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"
             required
@@ -495,11 +501,12 @@
           <textarea
             name="message"
             placeholder="Message"
+            aria-label="Message"
             rows="4"
             required
           ></textarea>
           <button class="button secondary">Submit</button>
-        </fieldset>
+        </div>
       </form>
     </section>
   </main>
