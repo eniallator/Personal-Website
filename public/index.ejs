@@ -47,7 +47,7 @@
   <title>Niall's Personal Site</title>
   <link
     rel="preload"
-    href="/static/google-fonts/notosans/NotoSans.woff"
+    href="/static/google-fonts/notosans/NotoSans.woff2"
     as="font"
     type="font/woff2"
     crossorigin
@@ -206,7 +206,7 @@
         <div id="about-panel-companies">
           <p>I delivered projects for these companies</p>
           <div id="companies">
-            <% for (let company of companies) { %>
+            <% for (const company of companies) { %>
             <a
               class="company"
               target="_blank"
@@ -282,7 +282,7 @@
         type="checkbox"
       />
       <div id="project-container">
-        <% for (let project of projects) { %>
+        <% for (const project of projects) { %>
         <figure>
           <a
             href="https://github.com/eniallator/<%= project.github %>"
@@ -346,7 +346,10 @@
         <form method="dialog">
           <div class="header">
             <h3>Enable javascript to see the preview</h3>
-            <button class="button close-button">
+            <button
+              class="button close-button"
+              aria-label="Close project preview"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 384 512"
