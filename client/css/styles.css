@@ -61,27 +61,61 @@
 /* CONSTANTS */
 
 :root {
-  --primary-button: #0466c8;
-  --primary-button-hover: #0353a4;
+  --color-50: oklch(0.985 0 0);
+  --color-100: oklch(0.97 0 0);
+  --color-200: oklch(0.922 0 0);
+  --color-300: oklch(0.87 0 0);
+  --color-400: oklch(0.708 0 0);
+  --color-500: oklch(0.556 0 0);
+  --color-600: oklch(0.439 0 0);
+  --color-700: oklch(0.371 0 0);
+  --color-800: oklch(0.269 0 0);
+  --color-900: oklch(0.205 0 0);
+  --color-950: oklch(0.145 0 0);
 
-  --secondary-button: #6c757d;
-  --secondary-button-hover: #5a6268;
+  --primary-btn-color: #0466c8;
+  --primary-btn-hover-color: #0353a4;
 
-  --grey-900: #111111;
-  --grey-850: #222222;
-  --grey-800: #333333;
-  --grey-750: #444444;
-  --grey-700: #555555;
-  --grey-650: #666666;
-  --grey-600: #777777;
-  --grey-550: #888888;
-  --grey-500: #999999;
-  --grey-400: #a7a7a7;
-  --grey-300: #b4b4b4;
-  --grey-200: #c0c0c0;
-  --grey-100: #cdcdcd;
-  --grey-50: #dadada;
-  --grey-10: #f8f9fa;
+  --secondary-btn-color: var(--color-500);
+  --secondary-btn-hover-color: var(--color-600);
+}
+
+:root:has(#dark-theme:checked) {
+  --bg-primary-color: var(--color-700);
+  --bg-secondary-color: var(--color-800);
+  --border-color: var(--color-500);
+  --big-btn-color: var(--color-600);
+  --big-btn-hover-color: var(--color-700);
+  --card-color: var(--color-700);
+  --card-hover-color: var(--color-600);
+  --img-filter-color: rgba(0, 0, 0, 0.5);
+  --link-color: #5fafff;
+  --nav-bg-color: var(--color-900);
+  --outline-color: var(--color-200);
+  --pill-bg-color: var(--color-50);
+  --scrollbar-color: var(--color-600);
+  --text-color: var(--color-50);
+  --text-disabled-color: var(--color-400);
+  --text-hover-color: var(--color-300);
+}
+
+:root:has(#dark-theme:not(:checked)) {
+  --bg-primary-color: white;
+  --bg-secondary-color: var(--color-100);
+  --border-color: var(--color-400);
+  --big-btn-color: var(--color-400);
+  --big-btn-hover-color: var(--color-300);
+  --card-color: var(--color-100);
+  --card-hover-color: var(--color-200);
+  --img-filter-color: rgba(255, 255, 255, 0.6);
+  --link-color: #0353a4;
+  --nav-bg-color: var(--color-300);
+  --outline-color: var(--color-600);
+  --pill-bg-color: white;
+  --scrollbar-color: var(--color-400);
+  --text-color: var(--color-800);
+  --text-disabled-color: var(--color-500);
+  --text-hover-color: var(--color-600);
 }
 
 /* GLOBAL STYLES */
@@ -98,6 +132,10 @@ body {
   text-wrap: pretty;
   scroll-behavior: smooth;
   height: fit-content;
+  background-color: var(--bg-primary-color);
+  color: var(--text-color);
+  fill: var(--text-color);
+  scrollbar-color: var(--scrollbar-color) var(--bg-secondary-color);
 }
 
 body:has(dialog[open]) {
@@ -112,6 +150,14 @@ h5,
 h6 {
   line-height: 1;
   text-wrap: balance;
+}
+
+*:focus-visible {
+  outline: var(--outline-color) solid 2px;
+}
+
+a {
+  color: var(--link-color);
 }
 
 .container {
@@ -169,6 +215,7 @@ nav {
   padding: 0 2rem 0 4rem;
   display: flex;
   flex-direction: row;
+  background-color: var(--nav-bg-color);
 }
 
 .nav-container {
@@ -218,6 +265,11 @@ nav ul > li {
     font-weight: bold;
     font-size: x-large;
     text-decoration: none;
+    color: var(--text-color);
+  }
+
+  & a:hover {
+    color: var(--text-hover-color);
   }
 }
 
@@ -325,6 +377,12 @@ header {
   background-position: 50% 0;
   background-size: cover;
   position: relative;
+  color: var(--text-color);
+  fill: var(--text-color);
+}
+
+.background-filter {
+  background-color: var(--img-filter-color);
 }
 
 .background-filter,
@@ -374,6 +432,7 @@ header p {
   justify-content: center;
   gap: 0.25rem;
   border-radius: 0.5rem;
+  background-color: var(--bg-secondary-color);
 }
 
 .company {
@@ -381,6 +440,7 @@ header p {
   border: 1px solid rgba(0, 0, 0, 0.125);
   border-radius: 0.5em;
   height: 40px;
+  background-color: var(--pill-bg-color);
 }
 
 @media (min-width: 930px) {
@@ -402,6 +462,7 @@ header p {
     justify-content: center;
     align-items: flex-start;
     row-gap: 1rem;
+    border-right: 1px solid var(--border-color);
   }
 }
 
@@ -447,20 +508,24 @@ header p {
 }
 
 .button.primary {
-  background-color: var(--primary-button);
+  background-color: var(--primary-btn-color);
 }
 .button.primary:hover {
-  background-color: var(--primary-button-hover);
+  background-color: var(--primary-btn-hover-color);
 }
 
 .button.secondary {
-  background-color: var(--grey-650);
+  background-color: var(--secondary-btn-color);
 }
 .button.secondary:hover {
-  background-color: var(--grey-700);
+  background-color: var(--secondary-btn-hover-color);
 }
 
 /* PROJECTS STYLES */
+
+#projects {
+  background-color: var(--bg-secondary-color);
+}
 
 #project-container {
   margin: 1rem auto 0;
@@ -512,8 +577,14 @@ header p {
   height: 100%;
   text-align: inherit;
   border-radius: inherit;
-  color: inherit;
   text-decoration: none;
+  color: var(--text-color);
+  background-color: var(--card-color);
+  border: 1px solid var(--border-color);
+}
+
+.project:hover {
+  background-color: var(--card-hover-color);
 }
 
 .project-thumbnail {
@@ -569,10 +640,16 @@ header p {
   display: flex;
   justify-content: center;
   cursor: pointer;
+  background-color: var(--big-btn-color) !important;
 }
+.projects-toggle-button label:hover {
+  background-color: var(--big-btn-hover-color) !important;
+}
+
 .projects-toggle-button span.projects-showing {
   margin-left: 0;
 }
+
 .projects-toggle-button svg {
   display: block;
 }
@@ -611,6 +688,8 @@ header p {
   row-gap: 0.5rem;
   padding: 0.5rem 1.5rem;
   max-height: 90vh;
+  background-color: var(--bg-secondary-color);
+  color: var(--text-color);
 }
 
 #project-preview .header {
@@ -630,6 +709,8 @@ header p {
   padding: 0.25rem;
   fill: black;
   cursor: pointer;
+  background-color: var(--bg-primary-color);
+  outline: 3px solid var(--border-color);
 }
 #project-preview .close-button svg {
   padding: 0 3px;
@@ -643,6 +724,7 @@ header p {
   width: 100%;
   min-height: 40vh;
   aspect-ratio: 16 / 9;
+  border: 1px solid var(--border-color);
 }
 
 @media (max-width: 300px) {
@@ -657,6 +739,7 @@ header p {
   padding-top: 1rem;
   display: flex;
   justify-content: center;
+  border-top: 1px solid var(--border-color);
 }
 .contact-links a {
   display: inline-block;
@@ -696,6 +779,29 @@ header p {
 }
 
 #contact form input,
+#contact form textarea {
+  background-color: var(--bg-primary-color);
+  border: 1px solid var(--border-color);
+  color: var(--text-color);
+}
+
+#contact form input::placeholder,
+#contact form textarea::placeholder {
+  color: var(--text-disabled-color);
+}
+
+#contact form input::-ms-input-placeholder,
+#contact form textarea::-ms-input-placeholder {
+  color: var(--text-disabled-color);
+}
+
+#contact form input:focus-visible,
+#contact form textarea:focus-visible {
+  border: 1px solid var(--border-color);
+  outline: var(--border-color) solid 2px;
+}
+
+#contact form input,
 #contact form button,
 #contact form textarea {
   font-size: large;
@@ -712,232 +818,4 @@ header p {
 
 textarea {
   resize: none !important;
-}
-
-/* DARK THEME */
-
-html:has(#dark-theme:checked),
-body:has(#dark-theme:checked),
-#dark-theme:checked ~ main {
-  background-color: var(--grey-750);
-  color: var(--grey-10);
-  fill: var(--grey-10);
-  scrollbar-color: var(--grey-650) var(--grey-800);
-}
-
-#dark-theme:checked {
-  ~ * *:focus-visible {
-    outline: var(--grey-200) solid 2px;
-  }
-
-  ~ * a {
-    color: #5fafff;
-  }
-
-  ~ * .button {
-    color: var(--grey-10);
-  }
-
-  ~ nav {
-    background-color: var(--grey-850);
-  }
-
-  ~ nav ul > li {
-    & a {
-      color: var(--grey-10);
-    }
-
-    & a:hover {
-      color: var(--grey-100);
-    }
-  }
-
-  ~ header {
-    color: var(--grey-10);
-    fill: var(--grey-10);
-  }
-
-  ~ header .background-filter {
-    background-color: rgba(0, 0, 0, 0.5);
-  }
-}
-
-#dark-theme:checked ~ main {
-  #companies {
-    background-color: var(--grey-800);
-  }
-
-  .company {
-    background-color: var(--grey-50);
-  }
-
-  @media (min-width: 930px) {
-    #about-panel-text {
-      border-right: 1px solid var(--grey-500);
-    }
-  }
-
-  #projects {
-    background-color: var(--grey-800);
-  }
-
-  .project {
-    color: var(--grey-10);
-    background-color: var(--grey-750);
-    border: 1px solid var(--grey-500);
-  }
-  .project:hover {
-    background-color: var(--grey-700);
-  }
-
-  .projects-toggle-button label {
-    background-color: var(--grey-650) !important;
-  }
-  .projects-toggle-button label:hover {
-    background-color: var(--grey-700) !important;
-  }
-
-  #project-preview form {
-    background-color: var(--grey-800);
-    color: var(--grey-10);
-  }
-
-  #project-preview .close-button {
-    background-color: var(--grey-750);
-    outline: 3px solid var(--grey-500);
-  }
-
-  #project-preview iframe {
-    border: 1px solid var(--grey-500);
-  }
-
-  .contact-links {
-    border-top: 1px solid var(--grey-500);
-  }
-
-  #contact form input,
-  #contact form textarea {
-    background-color: var(--grey-750);
-    border: 1px solid var(--grey-500);
-    color: white;
-  }
-
-  #contact form input::placeholder,
-  #contact form textarea::placeholder {
-    color: var(--grey-300);
-  }
-
-  #contact form input::-ms-input-placeholder,
-  #contact form textarea::-ms-input-placeholder {
-    color: var(--grey-300);
-  }
-
-  #contact form input:focus-visible,
-  #contact form textarea:focus-visible {
-    border: 1px solid var(--grey-400);
-    outline: var(--grey-400) solid 2px;
-  }
-}
-
-/* LIGHT THEME */
-
-html:has(#dark-theme:not(:checked)),
-body:has(#dark-theme:not(:checked)),
-#dark-theme:not(:checked) ~ main {
-  background-color: white;
-  color: var(--grey-800);
-  fill: var(--grey-800);
-  scrollbar-color: var(--grey-100) var(--grey-10);
-}
-
-#dark-theme:not(:checked) {
-  ~ * *:focus-visible {
-    outline: var(--grey-600) solid 2px;
-  }
-
-  ~ * a {
-    color: #0353a4;
-  }
-
-  ~ * .button {
-    color: white;
-  }
-
-  ~ nav {
-    background-color: var(--grey-100);
-  }
-
-  ~ nav ul > li {
-    & a {
-      color: var(--grey-800);
-    }
-
-    & a:hover {
-      color: var(--grey-900);
-    }
-  }
-
-  ~ header .background-filter {
-    background-color: rgba(255, 255, 255, 0.6);
-  }
-}
-
-#dark-theme:not(:checked) ~ main {
-  #companies {
-    background-color: var(--grey-10);
-  }
-
-  .company {
-    background-color: white;
-  }
-
-  @media (min-width: 930px) {
-    #about-panel-text {
-      border-right: 1px solid var(--grey-50);
-    }
-  }
-
-  #projects {
-    background-color: var(--grey-10);
-  }
-
-  .project {
-    color: var(--grey-800);
-    background-color: white;
-    border: 1px solid var(--grey-50);
-  }
-  .project:hover {
-    background-color: var(--grey-10);
-  }
-
-  .projects-toggle-button label {
-    background-color: var(--grey-100) !important;
-  }
-  .projects-toggle-button label:hover {
-    background-color: var(--grey-200) !important;
-  }
-
-  #project-preview .close-button {
-    outline: 3px solid var(--grey-100);
-    background-color: white;
-  }
-
-  #project-preview iframe {
-    border: 1px solid var(--grey-50);
-  }
-
-  .contact-links {
-    border-top: 1px solid var(--grey-50);
-  }
-
-  #contact form input,
-  #contact form textarea {
-    border: 1px solid var(--grey-50);
-  }
-
-  #contact form input:focus-visible,
-  #contact form textarea:focus-visible {
-    border: 1px solid var(--grey-200);
-    outline: var(--grey-200) solid 2px;
-  }
 }
