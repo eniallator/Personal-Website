@@ -47,20 +47,66 @@
   <title>Niall's Personal Site</title>
   <link
     rel="preload"
+    href="/static/css/styles.min.css"
+    as="style"
+  />
+  <% if (specialTheme !== "no-theme") { %>
+  <link
+    rel="preload"
+    href="/static/css/themes/<%= specialTheme %>.css"
+    as="style"
+  />
+  <% } %>
+  <link
+    rel="preload"
+    href="/static/js/bundle.js"
+    as="script"
+  />
+  <% if (specialTheme !== "no-theme") { %>
+  <link
+    rel="preload"
+    href="/static/js/themes/<%= specialTheme %>.bundle.js"
+    as="script"
+  />
+  <% } %>
+  <link
+    rel="preload"
     href="/static/google-fonts/notosans/NotoSans.woff2"
     as="font"
     type="font/woff2"
     crossorigin
   >
   <link
-    rel="stylesheet"
-    href="/static/css/styles.min.css"
+    rel="preload"
+    fetchpriority="high"
+    as="image"
+    href="/static/images/avatar.jpg"
   />
   <link
     rel="preload"
     fetchpriority="high"
     as="image"
     href="/static/images/foggy-trees.jpg"
+  />
+  <% for (const company of companies) { %>
+  <link
+    rel="preload"
+    fetchpriority="high"
+    as="image"
+    href="<%= company.img %>"
+  />
+  <% } %>
+  <% for (const project of projects) { %>
+  <link
+    rel="preload"
+    as="image"
+    href="<%= project.img %>"
+  />
+  <% } %>
+
+  <link
+    rel="stylesheet"
+    href="/static/css/styles.min.css"
   />
   <% if (specialTheme !== "no-theme") { %>
   <link
@@ -366,7 +412,7 @@
           <div class="button-group">
             <a
               class="button primary js-preview"
-              href="javascript:void(0)"
+              href="/"
               target="_blank"
               rel="noreferrer"
             >
@@ -381,7 +427,7 @@
             </a>
             <a
               class="button secondary js-repository"
-              href="javascript:void(0)"
+              href="/"
               target="_blank"
               rel="noreferrer"
             >
