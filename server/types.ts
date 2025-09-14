@@ -50,3 +50,11 @@ export const isValidMail = isObjectOf(
   },
   true
 );
+
+export interface RenderContext {
+  theme: Theme;
+  specialTheme: SpecialTheme;
+  fullHost: string;
+  projects: Project[];
+  companies: Company[];
+}

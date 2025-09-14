@@ -14,20 +14,18 @@ import {
 import { env } from "./env.js";
 import { sendMail } from "./mail.js";
 import { trySortProjects } from "./project.js";
+import { RenderMemo } from "./renderMemo.js";
 import { insertSecurityHeaders } from "./securityHeaders.js";
 import { calculateSpecialTheme } from "./specialTheme.js";
 import { isSpecialTheme, isTheme } from "./types.js";
 
 import type { RequestHandler } from "express";
-import type { SpecialTheme, Theme } from "./types.js";
+import type { RenderContext } from "./types.js";
 
 const { fullHost, nodeEnv, port } = env;
 
-const memoKey = (theme: Theme, specialTheme: SpecialTheme) =>
-  `${theme}:${specialTheme}` as const;
-let renderedMemo: Partial<Record<ReturnType<typeof memoKey>, string>> = {};
-
 let projects = (await trySortProjects(initialProjects)) ?? initialProjects;
+const isDevelopment = nodeEnv === "development";
 
 const themeToCookie: RequestHandler = (req, res, next) => {
   const theme = req.query["set-theme"];
@@ -38,6 +36,11 @@ const themeToCookie: RequestHandler = (req, res, next) => {
 };
 
 const app = express();
+
+const renderMemo = new RenderMemo<RenderContext>(
+  app,
+  ({ theme, specialTheme }) => `${theme}:${specialTheme}`
+);
 
 app.set("view engine", "ejs");
 app.set("views", "./public");
@@ -54,11 +57,11 @@ app.use(
 );
 
 const hasTheme = isObjectOf({ theme: isTheme });
-app.get("/", (req, res) => {
+app.get("/", async (req, res) => {
   void trySortProjects(projects)
     .then((sorted) => {
       if (sorted != null) {
-        renderedMemo = {};
+        renderMemo.clear();
         projects = sorted;
       }
     })
@@ -68,22 +71,13 @@ app.get("/", (req, res) => {
   const specialTheme = isSpecialTheme(req.query.theme)
     ? req.query.theme
     : calculateSpecialTheme();
-  const key = memoKey(theme, specialTheme);
+  const ctx = { theme, specialTheme, fullHost, projects, companies };
 
-  if (nodeEnv !== "development" && renderedMemo[key] != null) {
-    res.send(renderedMemo[key]);
-  } else {
-    console.log(`Rendering to memo "${key}"`);
-    const ctx = { theme, specialTheme, fullHost, projects, companies };
-    res.render("index.ejs", ctx, (err: Error | null, html: string | null) => {
-      if (html != null) {
-        renderedMemo[key] = html;
-        res.send(html);
-      } else {
-        console.error(err ?? "Unknown rendering error");
-        res.status(500).send("Something went wrong rendering this page ...");
-      }
-    });
+  try {
+    res.send(await renderMemo.render("index.ejs", ctx, isDevelopment));
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Something went wrong rendering this page ...");
   }
 });
 
