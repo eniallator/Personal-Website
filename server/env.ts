@@ -2,7 +2,7 @@ import { config } from "dotenv";
 
 import { raise } from "./utils.js";
 
-config();
+config({ quiet: true });
 
 const getEnv = (name: string) => process.env[name];
 const getEnvOrRaise = (name: string) =>
