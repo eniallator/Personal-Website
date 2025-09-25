@@ -6,7 +6,7 @@
 
 # Want to help us make this template better? Share your feedback here: https://forms.gle/ybq9Krt8jtBL3iCk7
 
-ARG NODE_VERSION=22.14.0
+ARG NODE_VERSION=24.8.0
 
 ################################################################################
 # Use node image for base image for all stages.
@@ -20,6 +20,8 @@ WORKDIR /usr/src/app
 # Create a stage for installing production dependencies.
 FROM base AS deps
 
+RUN corepack enable
+
 # Download dependencies as a separate step to take advantage of Docker's caching.
 # Leverage a cache mount to /root/.yarn to speed up subsequent builds.
 # Leverage bind mounts to package.json and yarn.lock to avoid having to copy them
@@ -27,7 +29,7 @@ FROM base AS deps
 RUN --mount=type=bind,source=package.json,target=package.json \
     --mount=type=bind,source=yarn.lock,target=yarn.lock \
     --mount=type=cache,target=/root/.yarn \
-    yarn install --production --frozen-lockfile
+    yarn workspaces focus
 
 ################################################################################
 # Create a stage for building the application.
@@ -38,7 +40,7 @@ FROM deps AS build
 RUN --mount=type=bind,source=package.json,target=package.json \
     --mount=type=bind,source=yarn.lock,target=yarn.lock \
     --mount=type=cache,target=/root/.yarn \
-    yarn install --frozen-lockfile
+    yarn install --immutable
 
 # Copy the rest of the source files into the image.
 COPY . .

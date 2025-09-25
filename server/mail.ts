@@ -8,15 +8,30 @@ const transporter = nodemailer.createTransport({
   auth: { user: env.emailSender, pass: env.emailSenderPass },
 });
 
-try {
-  await transporter.verify();
-  console.log("Can send emails!");
-} catch (err) {
-  throw new Error(`Failed email verification ${err}`);
-}
+const checkVerification = async (): Promise<Error | null> => {
+  try {
+    await transporter.verify();
+    return null;
+  } catch (err) {
+    return err as Error;
+  }
+};
+
+setInterval(() => {
+  void checkVerification().then((err) => {
+    if (err != null) {
+      console.warn("Verification down", err);
+    }
+  });
+}, 5 * 6e4);
 
 export const sendMail = async (data: unknown) => {
-  if (isValidMail(data)) {
+  const verificationErr = await checkVerification();
+  if (!isValidMail(data)) {
+    console.warn("Received spam:", data);
+  } else if (verificationErr != null) {
+    console.warn("Failed email verification!", verificationErr, "with", data);
+  } else {
     const mail = {
       from: env.emailSender,
       to: env.emailRecipient,
@@ -34,7 +49,5 @@ export const sendMail = async (data: unknown) => {
     } catch (err) {
       console.error(`Failed with ${mailStringified}\n${JSON.stringify(err)}`);
     }
-  } else {
-    console.warn("Received spam:", data);
   }
 };
