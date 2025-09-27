@@ -12,10 +12,10 @@ services:
     build:
       context: .
     environment:
+      NODE_ENV: ${NODE_ENV}
+      FULL_HOST: ${FULL_HOST}
       EMAIL_SENDER: ${EMAIL_SENDER}
       EMAIL_SENDER_PASS: ${EMAIL_SENDER_PASS}
       EMAIL_RECIPIENT: ${EMAIL_RECIPIENT}
-      NODE_ENV: ${NODE_ENV}
-      FULL_HOST: ${FULL_HOST}
     ports:
-      - 3000:3000
+      - 80:3000
