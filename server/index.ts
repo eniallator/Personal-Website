@@ -4,6 +4,8 @@ import compression from "compression";
 import cookieParser from "cookie-parser";
 import { isObjectOf } from "deep-guards";
 import express from "express";
+import { readFileSync } from "fs";
+import https from "https";
 
 import {
   companies,
@@ -13,6 +15,7 @@ import {
 } from "./constants.js";
 import { env } from "./env.js";
 import { sendMail } from "./mail.js";
+import { Option } from "./option.js";
 import { trySortProjects } from "./project.js";
 import { RenderMemo } from "./renderMemo.js";
 import { insertSecurityHeaders } from "./securityHeaders.js";
@@ -92,6 +95,13 @@ app.get(["/cv/pdf-download", "/resume/pdf-download"], (_req, res) => {
 
 app.use("/resume", express.static("public/cv"));
 
-app.listen(port, () => {
+const server = Option.tupled([
+  Option.from(env.sslFullChain).map(readFileSync),
+  Option.from(env.sslPrivateKey).map(readFileSync),
+])
+  .map(([cert, key]) => https.createServer({ cert, key }, app))
+  .getOrElse(() => app);
+
+server.listen(port, () => {
   console.log(`Listening on port ${port} in env ${nodeEnv}`);
 });
