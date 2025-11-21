@@ -4,8 +4,8 @@ import compression from "compression";
 import cookieParser from "cookie-parser";
 import { isObjectOf } from "deep-guards";
 import express from "express";
-import { readFileSync } from "fs";
-import https from "https";
+import { readFileSync } from "node:fs";
+import http2 from "node:http2";
 
 import {
   companies,
@@ -99,7 +99,12 @@ const server = Option.tupled([
   Option.from(env.sslFullChain).map(readFileSync),
   Option.from(env.sslPrivateKey).map(readFileSync),
 ])
-  .map(([cert, key]) => https.createServer({ cert, key }, app))
+  .map(([cert, key]) =>
+    http2.createSecureServer(
+      { cert, key, allowHTTP1: true },
+      app as unknown as Parameters<typeof http2.createSecureServer>[1]
+    )
+  )
   .getOrElse(() => app);
 
 server.listen(port, () => {
