@@ -4,8 +4,8 @@ import compression from "compression";
 import cookieParser from "cookie-parser";
 import { isObjectOf } from "deep-guards";
 import express from "express";
-import { readFileSync } from "fs";
-import https from "https";
+import { readFileSync } from "node:fs";
+import https from "node:https";
 
 import {
   companies,

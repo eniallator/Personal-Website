@@ -30,6 +30,7 @@ export default tslint.config(
       "@stylistic/indent": "off",
       "@stylistic/generator-star-spacing": "off",
       "@stylistic/quotes": "off",
+      "@stylistic/quote-props": "off",
       "@stylistic/operator-linebreak": "off",
 
       // CORE

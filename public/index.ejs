@@ -1,183 +1,185 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-  <meta charset="UTF-8" />
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  />
-  <meta
-    name="description"
-    content="Niall's personal website: About | Projects | Contact"
-  />
-  <meta
-    name="theme-color"
-    content="#808080"
-  />
-  <meta
-    property="og:title"
-    content="Niall's Personal Site"
-  />
-  <meta
-    property="og:type"
-    content="website"
-  />
-  <meta
-    property="og:url"
-    content="<%= fullHost %>"
-  />
-  <meta
-    property="og:image"
-    content="<%= fullHost %>/static/images/avatar.jpg"
-  />
-  <meta
-    property="og:description"
-    content="Niall's personal website: About | Projects | Contact"
-  />
-  <meta
-    name="twitter:card"
-    content="<%= fullHost %>/static/images/avatar.jpg"
-  />
-  <meta
-    http-equiv="X-UA-Compatible"
-    content="ie=edge"
-  />
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Niall's personal website: About | Projects | Contact" />
+    <meta
+      name="theme-color"
+      content="#808080" />
+    <meta
+      property="og:title"
+      content="Niall's Personal Site" />
+    <meta
+      property="og:type"
+      content="website" />
+    <meta
+      property="og:url"
+      content="<%= fullHost %>" />
+    <meta
+      property="og:image"
+      content="<%= fullHost %>/static/images/avatar.jpg" />
+    <meta
+      property="og:description"
+      content="Niall's personal website: About | Projects | Contact" />
+    <meta
+      name="twitter:card"
+      content="<%= fullHost %>/static/images/avatar.jpg" />
+    <meta
+      http-equiv="X-UA-Compatible"
+      content="ie=edge" />
 
-  <title>Niall's Personal Site</title>
-  <link
-    rel="preload"
-    href="/static/css/styles.min.css"
-    as="style"
-  />
-  <% if (specialTheme !== "no-theme") { %>
-  <link
-    rel="preload"
-    href="/static/css/themes/<%= specialTheme %>.css"
-    as="style"
-  />
-  <% } %>
-  <link
-    rel="preload"
-    href="/static/js/bundle.js"
-    as="script"
-  />
-  <% if (specialTheme !== "no-theme") { %>
-  <link
-    rel="preload"
-    href="/static/js/themes/<%= specialTheme %>.bundle.js"
-    as="script"
-  />
-  <% } %>
-  <link
-    rel="preload"
-    href="/static/google-fonts/notosans/NotoSans.woff2"
-    as="font"
-    type="font/woff2"
-    crossorigin
-  >
-  <link
-    rel="preload"
-    fetchpriority="high"
-    as="image"
-    href="/static/images/avatar.jpg"
-  />
-  <link
-    rel="preload"
-    fetchpriority="high"
-    as="image"
-    href="/static/images/foggy-trees.jpg"
-  />
-  <% for (const company of companies) { %>
-  <link
-    rel="preload"
-    fetchpriority="high"
-    as="image"
-    href="<%= company.img %>"
-  />
-  <% } %>
-  <% for (const project of projects) { %>
-  <link
-    rel="preload"
-    as="image"
-    href="<%= project.img %>"
-  />
-  <% } %>
+    <title>Niall's Personal Site</title>
+    <link
+      rel="preload"
+      href="/static/css/styles.min.css"
+      as="style" />
+    <% if (specialTheme !== "no-theme") { %>
+    <link
+      rel="preload"
+      href="/static/css/<%= specialTheme %>.min.css"
+      as="style" />
+    <% } %>
+    <link
+      rel="preload"
+      href="/static/js/bundle.js"
+      as="script" />
+    <% if (specialTheme !== "no-theme") { %>
+    <link
+      rel="preload"
+      href="/static/js/themes/<%= specialTheme %>.bundle.js"
+      as="script" />
+    <% } %>
+    <link
+      rel="preload"
+      href="/static/fonts/notosans/NotoSans.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin>
+    <link
+      rel="preload"
+      fetchpriority="high"
+      as="image"
+      href="/static/images/avatar.jpg" />
+    <link
+      rel="preload"
+      fetchpriority="high"
+      as="image"
+      href="/static/images/foggy-trees.jpg" />
+    <% for (const company of companies) { %>
+    <link
+      rel="preload"
+      fetchpriority="high"
+      as="image"
+      href="<%= company.img %>" />
+    <% } %>
+    <% for (const project of projects) { %>
+    <link
+      rel="preload"
+      as="image"
+      href="<%= project.img %>" />
+    <% } %>
 
-  <link
-    rel="stylesheet"
-    href="/static/css/styles.min.css"
-  />
-  <% if (specialTheme !== "no-theme") { %>
-  <link
-    rel="stylesheet"
-    href="/static/css/themes/<%= specialTheme %>.css"
-  />
-  <% } %>
-</head>
+    <link
+      rel="stylesheet"
+      href="/static/css/styles.min.css" />
+    <% if (specialTheme !== "no-theme") { %>
+    <link
+      rel="stylesheet"
+      href="/static/css/<%= specialTheme %>.min.css" />
+    <% } %>
+  </head>
 
-<body>
-  <input
-    id="dark-theme"
-    class="hidden"
-    type="checkbox"
-    <% if (theme === "dark") { %>
-    checked
-    <%}%>
-  />
-  <nav role="navigation">
+  <body>
     <input
-      id="nav-menu-toggle"
+      id="dark-theme"
       class="hidden"
       type="checkbox"
+      <% if (theme === "dark") { %>
+    checked
+    <%}%>
     />
-    <div class="container-lg nav-container">
-      <a class="nav-home" href="/">
-        <img
-          src="/static/images/avatar.jpg"
-          alt="Niall's avatar"
-          width="42"
-          height="42"
-        />
-      </a>
-      <label
-        aria-label="Toggle nav menu"
-        tabindex="0"
-        id="nav-burger-menu"
-        for="nav-menu-toggle"
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-          <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc. -->
-          <path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z" />
-        </svg>
-      </label>
-      <ul>
-        <li>
-          <a class="theme-font" href="#about">
-            About
-          </a>
-        </li>
-        <li>
-          <a class="theme-font" href="#projects">
-            Projects
-          </a>
-        </li>
-        <li>
-          <a class="theme-font" href="#contact">
-            Contact
-          </a>
-        </li>
-      </ul>
+    <nav role="navigation">
+      <input
+        id="nav-menu-toggle"
+        class="hidden"
+        type="checkbox" />
+      <div class="container-lg nav-container">
+        <a class="nav-home" href="/">
+          <img
+            src="/static/images/avatar.jpg"
+            alt="Niall's avatar"
+            width="42"
+            height="42" />
+        </a>
+        <label
+          aria-label="Toggle nav menu"
+          tabindex="0"
+          id="nav-burger-menu"
+          for="nav-menu-toggle">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+            <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc. -->
+            <path
+              d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z" />
+          </svg>
+        </label>
+        <ul>
+          <li>
+            <a class="theme-font" href="#about">
+              About
+            </a>
+          </li>
+          <li>
+            <a class="theme-font" href="#projects">
+              Projects
+            </a>
+          </li>
+          <li>
+            <a class="theme-font" href="#contact">
+              Contact
+            </a>
+          </li>
+        </ul>
+        <label
+          aria-label="Set theme to dark"
+          tabindex="0"
+          for="dark-theme"
+          title="Set theme to dark"
+          class="theme-switch narrow light">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+            <!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc. -->
+            <path
+              d="M223.5 32C100 32 0 132.3 0 256S100 480 223.5 480c60.6 0 115.5-24.2 155.8-63.4c5-4.9 6.3-12.5 3.1-18.7s-10.1-9.7-17-8.5c-9.8 1.7-19.8 2.6-30.1 2.6c-96.9 0-175.5-78.8-175.5-176c0-65.8 36-123.1 89.3-153.3c6.1-3.5 9.2-10.5 7.7-17.3s-7.3-11.9-14.3-12.5c-6.3-.5-12.6-.8-19-.8z" />
+          </svg>
+        </label>
+        <label
+          aria-label="Set theme to light"
+          tabindex="0"
+          for="dark-theme"
+          title="Set theme to light"
+          class="theme-switch narrow dark">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+            <!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc. -->
+            <path
+              d="M361.5 1.2c5 2.1 8.6 6.6 9.6 11.9L391 121l107.9 19.8c5.3 1 9.8 4.6 11.9 9.6s1.5 10.7-1.6 15.2L446.9 256l62.3 90.3c3.1 4.5 3.7 10.2 1.6 15.2s-6.6 8.6-11.9 9.6L391 391 371.1 498.9c-1 5.3-4.6 9.8-9.6 11.9s-10.7 1.5-15.2-1.6L256 446.9l-90.3 62.3c-4.5 3.1-10.2 3.7-15.2 1.6s-8.6-6.6-9.6-11.9L121 391 13.1 371.1c-5.3-1-9.8-4.6-11.9-9.6s-1.5-10.7 1.6-15.2L65.1 256 2.8 165.7c-3.1-4.5-3.7-10.2-1.6-15.2s6.6-8.6 11.9-9.6L121 121 140.9 13.1c1-5.3 4.6-9.8 9.6-11.9s10.7-1.5 15.2 1.6L256 65.1 346.3 2.8c4.5-3.1 10.2-3.7 15.2-1.6zM160 256a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zm224 0a128 128 0 1 0 -256 0 128 128 0 1 0 256 0z" />
+          </svg>
+        </label>
+      </div>
       <label
         aria-label="Set theme to dark"
         tabindex="0"
         for="dark-theme"
         title="Set theme to dark"
-        class="theme-switch narrow light"
-      >
+        class="theme-switch wide light">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
           <!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc. -->
-          <path d="M223.5 32C100 32 0 132.3 0 256S100 480 223.5 480c60.6 0 115.5-24.2 155.8-63.4c5-4.9 6.3-12.5 3.1-18.7s-10.1-9.7-17-8.5c-9.8 1.7-19.8 2.6-30.1 2.6c-96.9 0-175.5-78.8-175.5-176c0-65.8 36-123.1 89.3-153.3c6.1-3.5 9.2-10.5 7.7-17.3s-7.3-11.9-14.3-12.5c-6.3-.5-12.6-.8-19-.8z" />
+          <path
+            d="M223.5 32C100 32 0 132.3 0 256S100 480 223.5 480c60.6 0 115.5-24.2 155.8-63.4c5-4.9 6.3-12.5 3.1-18.7s-10.1-9.7-17-8.5c-9.8 1.7-19.8 2.6-30.1 2.6c-96.9 0-175.5-78.8-175.5-176c0-65.8 36-123.1 89.3-153.3c6.1-3.5 9.2-10.5 7.7-17.3s-7.3-11.9-14.3-12.5c-6.3-.5-12.6-.8-19-.8z" />
         </svg>
       </label>
       <label
@@ -185,386 +187,334 @@
         tabindex="0"
         for="dark-theme"
         title="Set theme to light"
-        class="theme-switch narrow dark"
-      >
+        class="theme-switch wide dark">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
           <!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc. -->
-          <path d="M361.5 1.2c5 2.1 8.6 6.6 9.6 11.9L391 121l107.9 19.8c5.3 1 9.8 4.6 11.9 9.6s1.5 10.7-1.6 15.2L446.9 256l62.3 90.3c3.1 4.5 3.7 10.2 1.6 15.2s-6.6 8.6-11.9 9.6L391 391 371.1 498.9c-1 5.3-4.6 9.8-9.6 11.9s-10.7 1.5-15.2-1.6L256 446.9l-90.3 62.3c-4.5 3.1-10.2 3.7-15.2 1.6s-8.6-6.6-9.6-11.9L121 391 13.1 371.1c-5.3-1-9.8-4.6-11.9-9.6s-1.5-10.7 1.6-15.2L65.1 256 2.8 165.7c-3.1-4.5-3.7-10.2-1.6-15.2s6.6-8.6 11.9-9.6L121 121 140.9 13.1c1-5.3 4.6-9.8 9.6-11.9s10.7-1.5 15.2 1.6L256 65.1 346.3 2.8c4.5-3.1 10.2-3.7 15.2-1.6zM160 256a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zm224 0a128 128 0 1 0 -256 0 128 128 0 1 0 256 0z" />
+          <path
+            d="M361.5 1.2c5 2.1 8.6 6.6 9.6 11.9L391 121l107.9 19.8c5.3 1 9.8 4.6 11.9 9.6s1.5 10.7-1.6 15.2L446.9 256l62.3 90.3c3.1 4.5 3.7 10.2 1.6 15.2s-6.6 8.6-11.9 9.6L391 391 371.1 498.9c-1 5.3-4.6 9.8-9.6 11.9s-10.7 1.5-15.2-1.6L256 446.9l-90.3 62.3c-4.5 3.1-10.2 3.7-15.2 1.6s-8.6-6.6-9.6-11.9L121 391 13.1 371.1c-5.3-1-9.8-4.6-11.9-9.6s-1.5-10.7 1.6-15.2L65.1 256 2.8 165.7c-3.1-4.5-3.7-10.2-1.6-15.2s6.6-8.6 11.9-9.6L121 121 140.9 13.1c1-5.3 4.6-9.8 9.6-11.9s10.7-1.5 15.2 1.6L256 65.1 346.3 2.8c4.5-3.1 10.2-3.7 15.2-1.6zM160 256a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zm224 0a128 128 0 1 0 -256 0 128 128 0 1 0 256 0z" />
         </svg>
       </label>
-    </div>
-    <label
-      aria-label="Set theme to dark"
-      tabindex="0"
-      for="dark-theme"
-      title="Set theme to dark"
-      class="theme-switch wide light"
-    >
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
-        <!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc. -->
-        <path d="M223.5 32C100 32 0 132.3 0 256S100 480 223.5 480c60.6 0 115.5-24.2 155.8-63.4c5-4.9 6.3-12.5 3.1-18.7s-10.1-9.7-17-8.5c-9.8 1.7-19.8 2.6-30.1 2.6c-96.9 0-175.5-78.8-175.5-176c0-65.8 36-123.1 89.3-153.3c6.1-3.5 9.2-10.5 7.7-17.3s-7.3-11.9-14.3-12.5c-6.3-.5-12.6-.8-19-.8z" />
-      </svg>
-    </label>
-    <label
-      aria-label="Set theme to light"
-      tabindex="0"
-      for="dark-theme"
-      title="Set theme to light"
-      class="theme-switch wide dark"
-    >
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-        <!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc. -->
-        <path d="M361.5 1.2c5 2.1 8.6 6.6 9.6 11.9L391 121l107.9 19.8c5.3 1 9.8 4.6 11.9 9.6s1.5 10.7-1.6 15.2L446.9 256l62.3 90.3c3.1 4.5 3.7 10.2 1.6 15.2s-6.6 8.6-11.9 9.6L391 391 371.1 498.9c-1 5.3-4.6 9.8-9.6 11.9s-10.7 1.5-15.2-1.6L256 446.9l-90.3 62.3c-4.5 3.1-10.2 3.7-15.2 1.6s-8.6-6.6-9.6-11.9L121 391 13.1 371.1c-5.3-1-9.8-4.6-11.9-9.6s-1.5-10.7 1.6-15.2L65.1 256 2.8 165.7c-3.1-4.5-3.7-10.2-1.6-15.2s6.6-8.6 11.9-9.6L121 121 140.9 13.1c1-5.3 4.6-9.8 9.6-11.9s10.7-1.5 15.2 1.6L256 65.1 346.3 2.8c4.5-3.1 10.2-3.7 15.2-1.6zM160 256a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zm224 0a128 128 0 1 0 -256 0 128 128 0 1 0 256 0z" />
-      </svg>
-    </label>
-    <label
-      id="close-menu-overlay"
-      for="nav-menu-toggle"
-      aria-label="Click to minimize the nav menu"
-    ></label>
-  </nav>
-  <header>
-    <div class="background-filter"></div>
-    <% if (specialTheme !== "no-theme") { %>
-    <div id="theme-overlay">
-      <div id="theme-container"></div>
-    </div>
-    <% } %>
-    <hgroup class="col-center">
-      <h1 class="theme-font section-heading">Hi I'm Niall</h1>
-      <p class="theme-font">I'm a full-stack developer</p>
-    </hgroup>
-  </header>
-  <main>
-    <section
-      id="about"
-      class="container"
-    >
-      <h1 class="theme-font section-heading">
-        About
-      </h1>
-      <p>
-        I am a full-stack developer by trade, however I have worked on many
-        different tech stacks for different purposes in the past, including an
-        embedded Lua scripting project.
-      </p>
-      <div id="about-panels">
-        <div id="about-panel-companies">
-          <p>I delivered projects for these companies</p>
-          <div id="companies">
-            <% for (const company of companies) { %>
-            <a
-              class="company"
-              target="_blank"
-              rel="noreferrer"
-              href="<%= company.url %>"
-              title="<%= company.name %>"
-            >
-              <img
-                src="<%= company.img %>"
-                height="40px"
-                width="<%= Math.round(company.aspectRatio * 40) %>px"
-                alt="<%= company.name %> Logo"
-              />
-            </a>
-            <% } %>
-          </div>
-        </div>
-        <div id="about-panel-text">
-          <p>
-            I program as a hobby and love to explore a variety of concepts in
-            computer science by implementing them myself. Highly motivated and
-            creative thinker in terms of applying theory and software
-            engineering. I'm a problem solver at heart.
-          </p>
-          <div class="button-group">
-            <a
-              href="/cv"
-              class="button primary"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <span>
-                <span class="hidden-xs">Online</span>
-                CV
-              </span>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 512 512"
-              >
-                <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc. -->
-                <path d="M352 0c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9L370.7 96 201.4 265.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L416 141.3l41.4 41.4c9.2 9.2 22.9 11.9 34.9 6.9s19.8-16.6 19.8-29.6V32c0-17.7-14.3-32-32-32H352zM80 32C35.8 32 0 67.8 0 112V432c0 44.2 35.8 80 80 80H400c44.2 0 80-35.8 80-80V320c0-17.7-14.3-32-32-32s-32 14.3-32 32V432c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V112c0-8.8 7.2-16 16-16H192c17.7 0 32-14.3 32-32s-14.3-32-32-32H80z" />
-              </svg>
-            </a>
-            <a
-              href="/cv/pdf-download"
-              class="button secondary"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <span>
-                <span class="hidden-xs">PDF</span>
-                CV
-              </span>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 384 512"
-              >
-                <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc. -->
-                <path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM216 232V334.1l31-31c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-72 72c-9.4 9.4-24.6 9.4-33.9 0l-72-72c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l31 31V232c0-13.3 10.7-24 24-24s24 10.7 24 24z" />
-              </svg>
-            </a>
-          </div>
-        </div>
+      <label
+        id="close-menu-overlay"
+        for="nav-menu-toggle"
+        aria-label="Click to minimize the nav menu"></label>
+    </nav>
+    <header>
+      <div class="background-filter"></div>
+      <% if (specialTheme !== "no-theme") { %>
+      <div id="theme-overlay">
+        <div id="theme-container"></div>
       </div>
-    </section>
-    <section id="projects">
-      <h1 class="theme-font section-heading">
-        Projects
-      </h1>
-      <input
-        id="projects-toggle"
-        class="hidden"
-        type="checkbox"
-      />
-      <div id="project-container">
-        <% for (const project of projects) { %>
-        <figure>
-          <a
-            href="https://github.com/eniallator/<%= project.github %>"
-            title="<%= project.title %>"
-            class="project"
-            data-github="<%= project.github %>"
-          >
-            <img
-              class="project-thumbnail"
-              src="<%= project.img %>"
-              alt="<%= project.title %> Thumbnail"
-            />
-            <figcaption class="project-text">
-              <h2><%= project.title %></h2>
-              <p><%= project.description %></p>
-            </figcaption>
-          </a>
-        </figure>
-        <% } %>
-      </div>
-      <div class="container col-center">
-        <p class="projects-showing more-projects-text">
-          I have many more projects (including non-web ones) on
-          <a
-            href="https://github.com/eniallator/"
-            target="_blank"
-            rel="noreferrer"
-          >
-            my github
-          </a>
+      <% } %>
+      <hgroup class="col-center">
+        <h1 class="theme-font section-heading">Hi I'm Niall</h1>
+        <p class="theme-font">I'm a full-stack developer</p>
+      </hgroup>
+    </header>
+    <main>
+      <section
+        id="about"
+        class="container">
+        <h1 class="theme-font section-heading">
+          About
+        </h1>
+        <p>
+          I am a full-stack developer by trade, however I have worked on many
+          different tech stacks for different purposes in the past, including an
+          embedded Lua scripting project.
         </p>
-        <div class="projects-toggle-button">
-          <label
-            aria-label="Toggle more projects"
-            tabindex="0"
-            for="projects-toggle"
-            class="secondary button"
-          >
-            <span class="projects-not-showing">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 448 512"
-              >
-                <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc. -->
-                <path d="M201.4 342.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 274.7 86.6 137.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z" />
-              </svg>
-            </span>
-            <span class="projects-showing">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 448 512"
-              >
-                <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc. -->
-                <path d="M201.4 137.4c12.5-12.5 32.8-12.5 45.3 0l160 160c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L224 205.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l160-160z" />
-              </svg>
-            </span>
-          </label>
-        </div>
-      </div>
-      <dialog id="project-preview">
-        <form method="dialog">
-          <div class="header">
-            <h3>Enable javascript to see the preview</h3>
-            <button
-              class="button close-button"
-              aria-label="Close project preview"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 384 512"
-              >
-                <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc. -->
-                <path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
-              </svg>
-            </button>
+        <div id="about-panels">
+          <div id="about-panel-companies">
+            <p>I delivered projects for these companies</p>
+            <div id="companies">
+              <% for (const company of companies) { %>
+              <a
+                class="company"
+                target="_blank"
+                rel="noreferrer"
+                href="<%= company.url %>"
+                title="<%= company.name %>">
+                <img
+                  src="<%= company.img %>"
+                  height="40px"
+                  width="<%= Math.round(company.aspectRatio * 40) %>px"
+                  alt="<%= company.name %> Logo" />
+              </a>
+              <% } %>
+            </div>
           </div>
-          <iframe
-            title="Project Preview"
-            allow="fullscreen"
-          ></iframe>
-          <div class="button-group">
+          <div id="about-panel-text">
+            <p>
+              I program as a hobby and love to explore a variety of concepts in
+              computer science by implementing them myself. Highly motivated and
+              creative thinker in terms of applying theory and software
+              engineering. I'm a problem solver at heart.
+            </p>
+            <div class="button-group">
+              <a
+                href="/cv"
+                class="button primary"
+                target="_blank"
+                rel="noreferrer">
+                <span>
+                  <span class="hidden-xs">Online</span>
+                  CV
+                </span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 512 512">
+                  <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc. -->
+                  <path
+                    d="M352 0c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9L370.7 96 201.4 265.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L416 141.3l41.4 41.4c9.2 9.2 22.9 11.9 34.9 6.9s19.8-16.6 19.8-29.6V32c0-17.7-14.3-32-32-32H352zM80 32C35.8 32 0 67.8 0 112V432c0 44.2 35.8 80 80 80H400c44.2 0 80-35.8 80-80V320c0-17.7-14.3-32-32-32s-32 14.3-32 32V432c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V112c0-8.8 7.2-16 16-16H192c17.7 0 32-14.3 32-32s-14.3-32-32-32H80z" />
+                </svg>
+              </a>
+              <a
+                href="/cv/pdf-download"
+                class="button secondary"
+                target="_blank"
+                rel="noreferrer">
+                <span>
+                  <span class="hidden-xs">PDF</span>
+                  CV
+                </span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 384 512">
+                  <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc. -->
+                  <path
+                    d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM216 232V334.1l31-31c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-72 72c-9.4 9.4-24.6 9.4-33.9 0l-72-72c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l31 31V232c0-13.3 10.7-24 24-24s24 10.7 24 24z" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="projects">
+        <h1 class="theme-font section-heading">
+          Projects
+        </h1>
+        <input
+          id="projects-toggle"
+          class="hidden"
+          type="checkbox" />
+        <div id="project-container">
+          <% for (const project of projects) { %>
+          <figure>
             <a
-              class="button primary js-preview"
-              href="/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <span class="hidden-xs">Open</span>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 512 512"
-              >
-                <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc. -->
-                <path d="M352 0c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9L370.7 96 201.4 265.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L416 141.3l41.4 41.4c9.2 9.2 22.9 11.9 34.9 6.9s19.8-16.6 19.8-29.6V32c0-17.7-14.3-32-32-32H352zM80 32C35.8 32 0 67.8 0 112V432c0 44.2 35.8 80 80 80H400c44.2 0 80-35.8 80-80V320c0-17.7-14.3-32-32-32s-32 14.3-32 32V432c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V112c0-8.8 7.2-16 16-16H192c17.7 0 32-14.3 32-32s-14.3-32-32-32H80z" />
-              </svg>
+              href="https://github.com/eniallator/<%= project.github %>"
+              title="<%= project.title %>"
+              class="project"
+              data-github="<%= project.github %>">
+              <img
+                class="project-thumbnail"
+                src="<%= project.img %>"
+                alt="<%= project.title %> Thumbnail" />
+              <figcaption class="project-text">
+                <h2><%= project.title %></h2>
+                <p><%= project.description %></p>
+              </figcaption>
             </a>
+          </figure>
+          <% } %>
+        </div>
+        <div class="container col-center">
+          <p class="projects-showing more-projects-text">
+            I have many more projects (including non-web ones) on
             <a
-              class="button secondary js-repository"
-              href="/"
+              href="https://github.com/eniallator/"
               target="_blank"
-              rel="noreferrer"
-            >
-              <span class="hidden-xs">Repository</span>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 576 512"
-              >
-                <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc. -->
-                <path d="M88.7 223.8L0 375.8V96C0 60.7 28.7 32 64 32H181.5c17 0 33.3 6.7 45.3 18.7l26.5 26.5c12 12 28.3 18.7 45.3 18.7H416c35.3 0 64 28.7 64 64v32H144c-22.8 0-43.8 12.1-55.3 31.8zm27.6 16.1C122.1 230 132.6 224 144 224H544c11.5 0 22 6.1 27.7 16.1s5.7 22.2-.1 32.1l-112 192C453.9 474 443.4 480 432 480H32c-11.5 0-22-6.1-27.7-16.1s-5.7-22.2 .1-32.1l112-192z" />
-              </svg>
+              rel="noreferrer">
+              my github
             </a>
+          </p>
+          <div class="projects-toggle-button">
+            <label
+              aria-label="Toggle more projects"
+              tabindex="0"
+              for="projects-toggle"
+              class="secondary button">
+              <span class="projects-not-showing">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 448 512">
+                  <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc. -->
+                  <path
+                    d="M201.4 342.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 274.7 86.6 137.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z" />
+                </svg>
+              </span>
+              <span class="projects-showing">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 448 512">
+                  <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc. -->
+                  <path
+                    d="M201.4 137.4c12.5-12.5 32.8-12.5 45.3 0l160 160c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L224 205.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l160-160z" />
+                </svg>
+              </span>
+            </label>
+          </div>
+        </div>
+        <dialog id="project-preview">
+          <form method="dialog">
+            <div class="header">
+              <h3>Enable javascript to see the preview</h3>
+              <button
+                class="button close-button"
+                aria-label="Close project preview">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 384 512">
+                  <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc. -->
+                  <path
+                    d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
+                </svg>
+              </button>
+            </div>
+            <iframe
+              title="Project Preview"
+              allow="fullscreen"></iframe>
+            <div class="button-group">
+              <a
+                class="button primary js-preview"
+                href="/"
+                target="_blank"
+                rel="noreferrer">
+                <span class="hidden-xs">Open</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 512 512">
+                  <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc. -->
+                  <path
+                    d="M352 0c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9L370.7 96 201.4 265.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L416 141.3l41.4 41.4c9.2 9.2 22.9 11.9 34.9 6.9s19.8-16.6 19.8-29.6V32c0-17.7-14.3-32-32-32H352zM80 32C35.8 32 0 67.8 0 112V432c0 44.2 35.8 80 80 80H400c44.2 0 80-35.8 80-80V320c0-17.7-14.3-32-32-32s-32 14.3-32 32V432c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V112c0-8.8 7.2-16 16-16H192c17.7 0 32-14.3 32-32s-14.3-32-32-32H80z" />
+                </svg>
+              </a>
+              <a
+                class="button secondary js-repository"
+                href="/"
+                target="_blank"
+                rel="noreferrer">
+                <span class="hidden-xs">Repository</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 576 512">
+                  <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc. -->
+                  <path
+                    d="M88.7 223.8L0 375.8V96C0 60.7 28.7 32 64 32H181.5c17 0 33.3 6.7 45.3 18.7l26.5 26.5c12 12 28.3 18.7 45.3 18.7H416c35.3 0 64 28.7 64 64v32H144c-22.8 0-43.8 12.1-55.3 31.8zm27.6 16.1C122.1 230 132.6 224 144 224H544c11.5 0 22 6.1 27.7 16.1s5.7 22.2-.1 32.1l-112 192C453.9 474 443.4 480 432 480H32c-11.5 0-22-6.1-27.7-16.1s-5.7-22.2 .1-32.1l112-192z" />
+                </svg>
+              </a>
+            </div>
+          </form>
+        </dialog>
+      </section>
+      <section
+        id="contact"
+        class="container">
+        <h1 class="theme-font section-heading">
+          Contact
+        </h1>
+        <div class="contact-links">
+          <a
+            aria-label="My Github"
+            title="My Github"
+            href="https://github.com/eniallator"
+            target="_blank"
+            rel="noreferrer">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 98 96">
+              <path
+                d="M48.854 0C21.839 0 0 22 0 49.217c0 21.756 13.993 40.172 33.405 46.69 2.427.49 3.316-1.059 3.316-2.362 0-1.141-.08-5.052-.08-9.127-13.59 2.934-16.42-5.867-16.42-5.867-2.184-5.704-5.42-7.17-5.42-7.17-4.448-3.015.324-3.015.324-3.015 4.934.326 7.523 5.052 7.523 5.052 4.367 7.496 11.404 5.378 14.235 4.074.404-3.178 1.699-5.378 3.074-6.6-10.839-1.141-22.243-5.378-22.243-24.283 0-5.378 1.94-9.778 5.014-13.2-.485-1.222-2.184-6.275.486-13.038 0 0 4.125-1.304 13.426 5.052a46.97 46.97 0 0 1 12.214-1.63c4.125 0 8.33.571 12.213 1.63 9.302-6.356 13.427-5.052 13.427-5.052 2.67 6.763.97 11.816.485 13.038 3.155 3.422 5.015 7.822 5.015 13.2 0 18.905-11.404 23.06-22.324 24.283 1.78 1.548 3.316 4.481 3.316 9.126 0 6.6-.08 11.897-.08 13.526 0 1.304.89 2.853 3.316 2.364 19.412-6.52 33.405-24.935 33.405-46.691C97.707 22 75.788 0 48.854 0z" />
+            </svg>
+          </a>
+          <a
+            aria-label="My LinkedIn"
+            title="My LinkedIn"
+            href="https://www.linkedin.com/in/niall-coleman-clarke/"
+            target="_blank"
+            rel="noreferrer">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 30 30">
+              <path
+                d="M 6.522 29.348 L 0 29.348 L 0 9.783 L 6.522 9.783 L 6.522 29.348 Z M 3.262 7.174 C 1.458 7.174 0 5.712 0 3.912 C 0 2.112 1.461 0.652 3.262 0.652 C 5.06 0.652 6.522 2.114 6.522 3.912 C 6.522 5.712 5.06 7.174 3.262 7.174 Z M 30 29.348 L 23.73 29.348 L 23.73 19.826 C 23.73 17.555 23.687 14.635 20.47 14.635 C 17.206 14.635 16.703 17.108 16.703 19.662 L 16.703 29.348 L 10.435 29.348 L 10.435 9.768 L 16.453 9.768 L 16.453 12.443 L 16.538 12.443 C 17.375 10.904 19.422 9.282 22.474 9.282 C 28.826 9.282 30 13.337 30 18.609 C 30 18.609 30 29.348 30 29.348 Z" />
+            </svg>
+          </a>
+        </div>
+        <form
+          accept-charset="utf-8"
+          action
+          method="POST"
+          autocomplete="off">
+          <!-- Honey Pots -->
+          <div class="ignore">
+            <input
+              type="text"
+              name="phone"
+              placeholder="Phone"
+              aria-label="Phone"
+              autocomplete="off"
+              tabindex="-1" />
+            <input
+              type="text"
+              name="city"
+              placeholder="City"
+              aria-label="City"
+              autocomplete="off"
+              tabindex="-1" />
+            <input
+              type="text"
+              name="address"
+              placeholder="Address"
+              aria-label="Address"
+              autocomplete="off"
+              tabindex="-1" />
+            <input
+              type="text"
+              name="country"
+              placeholder="Country"
+              aria-label="Country"
+              autocomplete="off"
+              tabindex="-1" />
+            <input
+              type="text"
+              name="zip code"
+              placeholder="Zip Code"
+              aria-label="Zip Code"
+              autocomplete="off"
+              tabindex="-1" />
+          </div>
+          <!-- Form Content -->
+          <div class="fields">
+            <input
+              type="text"
+              name="name"
+              placeholder="Name"
+              aria-label="Name"
+              autocomplete="name"
+              required />
+            <input
+              type="email"
+              name="email"
+              placeholder="Email"
+              aria-label="Email"
+              autocomplete="email"
+              pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"
+              required />
+            <textarea
+              name="message"
+              placeholder="Message"
+              aria-label="Message"
+              rows="4"
+              required></textarea>
+            <button class="button secondary">Submit</button>
           </div>
         </form>
-      </dialog>
-    </section>
-    <section
-      id="contact"
-      class="container"
-    >
-      <h1 class="theme-font section-heading">
-        Contact
-      </h1>
-      <div class="contact-links">
-        <a
-          aria-label="My Github"
-          title="My Github"
-          href="https://github.com/eniallator"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 98 96"
-          >
-            <path d="M48.854 0C21.839 0 0 22 0 49.217c0 21.756 13.993 40.172 33.405 46.69 2.427.49 3.316-1.059 3.316-2.362 0-1.141-.08-5.052-.08-9.127-13.59 2.934-16.42-5.867-16.42-5.867-2.184-5.704-5.42-7.17-5.42-7.17-4.448-3.015.324-3.015.324-3.015 4.934.326 7.523 5.052 7.523 5.052 4.367 7.496 11.404 5.378 14.235 4.074.404-3.178 1.699-5.378 3.074-6.6-10.839-1.141-22.243-5.378-22.243-24.283 0-5.378 1.94-9.778 5.014-13.2-.485-1.222-2.184-6.275.486-13.038 0 0 4.125-1.304 13.426 5.052a46.97 46.97 0 0 1 12.214-1.63c4.125 0 8.33.571 12.213 1.63 9.302-6.356 13.427-5.052 13.427-5.052 2.67 6.763.97 11.816.485 13.038 3.155 3.422 5.015 7.822 5.015 13.2 0 18.905-11.404 23.06-22.324 24.283 1.78 1.548 3.316 4.481 3.316 9.126 0 6.6-.08 11.897-.08 13.526 0 1.304.89 2.853 3.316 2.364 19.412-6.52 33.405-24.935 33.405-46.691C97.707 22 75.788 0 48.854 0z" />
-          </svg>
-        </a>
-        <a
-          aria-label="My LinkedIn"
-          title="My LinkedIn"
-          href="https://www.linkedin.com/in/niall-coleman-clarke/"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 30 30"
-          >
-            <path d="M 6.522 29.348 L 0 29.348 L 0 9.783 L 6.522 9.783 L 6.522 29.348 Z M 3.262 7.174 C 1.458 7.174 0 5.712 0 3.912 C 0 2.112 1.461 0.652 3.262 0.652 C 5.06 0.652 6.522 2.114 6.522 3.912 C 6.522 5.712 5.06 7.174 3.262 7.174 Z M 30 29.348 L 23.73 29.348 L 23.73 19.826 C 23.73 17.555 23.687 14.635 20.47 14.635 C 17.206 14.635 16.703 17.108 16.703 19.662 L 16.703 29.348 L 10.435 29.348 L 10.435 9.768 L 16.453 9.768 L 16.453 12.443 L 16.538 12.443 C 17.375 10.904 19.422 9.282 22.474 9.282 C 28.826 9.282 30 13.337 30 18.609 C 30 18.609 30 29.348 30 29.348 Z" />
-          </svg>
-        </a>
-      </div>
-      <form
-        accept-charset="utf-8"
-        action=""
-        method="POST"
-        autocomplete="off"
-      >
-        <!-- Honey Pots -->
-        <div class="ignore">
-          <input
-            type="text"
-            name="phone"
-            placeholder="Phone"
-            aria-label="Phone"
-            autocomplete="off"
-            tabindex="-1"
-          />
-          <input
-            type="text"
-            name="city"
-            placeholder="City"
-            aria-label="City"
-            autocomplete="off"
-            tabindex="-1"
-          />
-          <input
-            type="text"
-            name="address"
-            placeholder="Address"
-            aria-label="Address"
-            autocomplete="off"
-            tabindex="-1"
-          />
-          <input
-            type="text"
-            name="country"
-            placeholder="Country"
-            aria-label="Country"
-            autocomplete="off"
-            tabindex="-1"
-          />
-          <input
-            type="text"
-            name="zip code"
-            placeholder="Zip Code"
-            aria-label="Zip Code"
-            autocomplete="off"
-            tabindex="-1"
-          />
-        </div>
-        <!-- Form Content -->
-        <div class="fields">
-          <input
-            type="text"
-            name="name"
-            placeholder="Name"
-            aria-label="Name"
-            autocomplete="name"
-            required
-          />
-          <input
-            type="email"
-            name="email"
-            placeholder="Email"
-            aria-label="Email"
-            autocomplete="email"
-            pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"
-            required
-          />
-          <textarea
-            name="message"
-            placeholder="Message"
-            aria-label="Message"
-            rows="4"
-            required
-          ></textarea>
-          <button class="button secondary">Submit</button>
-        </div>
-      </form>
-    </section>
-  </main>
-  <script src="/static/js/bundle.js"></script>
-  <% if (specialTheme !== "no-theme") { %>
-  <script src="/static/js/themes/<%= specialTheme %>.bundle.js"></script>
-  <% } %>
-</body>
+      </section>
+    </main>
+    <script src="/static/js/bundle.js"></script>
+    <% if (specialTheme !== "no-theme") { %>
+    <script src="/static/js/themes/<%= specialTheme %>.bundle.js"></script>
+    <% } %>
+  </body>
 
 </html>
