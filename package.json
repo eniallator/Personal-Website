@@ -13,7 +13,7 @@
     "node": ">=24.8.0"
   },
   "scripts": {
-    "build:css": "css-minify -d client/css -o public/static/css",
+    "build:css": "css-minify -d client/css -o public/static/css && css-minify -d client/css/themes -o public/static/css/themes",
     "build:ts": "node esbuild.mjs",
     "build": "yarn build:ts && yarn build:css",
     "start": "node dist/index.js",
