@@ -42,7 +42,7 @@ const app = express();
 
 const renderMemo = new RenderMemo<RenderContext>(
   app,
-  ({ theme, specialTheme }) => `${theme}:${specialTheme}`
+  ({ theme, specialTheme }) => `${theme}:${specialTheme}`,
 );
 
 app.set("view engine", "ejs");
@@ -56,7 +56,7 @@ app.use(
   acceptWebp("public"),
   express.static("public"),
   insertSecurityHeaders,
-  themeToCookie
+  themeToCookie,
 );
 
 const hasTheme = isObjectOf({ theme: isTheme });
@@ -85,6 +85,7 @@ app.get("/", async (req, res) => {
 });
 
 app.post("/", (req, res) => {
+  console.log(`New POST from ${req.headers["user-agent"]}`);
   void sendMail(req.body);
   res.redirect(req.url);
 });

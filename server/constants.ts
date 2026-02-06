@@ -22,11 +22,11 @@ export const SPECIAL_THEMES: Record<
 export const companies = guardOrThrow(
   rawCompanies,
   isArrayOf(isCompany),
-  "Invalid company format"
+  "Invalid company format",
 );
 
 export const initialProjects = guardOrThrow(
   rawProjects,
   isArrayOf(isProject),
-  "Invalid project format"
+  "Invalid project format",
 );

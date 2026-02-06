@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
   <head>
     <meta charset="UTF-8" />
     <meta
@@ -35,6 +34,7 @@
       content="ie=edge" />
 
     <title>Niall's Personal Site</title>
+
     <link
       rel="preload"
       href="/static/css/styles.min.css"
@@ -84,7 +84,6 @@
       as="image"
       href="<%= project.img %>" />
     <% } %>
-
     <link
       rel="stylesheet"
       href="/static/css/styles.min.css" />
@@ -100,9 +99,7 @@
       id="dark-theme"
       class="hidden"
       type="checkbox"
-      <% if (theme === "dark") { %>
-    checked
-    <%}%>
+      <% if (theme === "dark") { %> checked <%}%>
     />
     <nav role="navigation">
       <input
@@ -130,19 +127,13 @@
         </label>
         <ul>
           <li>
-            <a class="theme-font" href="#about">
-              About
-            </a>
+            <a class="theme-font" href="#about">About</a>
           </li>
           <li>
-            <a class="theme-font" href="#projects">
-              Projects
-            </a>
+            <a class="theme-font" href="#projects">Projects</a>
           </li>
           <li>
-            <a class="theme-font" href="#contact">
-              Contact
-            </a>
+            <a class="theme-font" href="#contact">Contact</a>
           </li>
         </ul>
         <label
@@ -215,9 +206,7 @@
       <section
         id="about"
         class="container">
-        <h1 class="theme-font section-heading">
-          About
-        </h1>
+        <h1 class="theme-font section-heading">About</h1>
         <p>
           I am a full-stack developer by trade, however I have worked on many
           different tech stacks for different purposes in the past, including an
@@ -290,9 +279,7 @@
         </div>
       </section>
       <section id="projects">
-        <h1 class="theme-font section-heading">
-          Projects
-        </h1>
+        <h1 class="theme-font section-heading">Projects</h1>
         <input
           id="projects-toggle"
           class="hidden"
@@ -409,9 +396,7 @@
       <section
         id="contact"
         class="container">
-        <h1 class="theme-font section-heading">
-          Contact
-        </h1>
+        <h1 class="theme-font section-heading">Contact</h1>
         <div class="contact-links">
           <a
             aria-label="My Github"
@@ -516,5 +501,4 @@
     <script src="/static/js/themes/<%= specialTheme %>.bundle.js"></script>
     <% } %>
   </body>
-
 </html>
