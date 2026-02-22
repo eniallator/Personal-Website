@@ -4,6 +4,7 @@ import compression from "compression";
 import cookieParser from "cookie-parser";
 import { isObjectOf } from "deep-guards";
 import express from "express";
+import { Option } from "niall-utils";
 import { readFileSync } from "node:fs";
 import https from "node:https";
 
@@ -15,7 +16,6 @@ import {
 } from "./constants.js";
 import { env } from "./env.js";
 import { sendMail } from "./mail.js";
-import { Option } from "./option.js";
 import { trySortProjects } from "./project.js";
 import { RenderMemo } from "./renderMemo.js";
 import { insertSecurityHeaders } from "./securityHeaders.js";

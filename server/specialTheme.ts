@@ -1,9 +1,10 @@
+import { typedToEntries } from "niall-utils";
+
 import {
   DAYS_SPECIAL_THEME_IS_SHOWING,
   HOUR_IN_MS,
   SPECIAL_THEMES,
 } from "./constants.js";
-import { typedToEntries } from "./entries.js";
 
 import type { SpecialTheme } from "./types.js";
 

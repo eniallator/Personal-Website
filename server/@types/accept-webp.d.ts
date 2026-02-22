@@ -3,7 +3,7 @@ declare module "accept-webp" {
 
   function acceptWebp(
     dirName: string,
-    extensions?: string | string[]
+    extensions?: string | string[],
   ): RequestHandler;
 
   export = acceptWebp;

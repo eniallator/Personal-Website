@@ -1,8 +1,8 @@
 import * as esbuild from "esbuild";
-import fs from "fs";
+import fs from "node:fs";
 
 const isDevelopment =
-  process.env.NODE_ENV != null ? process.env.NODE_ENV === "development" : true;
+  process.env.NODE_ENV == null || process.env.NODE_ENV === "development";
 
 [
   { entry: "server/**/*.ts", outdir: "dist", platform: "node" },

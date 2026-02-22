@@ -1,6 +1,5 @@
 import { config } from "dotenv";
-
-import { raise } from "./utils.js";
+import { raise } from "niall-utils";
 
 config({ quiet: true });
 

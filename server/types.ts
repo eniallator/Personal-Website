@@ -33,22 +33,22 @@ export type Company = TypeFromGuard<typeof isCompany>;
 // https://stackoverflow.com/a/9204568/11824244
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const isEmail: Guard<`${string}@${string}.${string}`> = (
-  value: unknown
+  value: unknown,
 ): value is `${string}@${string}.${string}` =>
   typeof value === "string" && emailRegex.test(value);
 
 export const isValidMail = isObjectOf(
   {
-    phone: isExact("", false),
-    city: isExact("", false),
-    address: isExact("", false),
-    country: isExact("", false),
-    ["zip code"]: isExact("", false),
+    phone: isExact(""),
+    city: isExact(""),
+    address: isExact(""),
+    country: isExact(""),
+    ["zip code"]: isExact(""),
     name: isString,
     email: isEmail,
     message: isString,
   },
-  true
+  true,
 );
 
 export interface RenderContext {
