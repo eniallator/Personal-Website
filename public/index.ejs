@@ -22,13 +22,13 @@
       content="<%= fullHost %>" />
     <meta
       property="og:image"
-      content="<%= fullHost %>/static/images/avatar.jpg" />
+      content="<%= fullHost %>/static/images/light-theme-logo.webp" />
     <meta
       property="og:description"
       content="Niall's personal website: About | Projects | Contact" />
     <meta
       name="twitter:card"
-      content="<%= fullHost %>/static/images/avatar.jpg" />
+      content="<%= fullHost %>/static/images/dark-theme-logo.webp" />
     <meta
       http-equiv="X-UA-Compatible"
       content="ie=edge" />
@@ -61,16 +61,26 @@
       as="font"
       type="font/woff2"
       crossorigin>
+
+    <% if (theme === "dark") { %>
     <link
       rel="preload"
       fetchpriority="high"
       as="image"
-      href="/static/images/avatar.jpg" />
+      href="/static/images/dark-theme-logo.webp" />
+    <%} else {%>
     <link
       rel="preload"
       fetchpriority="high"
       as="image"
-      href="/static/images/foggy-trees.jpg" />
+      href="/static/images/light-theme-logo.webp" />
+    <%}%>
+
+    <link
+      rel="preload"
+      fetchpriority="high"
+      as="image"
+      href="/static/images/foggy-trees.webp" />
     <% for (const company of companies) { %>
     <link
       rel="preload"
@@ -109,10 +119,17 @@
       <div class="container-lg nav-container">
         <a class="nav-home" href="/">
           <img
-            src="/static/images/avatar.jpg"
-            alt="Niall's avatar"
-            width="42"
-            height="42" />
+            class="when-dark"
+            src="/static/images/dark-theme-logo.webp"
+            alt="Logo"
+            width="50"
+            height="32" />
+          <img
+            class="when-light"
+            src="/static/images/light-theme-logo.webp"
+            alt="Logo"
+            width="50"
+            height="32" />
         </a>
         <label
           aria-label="Toggle nav menu"

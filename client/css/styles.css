@@ -155,13 +155,21 @@ main section {
   padding-bottom: 2.5rem;
 }
 
+#dark-theme:checked ~ * .when-light {
+  display: none !important;
+}
+
+#dark-theme:not(:checked) ~ * .when-dark {
+  display: none !important;
+}
+
 /* NAV STYLES */
 
 nav {
   position: sticky;
   top: 0;
   z-index: 2;
-  padding: 0 2rem 0 4rem;
+  padding: 0 2rem;
   display: flex;
   flex-direction: row;
   background-color: var(--nav-bg-color);
@@ -176,7 +184,7 @@ nav {
 }
 
 .nav-home {
-  padding: 0.2rem 0;
+  padding: 0.5rem 0;
   line-height: 0;
   z-index: 1;
 }
@@ -251,7 +259,7 @@ nav ul {
   display: none !important;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 525px) {
   nav {
     padding: 0 2rem;
   }
@@ -326,7 +334,7 @@ header {
   width: 100%;
   min-height: 8rem;
   height: 30vh;
-  background-image: url(/static/images/foggy-trees.jpg);
+  background-image: url(/static/images/foggy-trees.webp);
   background-position: 50% 0;
   background-size: cover;
   position: relative;
