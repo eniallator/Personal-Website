@@ -1,12 +1,8 @@
-import acceptWebp from "accept-webp";
 import bodyParser from "body-parser";
 import compression from "compression";
 import cookieParser from "cookie-parser";
 import { isObjectOf } from "deep-guards";
 import express from "express";
-import { Option } from "niall-utils";
-import { readFileSync } from "node:fs";
-import https from "node:https";
 
 import {
   companies,
@@ -18,7 +14,6 @@ import { env } from "./env.js";
 import { sendMail } from "./mail.js";
 import { trySortProjects } from "./project.js";
 import { RenderMemo } from "./renderMemo.js";
-import { insertSecurityHeaders } from "./securityHeaders.js";
 import { calculateSpecialTheme } from "./specialTheme.js";
 import { isSpecialTheme, isTheme } from "./types.js";
 
@@ -47,15 +42,14 @@ const renderMemo = new RenderMemo<RenderContext>(
 
 app.set("view engine", "ejs");
 app.set("views", "./public");
+app.set("trust proxy", true);
 
 app.use(
   compression(),
   cookieParser(),
   bodyParser.json(),
   bodyParser.urlencoded({ extended: true }),
-  acceptWebp("public"),
   express.static("public"),
-  insertSecurityHeaders,
   themeToCookie,
 );
 
@@ -90,19 +84,10 @@ app.post("/", (req, res) => {
   res.redirect(req.url);
 });
 
-app.get(["/cv/pdf-download", "/resume/pdf-download"], (_req, res) => {
+app.get("/cv/pdf-download", (_req, res) => {
   res.download("public/cv/nialls_cv.pdf");
 });
 
-app.use("/resume", express.static("public/cv"));
-
-const server = Option.tupled([
-  Option.from(env.sslFullChain).map(readFileSync),
-  Option.from(env.sslPrivateKey).map(readFileSync),
-])
-  .map(([cert, key]) => https.createServer({ cert, key }, app))
-  .getOrElse(() => app);
-
-server.listen(port, () => {
+app.listen(port, () => {
   console.log(`Listening on port ${port} in env ${nodeEnv}`);
 });

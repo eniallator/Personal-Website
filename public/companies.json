@@ -14,37 +14,37 @@
   {
     "url": "https://cartographer.io/",
     "name": "Cartographer",
-    "img": "/static/images/logos/cartographer.png",
+    "img": "/static/images/logos/cartographer.webp",
     "aspectRatio": 1
   },
   {
     "url": "https://livevideoescaperooms.com/",
     "name": "Live Video Escape Rooms",
-    "img": "/static/images/logos/lver.png",
+    "img": "/static/images/logos/lver.webp",
     "aspectRatio": 4.071
   },
   {
     "url": "https://fonts.google.com/",
     "name": "Google Fonts",
-    "img": "/static/images/logos/google-fonts.png",
+    "img": "/static/images/logos/google-fonts.webp",
     "aspectRatio": 1.339
   },
   {
     "url": "https://exeter.ac.uk/",
     "name": "University of Exeter",
-    "img": "/static/images/logos/UoE.png",
+    "img": "/static/images/logos/UoE.webp",
     "aspectRatio": 2.945
   },
   {
     "url": "https://buzzshot.co/",
     "name": "Buzzshot",
-    "img": "/static/images/logos/buzzshot.png",
+    "img": "/static/images/logos/buzzshot.webp",
     "aspectRatio": 4.355
   },
   {
     "url": "https://gold.ac.uk/",
     "name": "Goldsmiths, University of London",
-    "img": "/static/images/logos/UoG.png",
+    "img": "/static/images/logos/UoG.webp",
     "aspectRatio": 3.2
   },
   {

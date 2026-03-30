@@ -722,15 +722,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"accept-webp@npm:^1.4.0":
-  version: 1.4.0
-  resolution: "accept-webp@npm:1.4.0"
-  dependencies:
-    vary: "npm:^1.0.0"
-  checksum: 10c0/e62b9469f0b09785e3aa921b283dc5cbc3f108b55235fd75a03065b4806f50eee40156554f2e12ef35534959e24e95e789c7fe6bc88f046c92e1041ab5b84bac
-  languageName: node
-  linkType: hard
-
 "accepts@npm:^2.0.0":
   version: 2.0.0
   resolution: "accepts@npm:2.0.0"
@@ -3075,7 +3066,6 @@ __metadata:
     "@types/nodemailer": "npm:^7.0.11"
     "@typescript-eslint/eslint-plugin": "npm:^8.56.0"
     "@typescript-eslint/parser": "npm:^8.56.0"
-    accept-webp: "npm:^1.4.0"
     body-parser: "npm:^2.2.2"
     compression: "npm:^1.8.1"
     cookie-parser: "npm:^1.4.7"
@@ -4167,7 +4157,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vary@npm:^1.0.0, vary@npm:^1.1.2, vary@npm:~1.1.2":
+"vary@npm:^1.1.2, vary@npm:~1.1.2":
   version: 1.1.2
   resolution: "vary@npm:1.1.2"
   checksum: 10c0/f15d588d79f3675135ba783c91a4083dcd290a2a5be9fcb6514220a1634e23df116847b1cc51f66bfb0644cf9353b2abb7815ae499bab06e46dd33c1a6bf1f4f

@@ -2,121 +2,121 @@
     {
         "title": "Painting Recreation",
         "description": "Web art inspired by one of my grandad's paintings",
-        "img": "/static/images/thumbnails/painting-recreation.png",
+        "img": "/static/images/thumbnails/painting-recreation.webp",
         "github": "Painting-Recreation"
     },
     {
         "title": "Wind Animations",
         "description": "Colourful particle simulations which look like wind animations",
-        "img": "/static/images/thumbnails/wind-animations.png",
+        "img": "/static/images/thumbnails/wind-animations.webp",
         "github": "Wind-Animations"
     },
     {
         "title": "Starfield Generator",
         "description": "Starfield generator animation created using 3D rasterising techniques",
-        "img": "/static/images/thumbnails/3d-rasteriser.png",
+        "img": "/static/images/thumbnails/3d-rasteriser.webp",
         "github": "3D-Rasteriser"
     },
     {
         "title": "Particle Cellular Automata",
         "description": "Particle based cellular automata using convolution with tensorflowjs",
-        "img": "/static/images/thumbnails/particle-cellular-automata.png",
+        "img": "/static/images/thumbnails/particle-cellular-automata.webp",
         "github": "GPU-Accelerated-Cellular-Automata"
     },
     {
         "title": "Aurora Borealis Simulation",
         "description": "An art project where I've recreated a mountain scene with the aurora borealis",
-        "img": "/static/images/thumbnails/aurora-borealis-art.png",
+        "img": "/static/images/thumbnails/aurora-borealis-art.webp",
         "github": "Aurora-Borealis-Art"
     },
     {
         "title": "Maze Animations",
         "description": "Maze animations generated using Javascript and displayed with the HTML canvas",
-        "img": "/static/images/thumbnails/maze-animations.png",
+        "img": "/static/images/thumbnails/maze-animations.webp",
         "github": "Maze-Animations"
     },
     {
         "title": "Falling Coloured Rectangles",
         "description": "Falling coloured rectangles inspired by an artwork made by my grandad",
-        "img": "/static/images/thumbnails/falling-coloured-rectangles.png",
+        "img": "/static/images/thumbnails/falling-coloured-rectangles.webp",
         "github": "Falling-Coloured-Rectangles"
     },
     {
         "title": "Mandela Generator",
         "description": "Generates mandelas using tensorflowjs, with all sorts of interesting config options",
-        "img": "/static/images/thumbnails/mandela-generator.png",
+        "img": "/static/images/thumbnails/mandela-generator.webp",
         "github": "Mandela-Generator"
     },
     {
         "title": "Koi Fish Pond",
         "description": "Animated fish using javascript that swim around using the boids algorithm",
-        "img": "/static/images/thumbnails/koi-fish-pond.png",
+        "img": "/static/images/thumbnails/koi-fish-pond.webp",
         "github": "Koi-Fish-Pond"
     },
     {
         "title": "Bezier Curve Generator",
         "description": "My implementation of the bezier curve algorithm which allows you to edit them in real-time",
-        "img": "/static/images/thumbnails/bezier-curve-generator.png",
+        "img": "/static/images/thumbnails/bezier-curve-generator.webp",
         "github": "Bezier-Curve-Generator"
     },
     {
         "title": "Boids",
         "description": "Boids algorithm implemented using Javascript and the HTML canvas",
-        "img": "/static/images/thumbnails/boids.png",
+        "img": "/static/images/thumbnails/boids.webp",
         "github": "boids"
     },
     {
         "title": "Firework Simulation",
         "description": "Firework simulation in the browser using javascript and the HTML canvas",
-        "img": "/static/images/thumbnails/firework-simulation.png",
+        "img": "/static/images/thumbnails/firework-simulation.webp",
         "github": "Firework-Simulation"
     },
     {
         "title": "Ray Marching",
         "description": "A ray marching simulation created using the HTML canvas and Javascript",
-        "img": "/static/images/thumbnails/ray-marching.png",
+        "img": "/static/images/thumbnails/ray-marching.webp",
         "github": "Ray-Marching"
     },
     {
         "title": "Symmetry Line Animation",
         "description": "A symmetrical line animation written for the canvas",
-        "img": "/static/images/thumbnails/symmetry-line.png",
+        "img": "/static/images/thumbnails/symmetry-line.webp",
         "github": "Symmetry-Line-Animation"
     },
     {
         "title": "Reactive Hexagon Points",
         "description": "Connected points that form hexagons and when clicked, move around",
-        "img": "/static/images/thumbnails/reactive-hexagons.png",
+        "img": "/static/images/thumbnails/reactive-hexagons.webp",
         "github": "Reactive-Hexagon-Points"
     },
     {
         "title": "Circle Segments Animation",
         "description": "An animation of circle segments growing from the center of the screen, towards the outside",
-        "img": "/static/images/thumbnails/circle-segments.png",
+        "img": "/static/images/thumbnails/circle-segments.webp",
         "github": "Circle-Segments-Animation"
     },
     {
         "title": "Contour Lines",
         "description": "A simulation of contour lines using the marching squares algorithm",
-        "img": "/static/images/thumbnails/contour-lines.png",
+        "img": "/static/images/thumbnails/contour-lines.webp",
         "github": "Contour-Lines"
     },
     {
         "title": "Sand Piles Animation",
         "description": "A sand piles simulation in javascript",
-        "img": "/static/images/thumbnails/sand-piles.png",
+        "img": "/static/images/thumbnails/sand-piles.webp",
         "github": "Sand-Piles-JS"
     },
     {
         "title": "Physics Ball Toss",
         "description": "A physics ball toss simulation using the kinematic equations",
-        "img": "/static/images/thumbnails/physics-ball-toss.png",
+        "img": "/static/images/thumbnails/physics-ball-toss.webp",
         "github": "Physics-Ball-Toss"
     },
     {
         "title": "Pride Rainbow Animation",
         "description": "A canvas animation of a rainbow that I made one year for pride",
-        "img": "/static/images/thumbnails/pride-rainbow.png",
+        "img": "/static/images/thumbnails/pride-rainbow.webp",
         "github": "pride-rainbow-animation"
     }
 ]
