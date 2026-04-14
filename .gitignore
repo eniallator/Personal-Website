@@ -7,3 +7,5 @@ dist
 .yarn/install-state.gz
 .env
 .envrc
+.pnp.cjs
+.pnp.loader.mjs
