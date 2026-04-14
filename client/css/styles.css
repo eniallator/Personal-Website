@@ -408,25 +408,28 @@ header p {
   #about-panels {
     display: flex;
     flex-direction: row-reverse;
+  }
 
-    & > div {
-      width: 50%;
-      padding: 0 1rem;
+  #about-panel-companies {
+    width: 50%;
+    padding-left: 1rem;
+
+    p {
+      text-wrap: pretty;
+      margin-top: 0;
     }
   }
 
-  #about-panel-companies p {
-    text-wrap: pretty;
-    margin-top: 0;
-  }
-
   #about-panel-text {
+    width: 50%;
+    padding-right: 1rem;
+    border-right: 1px solid var(--border-color);
+
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
     row-gap: 1rem;
-    border-right: 1px solid var(--border-color);
   }
 }
 
@@ -516,7 +519,7 @@ header p {
 }
 
 #project-container {
-  margin: 1rem auto 0;
+  margin: 0.5rem auto 0;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -525,7 +528,7 @@ header p {
   overflow-y: hidden;
   height: 19rem;
   max-width: calc(18rem + 2px + 4 * (19.5rem + 2px));
-  padding: 0 1rem;
+  padding: 0.5rem 1rem 0;
 
   figure {
     margin: 0;
@@ -536,7 +539,7 @@ header p {
 
 @media (min-width: 750px) {
   #project-container {
-    padding: 0 8%;
+    padding: 0.5rem 8% 0;
   }
 }
 
@@ -550,7 +553,6 @@ header p {
   text-decoration: none;
   color: var(--text-color);
   background-color: var(--card-color);
-  border: 1px solid var(--border-color);
 
   &:hover {
     background-color: var(--card-hover-color);
