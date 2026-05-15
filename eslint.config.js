@@ -1,7 +1,5 @@
-import typescriptParser from "@typescript-eslint/parser";
 import jslint from "@eslint/js";
 import tslint from "typescript-eslint";
-import tsPlugin from "@typescript-eslint/eslint-plugin";
 import stylistic from "@stylistic/eslint-plugin";
 
 export default tslint.config(
@@ -17,11 +15,8 @@ export default tslint.config(
   ...tslint.configs.strictTypeChecked,
   {
     languageOptions: {
-      parser: typescriptParser,
       parserOptions: { project: "./tsconfig.json" },
     },
-
-    plugins: { tsPlugin },
 
     rules: {
       "@typescript-eslint/consistent-type-imports": "error",
@@ -63,5 +58,5 @@ export default tslint.config(
         { varsIgnorePattern: "^_", argsIgnorePattern: "^_" },
       ],
     },
-  }
+  },
 );
