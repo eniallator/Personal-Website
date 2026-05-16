@@ -34,6 +34,7 @@ const themeToCookie: RequestHandler = (req, res, next) => {
 };
 
 const app = express();
+app.disable("x-powered-by");
 
 const renderMemo = new RenderMemo<RenderContext>(
   app,
@@ -57,7 +58,7 @@ const hasTheme = isObjectOf({ theme: isTheme });
 app.get("/", async (req, res) => {
   void trySortProjects(projects)
     .then((sorted) => {
-      if (sorted != null) {
+      if (sorted?.some((proj, i) => projects.at(i)?.github !== proj.github)) {
         renderMemo.clear();
         projects = sorted;
       }
