@@ -1,4 +1,3 @@
-import bodyParser from "body-parser";
 import compression from "compression";
 import cookieParser from "cookie-parser";
 import { isObjectOf } from "deep-guards";
@@ -48,8 +47,8 @@ app.set("trust proxy", true);
 app.use(
   compression(),
   cookieParser(),
-  bodyParser.json(),
-  bodyParser.urlencoded({ extended: true }),
+  express.json(),
+  express.urlencoded({ extended: true }),
   express.static("public"),
   themeToCookie,
 );
