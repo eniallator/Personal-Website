@@ -1,5 +1,10 @@
 import { browserslistToTargets, transform } from "lightningcss";
 import fs from "node:fs";
+import rawTargets from "./targets.json" with { type: "json" };
+
+const targets = rawTargets.map(
+  ({ browser, version }) => `${browser} ${version}`,
+);
 
 const isDevelopment =
   process.env.NODE_ENV == null || process.env.NODE_ENV === "development";
@@ -30,13 +35,13 @@ const findLookups = (block) => {
     regex +=
       (regex.length > 0 ? "|" : "") + String.raw`var\(${match.groups.match}\)`;
   }
-  return selfProcessLookups(new RegExp(regex, "g"), lookups);
+  return [new RegExp(regex, "g"), lookups];
 };
 
 const preprocessReplacements = (contents) => {
   let match;
   while ((match = replaceBlockRegex.exec(contents))) {
-    const [regex, lookups] = findLookups(match[0]);
+    const [regex, lookups] = selfProcessLookups(...findLookups(match[0]));
     contents = (
       contents.slice(0, match.index) +
       contents.slice(match.index + match[0].length)
@@ -61,7 +66,7 @@ const preprocessReplacements = (contents) => {
     code: Buffer.from(preprocessReplacements(contents.toString())),
     minify: true,
     sourceMap: false,
-    targets: browserslistToTargets(["chrome 100"]),
+    targets: browserslistToTargets(targets),
   });
   fs.writeFileSync(outFile, code);
   console.debug(`Built ${outFile}`);
