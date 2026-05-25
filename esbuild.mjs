@@ -22,5 +22,5 @@ const isDevelopment =
   })),
 ].forEach(({ entry, ...rest }) => {
   esbuild.buildSync({ entryPoints: [entry], ...rest });
-  console.log(`Built ${entry}`);
+  console.debug(`Built ${entry}`);
 });

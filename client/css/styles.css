@@ -10,6 +10,7 @@
 /* CONSTANTS */
 
 :root {
+  /* VAR-REPLACE-START */
   --color-50: oklch(0.985 0 0);
   --color-100: oklch(0.97 0 0);
   --color-200: oklch(0.922 0 0);
@@ -22,11 +23,17 @@
   --color-900: oklch(0.205 0 0);
   --color-950: oklch(0.145 0 0);
 
-  --primary-btn-color: #0466c8;
-  --primary-btn-hover-color: #0353a4;
+  --primary-btn-color: oklch(
+    from oklch(0.556 0 0) clamp(0.45, l - 0.076, 0.55) clamp(0.2, c + 0.2, 0.25)
+      calc(h + 252deg)
+  );
+  --primary-btn-hover-color: oklch(
+    from var(--primary-btn-color) calc(l - 0.1) c h
+  );
 
   --secondary-btn-color: var(--color-500);
   --secondary-btn-hover-color: var(--color-600);
+  /* VAR-REPLACE-END */
 
   &:has(#dark-theme:checked) {
     --bg-primary-color: var(--color-700);
@@ -36,7 +43,7 @@
     --big-btn-hover-color: var(--color-700);
     --card-color: var(--color-700);
     --card-hover-color: var(--color-600);
-    --img-filter-color: rgb(0, 0, 0, 0.5);
+    --img-filter-color: rgb(from var(--color-950) r g b / 0.5);
     --link-color: #5fafff;
     --nav-bg-color: var(--color-900);
     --outline-color: var(--color-200);
@@ -55,7 +62,7 @@
     --big-btn-hover-color: var(--color-300);
     --card-color: var(--color-100);
     --card-hover-color: var(--color-200);
-    --img-filter-color: rgb(255, 255, 255, 0.6);
+    --img-filter-color: rgb(from var(--color-50) r g b / 0.6);
     --link-color: #0353a4;
     --nav-bg-color: var(--color-300);
     --outline-color: var(--color-600);

@@ -12,7 +12,7 @@
     "node": ">=24.8.0"
   },
   "scripts": {
-    "build:css": "css-minify -d client/css -o public/static/css && css-minify -d client/css/themes -o public/static/css/themes",
+    "build:css": "node cssbuild.mjs",
     "build:ts": "node esbuild.mjs",
     "build": "yarn build:ts && yarn build:css",
     "start": "node dist/index.js",
@@ -29,7 +29,7 @@
     "ejs": "^5.0.2",
     "express": "^5.2.1",
     "niall-utils": "^1.3.0",
-    "nodemailer": "^8.0.7"
+    "nodemailer": "^8.0.8"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
@@ -39,11 +39,10 @@
     "@types/express": "5.0.6",
     "@types/node": "25.9.1",
     "@types/nodemailer": "^8.0.0",
-    "css-minify": "^2.1.0",
     "esbuild": "^0.28.0",
     "eslint": "^10.4.0",
+    "lightningcss": "^1.32.0",
     "prettier": "^3.8.3",
-    "tsc-files": "^1.1.4",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.59.4"
   },

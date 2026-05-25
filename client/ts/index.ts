@@ -26,8 +26,12 @@ projectsToggle.oninput = () => {
 
   allProjects.forEach((el) => {
     if (projectsToggle.checked || firstY === el.getBoundingClientRect().y) {
+      el.inert = false;
+      el.removeAttribute("aria-hidden");
       el.removeAttribute("tabindex");
     } else {
+      el.inert = true;
+      el.setAttribute("aria-hidden", "true");
       el.setAttribute("tabindex", "-1");
     }
   });
@@ -61,7 +65,7 @@ allProjects.forEach((el) => {
   el.onclick = (evt) => {
     evt.preventDefault();
 
-    const github = el.getAttribute("data-github");
+    const github = el.dataset.github;
     const thumbnail = getEl<HTMLImageElement>("img.project-thumbnail", el).src;
 
     previewIframe.src =

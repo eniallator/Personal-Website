@@ -109,13 +109,17 @@
       id="dark-theme"
       class="hidden"
       type="checkbox"
+      aria-hidden="true"
+      tabindex="-1"
       <% if (theme === "dark") { %> checked <%}%>
     />
     <nav role="navigation">
       <input
         id="nav-menu-toggle"
         class="hidden"
-        type="checkbox" />
+        type="checkbox"
+        aria-hidden="true"
+        tabindex="-1" />
       <div class="container-lg nav-container">
         <a class="nav-home" href="/">
           <img
@@ -300,7 +304,9 @@
         <input
           id="projects-toggle"
           class="hidden"
-          type="checkbox" />
+          type="checkbox"
+          aria-hidden="true"
+          tabindex="-1" />
         <div id="project-container">
           <% for (const project of projects) { %>
           <figure>
