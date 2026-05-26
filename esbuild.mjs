@@ -1,13 +1,15 @@
+import { config } from "dotenv";
 import * as esbuild from "esbuild";
 import fs from "node:fs";
 import rawTargets from "./targets.json" with { type: "json" };
 
+config({ quiet: true });
+const env = process.env.NODE_ENV ?? "development";
+const isDevelopment = env === "development";
+
 const targets = rawTargets.map(
   ({ browser, version }) => `${browser}${version}`,
 );
-
-const isDevelopment =
-  process.env.NODE_ENV == null || process.env.NODE_ENV === "development";
 
 [
   { entry: "server/**/*.ts", outdir: "dist", platform: "node" },
@@ -29,5 +31,5 @@ const isDevelopment =
   })),
 ].forEach(({ entry, ...rest }) => {
   esbuild.buildSync({ entryPoints: [entry], ...rest });
-  console.debug(`Built ${entry}`);
+  console.debug(`Built ${entry} in ${env}`);
 });
