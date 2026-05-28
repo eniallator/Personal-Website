@@ -1,8 +1,8 @@
 import { Octokit } from "@octokit/core";
+import { asyncThrottled } from "niall-utils";
 
 import { GITHUB_PAGE_SIZE, HOUR_IN_MS, initialProjects } from "./constants.js";
 
-import { asyncThrottled } from "./throttled.js";
 import type { Project } from "./types.js";
 
 const octokit = new Octokit();
