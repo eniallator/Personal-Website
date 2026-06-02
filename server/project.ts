@@ -10,7 +10,7 @@ const octokit = new Octokit();
 export const trySortProjects = asyncThrottled(
   async (projects: Project[]): Promise<Project[] | null> => {
     const order: string[] = [];
-    let page = 1;
+    let page = 0;
     do {
       try {
         const { data } = await octokit.request("GET /users/{username}/repos", {
@@ -19,7 +19,7 @@ export const trySortProjects = asyncThrottled(
           sort: "pushed",
           direction: "desc",
           per_page: GITHUB_PAGE_SIZE,
-          page: page++,
+          page: ++page,
         });
         order.push(...data.map(({ name }) => name.toLowerCase()));
       } catch (err) {
