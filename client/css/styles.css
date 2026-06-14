@@ -79,7 +79,7 @@
 html,
 body {
   margin: 0;
-  font-family: "Noto Sans", sans-serif;
+  font-family: "Noto Sans", Arial, Inter, sans-serif;
   font-variation-settings: "wdth" 100;
   font-optical-sizing: auto;
   font-weight: 400;
