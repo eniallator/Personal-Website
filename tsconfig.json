@@ -22,6 +22,6 @@
     "sourceRoot": "server",
     "strict": true,
     "target": "esnext",
-    "types": ["node"]
+    "types": ["node", "@types/bun"]
   }
 }

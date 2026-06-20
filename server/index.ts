@@ -1,14 +1,8 @@
-import compression from "compression";
-import cookieParser from "cookie-parser";
-import { isObjectOf } from "deep-guards";
-import express from "express";
+import { Hono } from "hono";
+import { serveStatic } from "hono/bun";
+import { getCookie, setCookie } from "hono/cookie";
 
-import {
-  companies,
-  DEFAULT_THEME,
-  HOUR_IN_MS,
-  initialProjects,
-} from "./constants.js";
+import { companies, DEFAULT_THEME, initialProjects } from "./constants.js";
 import { env } from "./env.js";
 import { sendMail } from "./mail.js";
 import { trySortProjects } from "./project.js";
@@ -16,80 +10,85 @@ import { RenderMemo } from "./renderMemo.js";
 import { calculateSpecialTheme } from "./specialTheme.js";
 import { isSpecialTheme, isTheme } from "./types.js";
 
-import type { RequestHandler } from "express";
+import { Option } from "niall-utils";
 import type { RenderContext } from "./types.js";
 
 const { fullHost, nodeEnv, port } = env;
 
-let projects = (await trySortProjects(initialProjects)) ?? initialProjects;
-const basePublicDir = "public";
+let projects = await trySortProjects(initialProjects);
+const staticDir = "public";
 const isDevelopment = nodeEnv === "development";
 
-const themeToCookie: RequestHandler = (req, res, next) => {
-  const theme = req.query["set-theme"];
-  if (isTheme(theme)) {
-    res.cookie("theme", theme, { maxAge: 5 * 365.25 * 24 * HOUR_IN_MS });
-  }
-  next();
-};
+const app = new Hono();
 
-const app = express();
-app.disable("x-powered-by");
+app.use("/*", serveStatic({ root: staticDir }));
+app.use(async (c, next) => {
+  const theme = c.req.query("set-theme");
+
+  if (isTheme(theme)) {
+    setCookie(c, "theme", theme, {
+      maxAge: 5 * 365.25 * 24 * 60 * 60,
+      path: "/",
+    });
+  }
+
+  await next();
+});
 
 const renderMemo = new RenderMemo<RenderContext>(
-  (name, { theme, specialTheme }) => `${theme}:${specialTheme}/${name}`,
+  (name, ctx) => `${ctx.theme}:${ctx.specialTheme}/${name}`,
 );
 
-app.set("view engine", "ejs");
-app.set("views", basePublicDir);
-app.set("trust proxy", true);
-
-app.use(
-  compression(),
-  cookieParser(),
-  express.json(),
-  express.urlencoded({ extended: true }),
-  express.static(basePublicDir),
-  themeToCookie,
-);
-
-const hasTheme = isObjectOf({ theme: isTheme });
-app.get("/", async (req, res) => {
+app.get("/", async (c) => {
   void trySortProjects(projects)
     .then((sorted) => {
-      if (sorted?.some((proj, i) => projects.at(i)?.github !== proj.github)) {
+      if (sorted.some((proj, i) => projects.at(i)?.github !== proj.github)) {
         renderMemo.clear();
         projects = sorted;
       }
     })
     .catch(console.error as (err: unknown) => void);
 
-  const theme = hasTheme(req.cookies) ? req.cookies.theme : DEFAULT_THEME;
-  const specialTheme = isSpecialTheme(req.query.theme)
-    ? req.query.theme
-    : calculateSpecialTheme();
+  const theme = Option.from(getCookie(c, "theme"))
+    .guard(isTheme)
+    .getOrElse(() => DEFAULT_THEME);
+  const specialTheme = Option.from(c.req.query("theme"))
+    .guard(isSpecialTheme)
+    .getOrElse(calculateSpecialTheme);
   const ctx = { theme, specialTheme, fullHost, projects, companies };
 
   try {
-    res.send(
-      await renderMemo.render(`${basePublicDir}/index.ejs`, ctx, isDevelopment),
+    const html = await renderMemo.render(
+      `${staticDir}/index.ejs`,
+      ctx,
+      isDevelopment,
     );
+    return c.html(html);
   } catch (err) {
     console.error(err);
-    res.status(500).send("Something went wrong rendering this page ...");
+    return c.text("Something went wrong rendering this page ...", 500);
   }
 });
 
-app.post("/", (req, res) => {
-  console.log(`New POST from ${req.headers["user-agent"]}`);
-  void sendMail(req.body);
-  res.redirect(req.url);
+app.post("/", async (c) => {
+  console.log(`New POST from ${c.req.header("user-agent")}`);
+  void sendMail(await c.req.parseBody());
+  return c.redirect(c.req.url);
 });
 
-app.get("/cv/pdf-download", (_req, res) => {
-  res.download("public/cv/nialls_cv.pdf");
+app.get(
+  "/cv/pdf-download",
+  async (c, next) => {
+    c.header("Content-Disposition", 'attachment; filename="nialls_cv.pdf"');
+    await next();
+  },
+  serveStatic({ path: "./public/cv/nialls_cv.pdf" }),
+);
+
+const server = Bun.serve({
+  fetch: app.fetch,
+  port,
+  development: isDevelopment,
 });
 
-app.listen(port, () => {
-  console.log(`Listening on port ${port} in env ${nodeEnv}`);
-});
+console.log(`Listening on http://${server.hostname}:${port} in env ${nodeEnv}`);
