@@ -22,6 +22,7 @@ import type { RenderContext } from "./types.js";
 const { fullHost, nodeEnv, port } = env;
 
 let projects = (await trySortProjects(initialProjects)) ?? initialProjects;
+const basePublicDir = "public";
 const isDevelopment = nodeEnv === "development";
 
 const themeToCookie: RequestHandler = (req, res, next) => {
@@ -36,12 +37,11 @@ const app = express();
 app.disable("x-powered-by");
 
 const renderMemo = new RenderMemo<RenderContext>(
-  app,
-  ({ theme, specialTheme }) => `${theme}:${specialTheme}`,
+  (name, { theme, specialTheme }) => `${theme}:${specialTheme}/${name}`,
 );
 
 app.set("view engine", "ejs");
-app.set("views", "./public");
+app.set("views", basePublicDir);
 app.set("trust proxy", true);
 
 app.use(
@@ -49,7 +49,7 @@ app.use(
   cookieParser(),
   express.json(),
   express.urlencoded({ extended: true }),
-  express.static("public"),
+  express.static(basePublicDir),
   themeToCookie,
 );
 
@@ -71,7 +71,9 @@ app.get("/", async (req, res) => {
   const ctx = { theme, specialTheme, fullHost, projects, companies };
 
   try {
-    res.send(await renderMemo.render("index.ejs", ctx, isDevelopment));
+    res.send(
+      await renderMemo.render(`${basePublicDir}/index.ejs`, ctx, isDevelopment),
+    );
   } catch (err) {
     console.error(err);
     res.status(500).send("Something went wrong rendering this page ...");

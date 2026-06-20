@@ -1,12 +1,10 @@
-import type { Express } from "express";
+import ejs from "ejs";
 
 export class RenderMemo<C extends NonNullable<unknown>> {
   private memo: Record<string | number, string> = {};
-  private readonly app: Express;
-  private readonly contextKey: (ctx: C) => string | number;
+  private readonly contextKey: (name: string, ctx: C) => string | number;
 
-  constructor(app: Express, contextKey: (ctx: C) => string | number) {
-    this.app = app;
+  constructor(contextKey: (name: string, ctx: C) => string | number) {
     this.contextKey = contextKey;
   }
 
@@ -15,18 +13,15 @@ export class RenderMemo<C extends NonNullable<unknown>> {
   }
 
   async render(name: string, ctx: C, force: boolean = false): Promise<string> {
-    const key = this.contextKey(ctx);
+    const key = this.contextKey(name, ctx);
     if (!force && this.memo[key] != null) {
       return this.memo[key];
     }
 
     console.log(`Rendering to memo "${key}"`);
 
-    return new Promise((resolve, reject) => {
-      this.app.render(name, ctx, (err: Error | null, html: string | null) => {
-        if (html != null) resolve((this.memo[key] = html));
-        else reject(err ?? new Error("Unknown rendering error"));
-      });
-    });
+    return (this.memo[key] = await ejs.renderFile(name, ctx, {
+      rmWhitespace: true,
+    }));
   }
 }
