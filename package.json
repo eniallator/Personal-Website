@@ -12,13 +12,13 @@
     "node": ">=24.8.0"
   },
   "scripts": {
-    "build:css": "node cssbuild.mjs",
-    "build:ts": "node esbuild.mjs",
-    "build": "yarn build:ts && yarn build:css",
-    "start": "node dist/index.js",
+    "build:ts": "bun esbuild.mjs",
+    "build:css": "bun cssbuild.mjs",
+    "build": "bun run build:ts && bun run build:css",
+    "start": "bun dist/index.js",
     "lint": "eslint ./server ./client",
     "typecheck": "tsc --noEmit",
-    "findissues": "yarn typecheck && yarn lint"
+    "findissues": "bun run typecheck && bun run lint"
   },
   "dependencies": {
     "@octokit/core": "^7.0.6",
@@ -29,7 +29,7 @@
     "ejs": "^6.0.1",
     "express": "^5.2.1",
     "niall-utils": "^1.4.0",
-    "nodemailer": "^8.0.10"
+    "nodemailer": "^9.0.1"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
@@ -37,14 +37,14 @@
     "@types/compression": "1.8.1",
     "@types/cookie-parser": "1.4.10",
     "@types/express": "5.0.6",
-    "@types/node": "25.9.1",
-    "@types/nodemailer": "^8.0.0",
-    "esbuild": "^0.28.0",
-    "eslint": "^10.4.1",
+    "@types/node": "26.0.0",
+    "@types/nodemailer": "^8.0.1",
+    "esbuild": "^0.28.1",
+    "eslint": "^10.5.0",
     "lightningcss": "^1.32.0",
-    "prettier": "^3.8.3",
+    "prettier": "^3.8.4",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.60.1"
+    "typescript-eslint": "^8.61.1"
   },
   "repository": {
     "type": "git",

@@ -1,6 +1,6 @@
 import { config } from "dotenv";
 import { browserslistToTargets, transform } from "lightningcss";
-import fs from "node:fs";
+import fs from "bun:fs";
 import rawTargets from "./targets.json" with { type: "json" };
 
 config({ quiet: true });

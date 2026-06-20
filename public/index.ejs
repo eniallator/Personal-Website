@@ -48,12 +48,14 @@
     <link
       rel="preload"
       href="/static/js/bundle.js"
-      as="script" />
+      as="script"
+      type="text/javascript" />
     <% if (specialTheme !== "no-theme") { %>
     <link
       rel="preload"
       href="/static/js/themes/<%= specialTheme %>.bundle.js"
-      as="script" />
+      as="script"
+      type="text/javascript" />
     <% } %>
     <link
       rel="preload"
@@ -67,20 +69,23 @@
       rel="preload"
       fetchpriority="high"
       as="image"
-      href="/static/images/dark-theme-logo.webp" />
+      href="/static/images/dark-theme-logo.webp"
+      type="image/webp" />
     <%} else {%>
     <link
       rel="preload"
       fetchpriority="high"
       as="image"
-      href="/static/images/light-theme-logo.webp" />
+      href="/static/images/light-theme-logo.webp"
+      type="image/webp" />
     <%}%>
 
     <link
       rel="preload"
       fetchpriority="high"
       as="image"
-      href="/static/images/foggy-trees.webp" />
+      href="/static/images/foggy-trees.webp"
+      type="image/webp" />
     <% for (const company of companies) { %>
     <link
       rel="preload"
@@ -94,6 +99,7 @@
       as="image"
       href="<%= project.img %>" />
     <% } %>
+
     <link
       rel="stylesheet"
       href="/static/css/styles.min.css" />
@@ -147,15 +153,9 @@
           </svg>
         </label>
         <ul>
-          <li>
-            <a class="theme-font" href="#about">About</a>
-          </li>
-          <li>
-            <a class="theme-font" href="#projects">Projects</a>
-          </li>
-          <li>
-            <a class="theme-font" href="#contact">Contact</a>
-          </li>
+          <li><a class="theme-font" href="#about">About</a></li>
+          <li><a class="theme-font" href="#projects">Projects</a></li>
+          <li><a class="theme-font" href="#contact">Contact</a></li>
         </ul>
         <label
           aria-label="Set theme to dark"
@@ -380,9 +380,7 @@
                 </svg>
               </button>
             </div>
-            <iframe
-              title="Project Preview"
-              allow="fullscreen"></iframe>
+            <iframe title="Project Preview" allow="fullscreen"></iframe>
             <div class="button-group">
               <a
                 class="button primary js-preview"

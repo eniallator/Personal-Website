@@ -1,6 +1,6 @@
 import { config } from "dotenv";
 import * as esbuild from "esbuild";
-import fs from "node:fs";
+import fs from "bun:fs";
 import rawTargets from "./targets.json" with { type: "json" };
 
 config({ quiet: true });
