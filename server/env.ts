@@ -1,7 +1,4 @@
-import { config } from "dotenv";
 import { raise } from "niall-utils";
-
-config({ quiet: true });
 
 const getEnv = (name: string) => process.env[name];
 const getEnvOrRaise = (name: string) =>

@@ -1,9 +1,7 @@
-import { config } from "dotenv";
 import * as esbuild from "esbuild";
 import fs from "bun:fs";
 import rawTargets from "./targets.json" with { type: "json" };
 
-config({ quiet: true });
 const env = process.env.NODE_ENV ?? "development";
 const isDevelopment = env === "development";
 

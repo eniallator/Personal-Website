@@ -1,9 +1,7 @@
-import { config } from "dotenv";
 import { browserslistToTargets, transform } from "lightningcss";
 import fs from "bun:fs";
 import rawTargets from "./targets.json" with { type: "json" };
 
-config({ quiet: true });
 const env = process.env.NODE_ENV ?? "development";
 const isDevelopment = env === "development";
 
