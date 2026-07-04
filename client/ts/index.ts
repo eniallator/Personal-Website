@@ -37,11 +37,14 @@ projectsToggle.oninput = () => {
   });
 };
 
-(window.onresize = () => {
-  const projHeight = allProjects[0]?.getBoundingClientRect().height ?? 300;
-  projectContainer.style.height = `${3 + projHeight}px`;
-  (projectsToggle.oninput as () => void)();
-})();
+window.onresize = () => {
+  requestAnimationFrame(() => {
+    const projHeight = allProjects[0]?.getBoundingClientRect().height ?? 300;
+    projectContainer.style.height = `${3 + projHeight}px`;
+    (projectsToggle.oninput as () => void)();
+  });
+};
+window.onresize(new UIEvent("resize"));
 
 const previewDialog = getId<HTMLDialogElement>("project-preview");
 const previewIframe = getEl<HTMLIFrameElement>("iframe", previewDialog);

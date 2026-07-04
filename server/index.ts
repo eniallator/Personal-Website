@@ -21,7 +21,8 @@ const isDevelopment = nodeEnv === "development";
 
 const app = new Hono();
 
-app.use("/*", serveStatic({ root: staticDir }));
+app.use("/static/*", serveStatic({ root: staticDir }));
+app.get("/favicon.ico", serveStatic({ path: "./public/favicon.ico" }));
 app.use(async (c, next) => {
   const theme = c.req.query("set-theme");
 
