@@ -14,14 +14,10 @@ export class RenderMemo<C extends NonNullable<unknown>> {
 
   async render(name: string, ctx: C, force: boolean = false): Promise<string> {
     const key = this.contextKey(name, ctx);
-    if (!force && this.memo[key] != null) {
-      return this.memo[key];
-    }
+    if (!force && this.memo[key] != null) return this.memo[key];
 
     console.log(`Rendering to memo "${key}"`);
-
-    return (this.memo[key] = await ejs.renderFile(name, ctx, {
-      rmWhitespace: true,
-    }));
+    this.memo[key] = await ejs.renderFile(name, ctx, { rmWhitespace: true });
+    return this.memo[key];
   }
 }

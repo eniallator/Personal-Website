@@ -19,13 +19,13 @@ export const SPECIAL_THEMES: Record<
   christmas: { month: 11, day: 25 },
 };
 
-export const companies = guardOrThrow(
+export const COMPANIES = guardOrThrow(
   rawCompanies,
   isArrayOf(isCompany),
   "Invalid company format",
 );
 
-export const initialProjects = guardOrThrow(
+export const INITIAL_PROJECTS = guardOrThrow(
   rawProjects,
   isArrayOf(isProject),
   "Invalid project format",

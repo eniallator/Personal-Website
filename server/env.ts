@@ -1,4 +1,4 @@
-import { raise } from "niall-utils";
+import { raise } from "niall-utils/core";
 
 const getEnv = (name: string) => process.env[name];
 const getEnvOrRaise = (name: string) =>

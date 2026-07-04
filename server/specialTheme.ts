@@ -1,4 +1,4 @@
-import { typedToEntries } from "niall-utils";
+import { typedToEntries } from "niall-utils/data";
 
 import {
   DAYS_SPECIAL_THEME_IS_SHOWING,

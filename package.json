@@ -24,9 +24,9 @@
     "@octokit/core": "^7.0.6",
     "deep-guards": "^1.4.0",
     "ejs": "^6.0.1",
-    "hono": "^4.12.26",
-    "niall-utils": "^1.4.0",
-    "nodemailer": "^9.0.1"
+    "hono": "^4.12.27",
+    "niall-utils": "^1.5.1",
+    "nodemailer": "^9.0.3"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
@@ -35,14 +35,14 @@
     "@types/compression": "1.8.1",
     "@types/cookie-parser": "1.4.10",
     "@types/ejs": "^3.1.5",
-    "@types/node": "26.0.0",
+    "@types/node": "26.0.1",
     "@types/nodemailer": "^8.0.1",
     "esbuild": "^0.28.1",
-    "eslint": "^10.5.0",
+    "eslint": "^10.6.0",
     "lightningcss": "^1.32.0",
-    "prettier": "^3.8.4",
+    "prettier": "^3.9.1",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.61.1"
+    "typescript-eslint": "^8.62.1"
   },
   "repository": {
     "type": "git",

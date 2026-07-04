@@ -1,8 +1,9 @@
 import { Hono } from "hono";
 import { serveStatic } from "hono/bun";
 import { getCookie, setCookie } from "hono/cookie";
+import { Option } from "niall-utils/functional";
 
-import { companies, DEFAULT_THEME, initialProjects } from "./constants.js";
+import { COMPANIES, DEFAULT_THEME, INITIAL_PROJECTS } from "./constants.js";
 import { env } from "./env.js";
 import { sendMail } from "./mail.js";
 import { trySortProjects } from "./project.js";
@@ -10,12 +11,11 @@ import { RenderMemo } from "./renderMemo.js";
 import { calculateSpecialTheme } from "./specialTheme.js";
 import { isSpecialTheme, isTheme } from "./types.js";
 
-import { Option } from "niall-utils";
 import type { RenderContext } from "./types.js";
 
 const { fullHost, nodeEnv, port } = env;
 
-let projects = await trySortProjects(initialProjects);
+let projects = await trySortProjects(INITIAL_PROJECTS);
 const staticDir = "public";
 const isDevelopment = nodeEnv === "development";
 
@@ -35,8 +35,8 @@ app.use(async (c, next) => {
   await next();
 });
 
-const renderMemo = new RenderMemo<RenderContext>(
-  (name, ctx) => `${ctx.theme}:${ctx.specialTheme}/${name}`,
+const renderMemo = new RenderMemo<RenderContext>((name, ctx) =>
+  [ctx.theme, ctx.specialTheme, name].join(":"),
 );
 
 app.get("/", async (c) => {
@@ -55,15 +55,12 @@ app.get("/", async (c) => {
   const specialTheme = Option.from(c.req.query("theme"))
     .guard(isSpecialTheme)
     .getOrElse(calculateSpecialTheme);
-  const ctx = { theme, specialTheme, fullHost, projects, companies };
+  const ctx = { theme, specialTheme, fullHost, projects, companies: COMPANIES };
 
   try {
-    const html = await renderMemo.render(
-      `${staticDir}/index.ejs`,
-      ctx,
-      isDevelopment,
+    return c.html(
+      await renderMemo.render(`${staticDir}/index.ejs`, ctx, isDevelopment),
     );
-    return c.html(html);
   } catch (err) {
     console.error(err);
     return c.text("Something went wrong rendering this page ...", 500);

@@ -1,8 +1,9 @@
 import jslint from "@eslint/js";
-import tslint from "typescript-eslint";
 import stylistic from "@stylistic/eslint-plugin";
+import { defineConfig } from "eslint/config";
+import tslint from "typescript-eslint";
 
-export default tslint.config(
+export default defineConfig(
   jslint.configs.recommended,
   stylistic.configs.customize({
     braceStyle: "1tbs",
