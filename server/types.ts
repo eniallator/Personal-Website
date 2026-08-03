@@ -30,12 +30,10 @@ export const isCompany = isObjectOf({
 });
 export type Company = TypeFromGuard<typeof isCompany>;
 
-// https://stackoverflow.com/a/9204568/11824244
-const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const isEmail: Guard<`${string}@${string}.${string}`> = (
+const emailRegex = /^[^\s@]+@[^\s@]+$/;
+const isEmail: Guard<`${string}@${string}`> = (
   value: unknown,
-): value is `${string}@${string}.${string}` =>
-  typeof value === "string" && emailRegex.test(value);
+): value is `${string}@${string}` => isString(value) && emailRegex.test(value);
 
 export const isValidMail = isObjectOf(
   {

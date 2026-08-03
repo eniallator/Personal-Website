@@ -68,6 +68,8 @@ const preprocessReplacements = (contents) => {
     outFile: `public/static/css/themes/${name.slice(0, -3)}min.css`,
   })),
 ].forEach(({ file, outFile }) => {
+  const outDir = outFile.slice(0, outFile.lastIndexOf("/"));
+  fs.mkdirSync(outDir, { recursive: true });
   const contents = fs.readFileSync(file);
   const { code } = transform({
     code: Buffer.from(preprocessReplacements(contents.toString())),

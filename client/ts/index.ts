@@ -14,7 +14,9 @@ getAll("nav ul > li a").forEach((el) => {
 
 const darkThemeEl = getId<HTMLInputElement>("dark-theme");
 darkThemeEl.onchange = () => {
-  document.cookie = `theme=${darkThemeEl.checked ? "dark" : "light"}`;
+  document.cookie = `theme=${
+    darkThemeEl.checked ? "dark" : "light"
+  }; SameSite=Lax${location.protocol === "https:" ? "; Secure" : ""}`;
 };
 
 const projectContainer = getId("project-container");

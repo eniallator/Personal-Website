@@ -1,4 +1,8 @@
-import ejs from "ejs";
+import ejs, { Options } from "ejs";
+
+const RENDER_OPTS: Options = {
+  rmWhitespace: true,
+};
 
 export class RenderMemo<C extends NonNullable<unknown>> {
   private memo: Record<string | number, string> = {};
@@ -17,7 +21,7 @@ export class RenderMemo<C extends NonNullable<unknown>> {
     if (!force && this.memo[key] != null) return this.memo[key];
 
     console.log(`Rendering to memo "${key}"`);
-    this.memo[key] = await ejs.renderFile(name, ctx, { rmWhitespace: true });
+    this.memo[key] = await ejs.renderFile(name, ctx, RENDER_OPTS);
     return this.memo[key];
   }
 }

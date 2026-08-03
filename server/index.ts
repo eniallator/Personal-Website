@@ -71,8 +71,10 @@ app.get("/", async (c) => {
 app.post("/", async (c) => {
   console.log(`New POST from ${c.req.header("user-agent")}`);
   void sendMail(await c.req.parseBody());
-  return c.redirect(c.req.url);
+  return c.redirect("/");
 });
+
+app.get("/cv", serveStatic({ path: "./public/cv/index.html" }));
 
 app.get(
   "/cv/pdf-download",
