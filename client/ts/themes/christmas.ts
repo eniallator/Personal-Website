@@ -8,7 +8,7 @@ const overlayDelay = 5000;
 let santaData = { xPercent: 0, yPercent: 0, yProgress: 0 };
 
 window.onscroll = () => {
-  getAll("#theme-container > img").forEach((img) => {
+  getAll("#theme-container > img").forEach(img => {
     img.remove();
   });
   getId("theme-overlay").classList.remove("fadein");

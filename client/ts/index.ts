@@ -1,12 +1,12 @@
 import { getAll, getEl, getId } from "./helpers";
 
-getAll('[tabindex="0"]').forEach((el) => {
-  el.onkeyup = (evt) => {
+getAll('[tabindex="0"]').forEach(el => {
+  el.onkeyup = evt => {
     if (evt.key === "Enter" && evt.target === el) el.click();
   };
 });
 
-getAll("nav ul > li a").forEach((el) => {
+getAll("nav ul > li a").forEach(el => {
   el.onclick = () => {
     getId<HTMLInputElement>("nav-menu-toggle").checked = false;
   };
@@ -26,7 +26,7 @@ const projectsToggle = getId<HTMLInputElement>("projects-toggle");
 projectsToggle.oninput = () => {
   const firstY = allProjects[0]?.getBoundingClientRect().y;
 
-  allProjects.forEach((el) => {
+  allProjects.forEach(el => {
     if (projectsToggle.checked || firstY === el.getBoundingClientRect().y) {
       el.inert = false;
       el.removeAttribute("aria-hidden");
@@ -54,7 +54,7 @@ const previewHeading = getEl<HTMLHeadingElement>("h3", previewDialog);
 const previewUrl = getEl<HTMLAnchorElement>("a.js-preview", previewDialog);
 const repoUrl = getEl<HTMLAnchorElement>("a.js-repository", previewDialog);
 
-previewDialog.onclick = (evt) => {
+previewDialog.onclick = evt => {
   if (evt.target === previewDialog) previewDialog.close();
 };
 
@@ -66,8 +66,8 @@ previewIframe.onload = () => {
   previewIframe.style.backgroundImage = "none";
 };
 
-allProjects.forEach((el) => {
-  el.onclick = (evt) => {
+allProjects.forEach(el => {
+  el.onclick = evt => {
     evt.preventDefault();
 
     const github = el.dataset.github;

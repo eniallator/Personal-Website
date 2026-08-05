@@ -7,11 +7,10 @@ import { COMPANIES, DEFAULT_THEME, INITIAL_PROJECTS } from "./constants.js";
 import { env } from "./env.js";
 import { sendMail } from "./mail.js";
 import { trySortProjects } from "./project.js";
+import { createRateLimiter } from "./rateLimit.js";
 import { RenderMemo } from "./renderMemo.js";
 import { calculateSpecialTheme } from "./specialTheme.js";
-import { isSpecialTheme, isTheme } from "./types.js";
-
-import type { RenderContext } from "./types.js";
+import { isSpecialTheme, isTheme, type RenderContext } from "./types.js";
 
 const { fullHost, nodeEnv, port } = env;
 
@@ -37,12 +36,12 @@ app.use(async (c, next) => {
 });
 
 const renderMemo = new RenderMemo<RenderContext>((name, ctx) =>
-  [ctx.theme, ctx.specialTheme, name].join(":"),
+  [ctx.theme, ctx.specialTheme, name].join(":")
 );
 
-app.get("/", async (c) => {
+app.get("/", async c => {
   void trySortProjects(projects)
-    .then((sorted) => {
+    .then(sorted => {
       if (sorted.some((proj, i) => projects.at(i)?.github !== proj.github)) {
         renderMemo.clear();
         projects = sorted;
@@ -60,7 +59,7 @@ app.get("/", async (c) => {
 
   try {
     return c.html(
-      await renderMemo.render(`${staticDir}/index.ejs`, ctx, isDevelopment),
+      await renderMemo.render(`${staticDir}/index.ejs`, ctx, isDevelopment)
     );
   } catch (err) {
     console.error(err);
@@ -68,7 +67,18 @@ app.get("/", async (c) => {
   }
 });
 
-app.post("/", async (c) => {
+const contactFormRateLimiter = createRateLimiter(6e4, 5);
+
+app.post("/", async c => {
+  const ip =
+    c.req.header("x-real-ip") ??
+    c.req.header("x-forwarded-for")?.split(",")[0]?.trim() ??
+    "unknown";
+
+  if (!contactFormRateLimiter(ip)) {
+    return c.text("Too many requests, please try again later.", 429);
+  }
+
   console.log(`New POST from ${c.req.header("user-agent")}`);
   void sendMail(await c.req.parseBody());
   return c.redirect("/");
@@ -82,7 +92,7 @@ app.get(
     c.header("Content-Disposition", 'attachment; filename="nialls_cv.pdf"');
     await next();
   },
-  serveStatic({ path: "./public/cv/nialls_cv.pdf" }),
+  serveStatic({ path: "./public/cv/nialls_cv.pdf" })
 );
 
 const server = Bun.serve({

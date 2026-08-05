@@ -1,12 +1,13 @@
-import * as esbuild from "esbuild";
 import fs from "bun:fs";
+import * as esbuild from "esbuild";
+
 import rawTargets from "./targets.json" with { type: "json" };
 
 const env = process.env.NODE_ENV ?? "development";
 const isDevelopment = env === "development";
 
 const targets = rawTargets.map(
-  ({ browser, version }) => `${browser}${version}`,
+  ({ browser, version }) => `${browser}${version}`
 );
 
 [
@@ -19,7 +20,7 @@ const targets = rawTargets.map(
     minify: true,
     target: targets,
   },
-  ...fs.readdirSync("client/ts/themes").map((name) => ({
+  ...fs.readdirSync("client/ts/themes").map(name => ({
     entry: `client/ts/themes/${name}`,
     outfile: `public/static/js/themes/${name.slice(0, -2)}bundle.js`,
     sourcemap: isDevelopment,

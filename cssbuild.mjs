@@ -1,12 +1,13 @@
-import { browserslistToTargets, transform } from "lightningcss";
 import fs from "bun:fs";
+import { browserslistToTargets, transform } from "lightningcss";
+
 import rawTargets from "./targets.json" with { type: "json" };
 
 const env = process.env.NODE_ENV ?? "development";
 const isDevelopment = env === "development";
 
 const targets = rawTargets.map(
-  ({ browser, version }) => `${browser} ${version}`,
+  ({ browser, version }) => `${browser} ${version}`
 );
 
 const replaceBlockRegex =
@@ -15,7 +16,7 @@ const replaceItemRegex = /(?<match>--[^\s:]+)\s*:\s*(?<replace>[^;]+)/g;
 const varNameRegex = /var\(\s*([^\s)]+)\s*\)/;
 const commentsRegex = /\/\*.*?\*\//g;
 
-const findLookups = (block) => {
+const findLookups = block => {
   const lookups = {};
   const regexes = [];
   let match;
@@ -29,19 +30,19 @@ const findLookups = (block) => {
 const selfProcessLookups = (regex, lookups) => {
   const cache = {};
 
-  const resolve = (key) =>
+  const resolve = key =>
     cache[key]
       ? cache[key]
-      : (cache[key] = lookups[key].replaceAll(regex, (match) =>
-          resolve(varNameRegex.exec(match)[1]),
+      : (cache[key] = lookups[key].replaceAll(regex, match =>
+          resolve(varNameRegex.exec(match)[1])
         ));
 
   return Object.fromEntries(
-    Object.keys(lookups).map((key) => [key, resolve(key)]),
+    Object.keys(lookups).map(key => [key, resolve(key)])
   );
 };
 
-const preprocessReplacements = (contents) => {
+const preprocessReplacements = contents => {
   let match;
   while ((match = replaceBlockRegex.exec(contents))) {
     const strippedBlock = match[0].replaceAll(commentsRegex, "");
@@ -53,7 +54,7 @@ const preprocessReplacements = (contents) => {
     contents = (
       contents.slice(0, match.index) +
       contents.slice(match.index + match[0].length)
-    ).replaceAll(regex, (match) => lookups[varNameRegex.exec(match)[1]]);
+    ).replaceAll(regex, match => lookups[varNameRegex.exec(match)[1]]);
   }
   return contents;
 };
@@ -63,7 +64,7 @@ const preprocessReplacements = (contents) => {
     file: "client/css/styles.css",
     outFile: "public/static/css/styles.min.css",
   },
-  ...fs.readdirSync("client/css/themes").map((name) => ({
+  ...fs.readdirSync("client/css/themes").map(name => ({
     file: `client/css/themes/${name}`,
     outFile: `public/static/css/themes/${name.slice(0, -3)}min.css`,
   })),

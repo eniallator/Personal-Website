@@ -1,6 +1,12 @@
-import { isExact, isNumber, isObjectOf, isOneOf, isString } from "deep-guards";
-
-import type { Guard, TypeFromGuard } from "deep-guards";
+import {
+  isExact,
+  isNumber,
+  isObjectOf,
+  isOneOf,
+  isString,
+  type Guard,
+  type TypeFromGuard,
+} from "deep-guards";
 
 export interface DayOfYear {
   month: number;
@@ -32,7 +38,7 @@ export type Company = TypeFromGuard<typeof isCompany>;
 
 const emailRegex = /^[^\s@]+@[^\s@]+$/;
 const isEmail: Guard<`${string}@${string}`> = (
-  value: unknown,
+  value: unknown
 ): value is `${string}@${string}` => isString(value) && emailRegex.test(value);
 
 export const isValidMail = isObjectOf(
@@ -46,7 +52,7 @@ export const isValidMail = isObjectOf(
     email: isEmail,
     message: isString,
   },
-  true,
+  true
 );
 
 export interface RenderContext {

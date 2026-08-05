@@ -1,7 +1,8 @@
-import ejs, { Options } from "ejs";
+import ejs, { type Options } from "ejs";
 
 const RENDER_OPTS: Options = {
   rmWhitespace: true,
+  strict: true,
 };
 
 export class RenderMemo<C extends NonNullable<unknown>> {

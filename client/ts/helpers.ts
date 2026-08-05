@@ -1,8 +1,8 @@
-// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-parameters
+// oxlint-disable-next-line typescript/no-unnecessary-type-parameters
 export const getId = <E extends HTMLElement>(id: string) =>
   document.getElementById(id) as E;
 
-// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-parameters
+// oxlint-disable-next-line typescript/no-unnecessary-type-parameters
 export const getEl = <E extends HTMLElement>(
   selector: string,
   el: ParentNode = document

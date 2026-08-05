@@ -2,9 +2,13 @@ import { guardOrThrow, isArrayOf } from "deep-guards";
 
 import rawCompanies from "../public/companies.json" with { type: "json" };
 import rawProjects from "../public/projects.json" with { type: "json" };
-import { isCompany, isProject } from "./types.js";
-
-import type { DayOfYear, SpecialTheme, Theme } from "./types.js";
+import {
+  isCompany,
+  isProject,
+  type DayOfYear,
+  type SpecialTheme,
+  type Theme,
+} from "./types.js";
 
 export const HOUR_IN_MS = 3.6e6;
 export const DAYS_SPECIAL_THEME_IS_SHOWING = 7;
@@ -22,11 +26,11 @@ export const SPECIAL_THEMES: Record<
 export const COMPANIES = guardOrThrow(
   rawCompanies,
   isArrayOf(isCompany),
-  "Invalid company format",
+  "Invalid company format"
 );
 
 export const INITIAL_PROJECTS = guardOrThrow(
   rawProjects,
   isArrayOf(isProject),
-  "Invalid project format",
+  "Invalid project format"
 );
