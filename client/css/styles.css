@@ -33,6 +33,10 @@
 
   --secondary-btn-color: var(--color-500);
   --secondary-btn-hover-color: var(--color-600);
+
+  --nav-logo-height: 2rem;
+  --nav-padding-block: 0.5rem;
+  --nav-height: calc(var(--nav-logo-height) + 2 * var(--nav-padding-block));
   /* VAR-REPLACE-END */
 
   &:has(#dark-theme:checked) {
@@ -145,8 +149,7 @@ a {
 }
 
 section {
-  /* Nav height */
-  scroll-margin-top: 48.38px;
+  scroll-margin-top: var(--nav-height);
 }
 
 .section-heading {
@@ -191,7 +194,7 @@ nav {
 }
 
 .nav-home {
-  padding: 0.5rem 0;
+  padding: var(--nav-padding-block) 0;
   line-height: 0;
   z-index: 1;
 }

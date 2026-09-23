@@ -1,6 +1,6 @@
 {
   "exclude": ["*.js", "public", "dist"],
-  "include": ["server", "client"],
+  "include": ["server", "client", "scripts"],
   "compilerOptions": {
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
@@ -22,6 +22,6 @@
     "sourceRoot": "server",
     "strict": true,
     "target": "esnext",
-    "types": ["node", "@types/bun"]
+    "types": ["bun"]
   }
 }

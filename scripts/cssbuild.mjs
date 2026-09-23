@@ -1,18 +1,15 @@
 import fs from "bun:fs";
 import { browserslistToTargets, transform } from "lightningcss";
 
-import rawTargets from "./targets.json" with { type: "json" };
+import { browserslist } from "../package.json" with { type: "json" };
 
 const env = process.env.NODE_ENV ?? "development";
 const isDevelopment = env === "development";
 
-const targets = rawTargets.map(
-  ({ browser, version }) => `${browser} ${version}`
-);
-
 const replaceBlockRegex =
   /\/\*\s*var-replace-start\s*\*\/.*?\/\*\s*var-replace-end\s*\*\//gis;
-const replaceItemRegex = /(?<match>--[^\s:]+)\s*:\s*(?<replace>[^;]+)/g;
+const replaceItemRegex =
+  /(?<match>--[^\s:]+)\s*:\s*(?<replace>[^\s;][^;]*?)\s*;/g;
 const varNameRegex = /var\(\s*([^\s)]+)\s*\)/;
 const commentsRegex = /\/\*.*?\*\//g;
 
@@ -77,7 +74,7 @@ const preprocessReplacements = contents => {
     minify: true,
     sourceMap: isDevelopment,
     filename: file,
-    targets: browserslistToTargets(targets),
+    targets: browserslistToTargets(browserslist),
   });
   fs.writeFileSync(outFile, code);
   console.debug(`Built ${outFile} in ${env}`);

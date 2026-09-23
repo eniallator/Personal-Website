@@ -29,6 +29,8 @@ app.use(async (c, next) => {
     setCookie(c, "theme", theme, {
       maxAge: 5 * 365.25 * 24 * 60 * 60,
       path: "/",
+      secure: !isDevelopment,
+      sameSite: "Lax",
     });
   }
 
