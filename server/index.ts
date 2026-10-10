@@ -82,7 +82,16 @@ app.post("/", async c => {
   }
 
   console.log(`New POST from ${c.req.header("user-agent")}`);
-  void sendMail(await c.req.parseBody());
+
+  let body;
+  try {
+    body = await c.req.parseBody();
+  } catch {
+    console.error("Received malformed formdata");
+    return c.text("Malformed form submission.", 400);
+  }
+
+  void sendMail(body);
   return c.redirect("/");
 });
 
