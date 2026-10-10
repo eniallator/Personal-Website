@@ -1,5 +1,5 @@
+import { serveStatic } from "@hono/bun";
 import { Hono } from "hono";
-import { serveStatic } from "hono/bun";
 import { getCookie, setCookie } from "hono/cookie";
 import { Option } from "niall-utils/functional";
 
