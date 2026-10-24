@@ -1,5 +1,6 @@
 import {
   isExact,
+  isExactObjectOf,
   isNumber,
   isObjectOf,
   isOneOf,
@@ -41,19 +42,16 @@ const isEmail: Guard<`${string}@${string}`> = (
   value: unknown
 ): value is `${string}@${string}` => isString(value) && emailRegex.test(value);
 
-export const isValidMail = isObjectOf(
-  {
-    phone: isExact(""),
-    city: isExact(""),
-    address: isExact(""),
-    country: isExact(""),
-    ["zip code"]: isExact(""),
-    name: isString,
-    email: isEmail,
-    message: isString,
-  },
-  true
-);
+export const isValidMail = isExactObjectOf({
+  phone: isExact(""),
+  city: isExact(""),
+  address: isExact(""),
+  country: isExact(""),
+  ["zip code"]: isExact(""),
+  name: isString,
+  email: isEmail,
+  message: isString,
+});
 
 export interface RenderContext {
   theme: Theme;

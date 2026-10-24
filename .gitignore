@@ -9,3 +9,4 @@ dist
 .envrc
 .pnp.cjs
 .pnp.loader.mjs
+.claude/lib-docs

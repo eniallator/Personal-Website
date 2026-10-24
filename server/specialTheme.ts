@@ -1,4 +1,5 @@
 import { typedToEntries } from "niall-utils/data";
+import { mapFilter } from "niall-utils/functional";
 
 import {
   DAYS_SPECIAL_THEME_IS_SHOWING,
@@ -14,16 +15,16 @@ export const calculateSpecialTheme = (): SpecialTheme => {
   const nowYear = now.getFullYear();
   const nowTimestamp = now.getTime();
 
-  const [closest] = typedToEntries(SPECIAL_THEMES)
-    .map(([theme, { month, day, hour = 12 }]) => ({
-      diff: [-1, 0, 1].reduce((closest, yearOffset) => {
+  const [closest] = mapFilter(
+    typedToEntries(SPECIAL_THEMES),
+    ([theme, { month, day, hour = 12 }]) => {
+      const diff = [-1, 0, 1].reduce((closest, yearOffset) => {
         const date = new Date(nowYear + yearOffset, month, day, hour);
         return Math.min(closest, Math.abs(nowTimestamp - date.getTime()));
-      }, Infinity),
-      theme,
-    }))
-    .filter(({ diff }) => diff < halfMsThemeIsShowing)
-    .sort((a, b) => a.diff - b.diff);
+      }, Infinity);
+      return diff < halfMsThemeIsShowing ? { diff, theme } : null;
+    }
+  ).sort((a, b) => a.diff - b.diff);
 
   return closest?.theme ?? "no-theme";
 };

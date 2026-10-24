@@ -1,6 +1,7 @@
 import { serveStatic } from "@hono/bun";
 import { Hono } from "hono";
 import { getCookie, setCookie } from "hono/cookie";
+import { attemptAsync } from "niall-utils/core";
 import { Option } from "niall-utils/functional";
 
 import { COMPANIES, DEFAULT_THEME, INITIAL_PROJECTS } from "./constants.js";
@@ -83,10 +84,8 @@ app.post("/", async c => {
 
   console.log(`New POST from ${c.req.header("user-agent")}`);
 
-  let body;
-  try {
-    body = await c.req.parseBody();
-  } catch {
+  const body = await attemptAsync(() => c.req.parseBody());
+  if (body == null) {
     console.error("Received malformed formdata");
     return c.text("Malformed form submission.", 400);
   }

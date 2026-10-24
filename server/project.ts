@@ -12,7 +12,7 @@ export const trySortProjects = throttledAsync(
   async (projects: Project[]): Promise<Project[]> =>
     collectPaginated(GITHUB_PAGE_SIZE, async (page, per_page) =>
       attemptAsync(
-        async () =>
+        () =>
           octokit
             .request("GET /users/{username}/repos", {
               username: "eniallator",
@@ -22,8 +22,7 @@ export const trySortProjects = throttledAsync(
               per_page,
               page,
             })
-            .then(({ data }) => data.map(({ name }) => name.toLowerCase()))
-            .catch(() => []),
+            .then(({ data }) => data.map(({ name }) => name.toLowerCase())),
         () => []
       )
     ).then(order =>
