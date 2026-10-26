@@ -59,4 +59,5 @@ export interface RenderContext {
   fullHost: string;
   projects: Project[];
   companies: Company[];
+  css: string[];
 }

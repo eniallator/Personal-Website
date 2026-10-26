@@ -1,4 +1,5 @@
-<%_ const { fullHost, theme, specialTheme, projects, companies } = locals; _%>
+<%_ const { fullHost, theme, specialTheme, projects, companies, css } = locals;
+_%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -33,16 +34,6 @@
 
     <title>Niall's Personal Site</title>
 
-    <link
-      rel="preload"
-      href="/static/css/styles.min.css"
-      as="style" />
-    <% if (specialTheme !== "no-theme") { %>
-    <link
-      rel="preload"
-      href="/static/css/themes/<%= specialTheme %>.min.css"
-      as="style" />
-    <% } %>
     <link
       rel="preload"
       href="/static/js/bundle.js"
@@ -98,13 +89,8 @@
       href="<%= project.img %>" />
     <% } %>
 
-    <link
-      rel="stylesheet"
-      href="/static/css/styles.min.css" />
-    <% if (specialTheme !== "no-theme") { %>
-    <link
-      rel="stylesheet"
-      href="/static/css/themes/<%= specialTheme %>.min.css" />
+    <% for (const sheet of css) { %>
+    <style><%- sheet %></style>
     <% } %>
 
     <link rel="canonical" href="<%= fullHost %>" />
@@ -495,9 +481,10 @@
         </form>
       </section>
     </main>
-    <script src="/static/js/bundle.js"></script>
+    <script defer src="/static/js/bundle.js"></script>
     <% if (specialTheme !== "no-theme") { %>
-    <script src="/static/js/themes/<%= specialTheme %>.bundle.js"></script>
+    <script defer
+      src="/static/js/themes/<%= specialTheme %>.bundle.js"></script>
     <% } %>
   </body>
 </html>

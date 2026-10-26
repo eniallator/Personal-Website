@@ -58,9 +58,27 @@ app.get("/", async c => {
   const specialTheme = Option.from(c.req.query("theme"))
     .guard(isSpecialTheme)
     .getOrElse(calculateSpecialTheme);
-  const ctx = { theme, specialTheme, fullHost, projects, companies: COMPANIES };
 
   try {
+    const ctx: RenderContext = {
+      theme,
+      specialTheme,
+      fullHost,
+      projects,
+      companies: COMPANIES,
+      css: await Promise.all(
+        [
+          "styles",
+          ...Option.from(specialTheme)
+            .filter(theme => theme !== "no-theme")
+            .map(theme => `themes/${theme}`)
+            .toArray(),
+        ].map(name =>
+          Bun.file(`${staticDir}/static/css/${name}.min.css`).text()
+        )
+      ),
+    };
+
     return c.html(
       await renderMemo.render(`${staticDir}/index.ejs`, ctx, isDevelopment)
     );
