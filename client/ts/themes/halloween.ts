@@ -43,7 +43,7 @@ const eyesLoop = () => {
     container.innerHTML += `
       <img
         id="theme-eyes-${eyes.id}"
-        src='static/images/themes/spooky-eyes.png'
+        src='static/images/themes/spooky-eyes.webp'
         width="${width}"
         height="${height}"
         style="

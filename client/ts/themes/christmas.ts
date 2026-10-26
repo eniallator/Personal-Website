@@ -26,7 +26,7 @@ const spawnSanta = () => {
     <img
       id='santa'
       width='224px'
-      src='static/images/themes/santa-sleigh.png'
+      src='static/images/themes/santa-sleigh.webp'
       style='top: ${santaData.xPercent}%; left: ${santaData.yPercent}%'
     />`;
 };
